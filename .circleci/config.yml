@@ -1,0 +1,46 @@
+version: '2.1'
+orbs:
+  node: circleci/node@x.y
+jobs:
+  lint:
+    executor:
+      name: node/default
+      tag: '16'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn format:check
+          name: Check formatting
+      - run:
+          command: yarn lint
+          name: Lint
+  test:
+    executor:
+      name: node/default
+      tag: '16'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn test
+          name: Run tests
+  build:
+    executor:
+      name: node/default
+      tag: '16'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn build
+          name: Compile with tsc
+workflows:
+  ci:
+    jobs:
+      - lint
+      - test
+      - build
