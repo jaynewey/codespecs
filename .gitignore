@@ -131,3 +131,6 @@ dist
 
 # vim config
 .vim
+
+# built files
+build/
