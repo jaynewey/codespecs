@@ -4,6 +4,6 @@ stages:
 push-job:
   stage: push
   script:
-    - git clone --bare "https://gitlab-ci-token:$CI_JOB_JOKEN@gitlab.com/jxn819/fyp-testing.git"
+    - git clone --bare "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-testing.git"
     - cd fyp-testing/
     - git push --force --mirror "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-mirror-testing.git"
