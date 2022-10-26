@@ -21,10 +21,10 @@ export default class DapClient {
   }
 
   ${Object.entries(schema?.definitions ?? {})
-    .filter(([definition, _]) => definition.endsWith("Request"))
-    .map(([key, value]) => {
+    .filter(([definition]) => definition.endsWith("Request"))
+    .map(([_, value]) => {
       const obj =
-        (Array.isArray(value?.allOf) ? value?.allOf : []).filter(
+        (Array.isArray(value?.allOf) ? value.allOf : []).filter(
           (obj: JSONObject) => obj?.type === "object"
         )?.[0] ?? {};
 
@@ -56,10 +56,10 @@ export default class DapClient {
     .join("")}
 
   ${Object.entries(schema?.definitions ?? {})
-    .filter(([definition, _]) => definition.endsWith("Event"))
+    .filter(([definition]) => definition.endsWith("Event"))
     .map(([key, value]) => {
       const obj =
-        (Array.isArray(value?.allOf) ? value?.allOf : []).filter(
+        (Array.isArray(value?.allOf) ? value.allOf : []).filter(
           (obj: JSONObject) => obj?.type === "object"
         )?.[0] ?? {};
 

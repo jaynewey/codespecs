@@ -61,13 +61,15 @@ client.onStoppedEvent((event) => {
     typeof variablesReference !== "number"
   ) {
     // need thread ID
-    threadId = body?.threadId;
+    const newThreadId = body?.threadId;
 
-    if (typeof threadId !== "number") {
+    if (typeof newThreadId !== "number") {
       console.log("no thread id");
       client.close();
       return;
     }
+
+    threadId = newThreadId;
 
     client.stackTrace({ threadId: threadId }).then((response) => {
       console.log("received: " + JSON.stringify(response));
