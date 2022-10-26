@@ -19,7 +19,7 @@
     "typescript": "^4.8.4"
   },
   "scripts": {
-    "build": "rm -rf ./build && tsc",
+    "build": "yarn dap-client && rm -rf ./build && tsc",
     "exec": "ts-node ./src/index.ts",
     "format": "prettier ./src/* --write",
     "format:check": "prettier ./src/* --check",
@@ -28,6 +28,6 @@
     "dap-types": "rm -rf ./src/dap/generated && mkdir ./src/dap/generated && yarn dap-types:fetch && yarn dap-types:generate",
     "dap-types:fetch": "curl -o ./src/dap/generated/debugAdapterProtocol.json https://microsoft.github.io/debug-adapter-protocol/debugAdapterProtocol.json",
     "dap-types:generate": "json2ts ./src/dap/generated/debugAdapterProtocol.json ./src/dap/generated/debugAdapterProtocol.d.ts --unreachableDefinitions",
-    "dap-client": "yarn dap-types && ts-node ./src/dap/generateClient.ts"
+    "dap-client": "rm -rf ./src/dap/generated/ && yarn dap-types && ts-node ./src/dap/generateClient.ts"
   }
 }
