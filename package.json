@@ -12,8 +12,10 @@
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "jest": "^29.2.1",
+    "json-schema-to-typescript": "^11.0.2",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
   "scripts": {
@@ -22,6 +24,10 @@
     "format": "prettier ./src/* --write",
     "format:check": "prettier ./src/* --check",
     "lint": "eslint --ext .ts ./src/*",
-    "test": "jest"
+    "test": "jest",
+    "dap-types": "rm -rf ./src/dap/generated && mkdir ./src/dap/generated && yarn dap-types:fetch && yarn dap-types:generate",
+    "dap-types:fetch": "curl -o ./src/dap/generated/debugAdapterProtocol.json https://microsoft.github.io/debug-adapter-protocol/debugAdapterProtocol.json",
+    "dap-types:generate": "json2ts ./src/dap/generated/debugAdapterProtocol.json ./src/dap/generated/debugAdapterProtocol.d.ts --unreachableDefinitions",
+    "dap-client": "yarn dap-types && ts-node ./src/dap/generateClient.ts"
   }
 }
