@@ -1,10 +1,10 @@
 stages:
   - triggers
 
-    #ci:
-    #  stage: triggers
-    #  trigger:
-    #    include: .gitlab-ci/ci.yml
+ci:
+  stage: triggers
+  trigger:
+    include: .gitlab-ci/ci.yml
 
 mirror:
   stage: triggers
