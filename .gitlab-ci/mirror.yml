@@ -1,0 +1,6 @@
+stages:
+  - push
+
+push-job:
+  stage: push
+  script: git push --mirror "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-mirror-testing.git"

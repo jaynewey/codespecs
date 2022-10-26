@@ -1,0 +1,32 @@
+image: node:16.16.0
+
+before_script:
+  - yarn install --cache-folder .yarn
+
+cache:
+  paths:
+    - node_modules/
+    - .yarn
+
+stages:
+  - build
+  - test
+
+build-job:
+  stage: build
+  script: yarn build
+
+unit-test-job:
+  stage: test
+  script: yarn test
+
+lint-test-job:
+  stage: test
+  script:
+    - yarn lint
+
+format-test-job:
+  stage: test
+  script:
+    - yarn format:check
+
