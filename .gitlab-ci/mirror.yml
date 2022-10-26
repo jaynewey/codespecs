@@ -3,4 +3,4 @@ stages:
 
 push-job:
   stage: push
-  script: git push --mirror "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-mirror-testing.git"
+  script: git push --mirror "https://gitlab-ci-token:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-mirror-testing.git"
