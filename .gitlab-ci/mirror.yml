@@ -5,5 +5,4 @@ push-job:
   stage: push
   script:
     - git clone --mirror "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-testing.git"
-    - cd fyp-testing/
     - git push --mirror "https://oauth2:$MIRROR_TOKEN@gitlab.com/jxn819/fyp-mirror-testing.git"
