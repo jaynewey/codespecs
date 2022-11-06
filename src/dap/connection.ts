@@ -2,7 +2,7 @@ import { Socket } from "net";
 
 import { Event, Request, Response } from "./generated/debugAdapterProtocol";
 
-const HOST = "localhost";
+const HOST = "127.0.0.1";
 const PORT = 5678;
 
 type RawRequest = Omit<Request, "seq" | "type">;
