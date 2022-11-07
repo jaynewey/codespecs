@@ -16,3 +16,4 @@ cd:
   stage: cd
   trigger:
     include: .gitlab-ci/cd.yml
+  needs: [ci]
