@@ -1,5 +1,6 @@
 stages:
   - triggers
+  - cd
 
 ci:
   stage: triggers
@@ -10,3 +11,8 @@ mirror:
   stage: triggers
   trigger:
     include: .gitlab-ci/mirror.yml
+
+cd:
+  stage: cd
+  trigger:
+    include: .gitlab-ci/cd.yml

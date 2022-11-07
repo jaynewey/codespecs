@@ -21,9 +21,9 @@
     "typescript": "^4.8.4"
   },
   "scripts": {
-    "build": "yarn dap-client && rm -rf ./build && tsc",
     "exec": "ts-node ./src/index.ts",
-    "dev": "yarn ts-node-dev --transpile-only src/server.ts",
+    "dev": "ts-node-dev --transpile-only src/server.ts",
+    "prod": "ts-node src/server.ts",
     "format": "prettier ./src/* --write",
     "format:check": "prettier ./src/* --check",
     "lint": "eslint --ext .ts ./src/*",

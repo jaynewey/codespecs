@@ -9,12 +9,7 @@ cache:
     - .yarn
 
 stages:
-  - build
   - test
-
-build-job:
-  stage: build
-  script: yarn build
 
 unit-test-job:
   stage: test
