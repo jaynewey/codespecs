@@ -7,11 +7,6 @@ ci:
   trigger:
     include: .gitlab-ci/ci.yml
 
-mirror:
-  stage: triggers
-  trigger:
-    include: .gitlab-ci/mirror.yml
-
 cd:
   stage: cd
   trigger:
