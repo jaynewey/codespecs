@@ -9,8 +9,11 @@ variables:
 publish:
   image: docker:latest
   stage: publish
+  variables:
+   DOCKER_HOST: tcp://docker:2375/
+   DOCKER_DRIVER: overlay2
   services:
-    - docker:dind
+   - docker:18.09-dind
   script:
     - docker build -t $TAG_COMMIT -t $TAG_LATEST .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
