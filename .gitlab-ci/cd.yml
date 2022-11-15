@@ -35,7 +35,7 @@ build_and_deploy:
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker container rm -f fyp || true"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "test -d /etc/letsencrypt/live/$DOMAIN || ( apt update && apt install -y python3-certbot-nginx && certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos -m $EMAIL )"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker load -i ~/$TAG_LATEST.tar"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker run -d -p 80:8080 -v /etc/letsencrypt:/etc/letsencrypt --name fyp $TAG_LATEST"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker run -d -p 80:80 -p 443:443 -v /etc/letsencrypt:/etc/letsencrypt --name fyp $TAG_LATEST"
   environment:
     name: production
     url: http://$SERVER_IP

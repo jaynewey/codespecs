@@ -13,5 +13,5 @@ RUN envsubst '$DOMAIN' < "./nginx.template" > "/etc/nginx/nginx.conf"
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 80 443
 CMD /usr/sbin/nginx -g "daemon off;" & yarn prod
