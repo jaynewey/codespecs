@@ -13,7 +13,7 @@ build:
   services:
    - docker:18.09-dind
   script:
-    - docker build -t $TAG_LATEST .
+    - docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
   except:
     - master

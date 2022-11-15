@@ -17,13 +17,13 @@ const opts: RouteShorthandOptions = {
   },
 };
 
-server.get("/", opts, async () => {
+server.get("/api/", opts, async () => {
   return { hello: "world" };
 });
 
 const start = async () => {
   try {
-    await server.listen({ port: 8080, host: "0.0.0.0" });
+    await server.listen({ port: 8081, host: "0.0.0.0" });
   } catch (err) {
     server.log.error(err);
     process.exit(1);
