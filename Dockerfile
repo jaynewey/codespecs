@@ -9,9 +9,8 @@ COPY nginx.template ./
 # install nginx and evsubst
 RUN apk add nginx gettext
 ARG DOMAIN
-# build nginx config and check it's valid
+# build nginx config
 RUN envsubst '$DOMAIN' < "./nginx.template" > "/etc/nginx/nginx.conf"
-RUN /usr/sbin/nginx -t
 
 # install frontend dependencies
 RUN yarn --cwd ./frontend install
