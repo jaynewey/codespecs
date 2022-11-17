@@ -6,9 +6,11 @@ ci:
   stage: triggers
   trigger:
     include: .gitlab-ci/ci.yml
+    strategy: depend
 
 cd:
   stage: cd
   trigger:
     include: .gitlab-ci/cd.yml
+    strategy: depend
   needs: [ci]
