@@ -1,10 +1,10 @@
-import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
 import cors from "@fastify/cors";
+import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
 
 const server: FastifyInstance = Fastify({});
 server.register(cors, {
-  origin: "*"
-})
+  origin: "*",
+});
 
 const opts: RouteShorthandOptions = {
   schema: {
