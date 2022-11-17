@@ -1,6 +1,7 @@
 image: node:16.16.0
 
 before_script:
+  - cd ./backend
   - yarn install --cache-folder .yarn
 
 cache:
