@@ -1,0 +1,172 @@
+.mosaic-tile > *, .mosaic {
+  @apply w-full h-full;
+}
+
+.mosaic-root {
+  @apply absolute inset-0;
+}
+
+.mosaic-split .mosaic-split-line {
+  @apply absolute;
+}
+
+.mosaic-split {
+  @apply absolute z-40 touch-none;
+}
+
+.mosaic-split.-row {
+  width: 1px;
+  margin-left: -1px;
+  @apply bg-zinc-500;
+}
+
+.mosaic-split.-row .mosaic-split-line {
+  @apply inset-y-0 inset-x-0.5;
+}
+
+.mosaic-split.-column {
+  height: 1px;
+  margin-top: -1px;
+  @apply bg-zinc-500;
+}
+
+.mosaic-split.-column .mosaic-split-line {
+  @apply inset-x-0 inset-y-0.5;
+}
+
+.mosaic-window .mosaic-preview,
+.mosaic-preview .mosaic-preview {
+  @apply absolute w-full h-full max-h-96 z-0 border border-zinc-500;
+}
+
+.mosaic-drop-target .drop-target-container .drop-target {
+  @apply absolute inset-0 z-10 opacity-0;
+}
+
+.mosaic-drop-target .drop-target-container .drop-target-hover {
+  @apply absolute inset-0 z-50 border border-zinc-500 bg-zinc-500/10 opacity-90 duration-300 delay-200;
+}
+
+.mosaic-window .mosaic-window-toolbar,
+.mosaic-preview .mosaic-window-toolbar {
+  @apply flex items-center justify-between shrink-0 h-7;
+  z-index: 4;
+}
+
+.mosaic,
+.mosaic > * {
+  @apply box-border;
+}
+.mosaic .mosaic-zero-state {
+  @apply absolute w-auto h-auto;
+  z-index: 1;
+}
+.mosaic-split.-row:hover {
+  @apply -ml-0.5 w-1 cursor-col-resize;
+}
+.mosaic-split.-column:hover {
+  @apply -mt-0.5 h-1 cursor-row-resize;
+}
+
+.mosaic-tile {
+  @apply absolute m-0;
+}
+
+.mosaic-drop-target {
+  @apply relative;
+}
+
+.mosaic-drop-target.drop-target-hover .drop-target-container {
+  @apply block;
+}
+
+.mosaic-drop-target.mosaic > .drop-target-container .drop-target.left {
+  right: calc(100% -  10px );
+}
+
+.mosaic-drop-target.mosaic > .drop-target-container .drop-target.right {
+  left: calc(100% -  10px );
+}
+
+.mosaic-drop-target.mosaic > .drop-target-container .drop-target.bottom {
+  top: calc(100% -  10px );
+}
+
+.mosaic-drop-target.mosaic > .drop-target-container .drop-target.top {
+  bottom: calc(100% -  10px );
+}
+
+.mosaic-drop-target .drop-target-container {
+  @apply absolute inset-0 hidden;
+}
+
+.mosaic-drop-target .drop-target-container.-dragging {
+  @apply block;
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.left {
+  right: calc(100% -  30% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.right {
+  left: calc(100% -  30% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.bottom {
+  top: calc(100% -  30% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.top {
+  bottom: calc(100% -  30% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover {
+  opacity: 1;
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.left {
+  right: calc(100% -  50% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.right {
+  left: calc(100% -  50% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.bottom {
+  top: calc(100% -  50% );
+}
+
+.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.top {
+  bottom: calc(100% -  50% );
+}
+
+.mosaic-window,
+.mosaic-preview {
+  @apply relative flex flex-col overflow-hidden;
+}
+
+.mosaic-window .mosaic-window-toolbar.draggable,
+.mosaic-preview .mosaic-window-toolbar.draggable {
+  @apply cursor-grab;
+}
+
+.mosaic-window .mosaic-window-title,
+.mosaic-preview .mosaic-window-title {
+  @apply flex flex-1 items-center h-full pl-3.5;
+}
+
+.mosaic-window .mosaic-window-controls,
+.mosaic-preview .mosaic-window-controls {
+  @apply flex h-full;
+}
+
+.mosaic-window .mosaic-window-body,
+.mosaic-preview .mosaic-window-body {
+  @apply relative flex-1 h-0 overflow-hidden;
+  z-index: 1;
+}
+.mosaic-window .mosaic-window-body-overlay,
+.mosaic-preview .mosaic-window-body-overlay {
+  @apply overflow-hidden absolute inset-0 opacity-0 hidden;
+  z-index: 2;
+}

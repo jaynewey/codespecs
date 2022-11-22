@@ -1,3 +1,6 @@
+@import "./components/windows/windows.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
