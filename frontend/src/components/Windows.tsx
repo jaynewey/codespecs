@@ -3,6 +3,7 @@ import {
   Mosaic,
   MosaicNode,
   MosaicPath,
+  getNodeAtPath,
 } from "react-mosaic-component";
 
 import "../index.css";
@@ -38,23 +39,59 @@ const windowKeys = new Map<
   ],
 ]);
 
-export default function Windows() {
-  const [windows, setWindows] = useState<MosaicNode<string>>({
-    direction: "row",
-    first: {
-      direction: "column",
-      first: "animation",
-      second: "terminal",
-      splitPercentage: 60,
-    },
-    second: {
-      direction: "column",
-      first: "code",
-      second: "variables",
-    },
-    splitPercentage: 60,
-  });
+export function isVisible<T extends MosaicKey>(
+  tree: MosaicNode<T>,
+  path: MosaicPath
+) {
+  const splitPercentage =
+    getNodeAtPath(tree, path.slice(0, path.length - 1))?.splitPercentage ?? 50;
+  return (
+    (path?.[path.length - 1] === "first" && splitPercentage > 0) ||
+    (path?.[path.length - 1] === "second" && splitPercentage < 100)
+  );
+}
 
+export function getPathToNode<T extends MosaicKey>(
+  tree: MosaicNode<T>,
+  key: T
+): MosaicPath {
+  function search<T extends MosaicKey>(
+    tree: MosaicNode<T>,
+    key: T,
+    path: MosaicPath
+  ): boolean {
+    if (tree) {
+      if (tree?.first === key) {
+        path.push("first");
+        return true;
+      }
+      if (tree?.second === key) {
+        path.push("second");
+        return true;
+      }
+      if (search(tree?.first, key, path)) {
+        path.unshift("first");
+        return true;
+      }
+      if (search(tree?.second, key, path)) {
+        path.unshift("second");
+        return true;
+      }
+    }
+    return false;
+  }
+  const path = [];
+  search(tree, key, path);
+  return path;
+}
+
+export default function Windows({
+  windows,
+  setWindows,
+}: {
+  windows: MosaicNode<string>;
+  setWindows: (windows: MosaicNode<string>) => void;
+}) {
   return (
     <div className="h-full">
       <Mosaic<string>
