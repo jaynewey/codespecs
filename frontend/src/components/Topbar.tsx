@@ -131,7 +131,7 @@ export default function Topbar({
         windows={windows}
         setWindows={setWindows}
       />
-      <div className="ml-auto">
+      <div className="flex ml-auto">
         <IconButton
           icon={theme === "light" ? Sun : Moon}
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
