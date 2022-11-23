@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import {MosaicNode} from "react-mosaic-component"
 
 import "./index.css";
 import Topbar from "./components/Topbar"

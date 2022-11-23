@@ -2,6 +2,7 @@ import {
   ChevronDown,
   Code,
   Eye,
+  Icon,
   LayoutList,
   Moon,
   Sun,
@@ -9,7 +10,8 @@ import {
 } from "charm-icons";
 import { useContext, useEffect, useState } from "react";
 import {
-  MosaicKey,
+  MosaicNode,
+  MosaicParent,
   createExpandUpdate,
   createHideUpdate,
   getNodeAtPath,
@@ -21,9 +23,10 @@ import "../index.css";
 import CharmIcon from "./CharmIcon";
 import IconButton from "./IconButton";
 import { getPathToNode, isVisible } from "./Windows";
+import { MosaicKey } from "./windows/types";
 
 const API_ENDPOINT =
-  process.env.NODE_ENV === "production"
+  import.meta.env.PROD
     ? "https://codespecs.tech/api"
     : "http://localhost:8081/api";
 
@@ -33,7 +36,7 @@ function ToggleWindowButton<T extends MosaicKey>({
   windows,
   setWindows,
 }: {
-  icon: CharmIcon;
+  icon: Icon;
   windowKey: T;
   windows: MosaicNode<T>;
   setWindows: (windows: MosaicNode<T>) => void;
@@ -51,11 +54,16 @@ function ToggleWindowButton<T extends MosaicKey>({
       onClick={() => {
         const path = getPathToNode(windows, windowKey);
         if (isVisible(windows, path)) {
-          setSplitPercentage(
-            getNodeAtPath(windows, path.slice(0, path.length - 1))
-              ?.splitPercentage ?? 50
+          const nodeAtPath = getNodeAtPath(
+            windows,
+            path.slice(0, path.length - 1)
           );
-          setWindows(updateTree(windows, [createHideUpdate(path)]));
+          if (nodeAtPath) {
+            setSplitPercentage(
+              (nodeAtPath as MosaicParent<MosaicKey>)?.splitPercentage ?? 50
+            );
+            setWindows(updateTree(windows, [createHideUpdate(path)]));
+          }
         } else {
           setWindows(
             updateTree(windows, [
@@ -90,8 +98,10 @@ export default function Topbar({
     fetch(`${API_ENDPOINT}/languages/`)
       .then((response) => response.json())
       .then((json) => {
-        setLanguages(json);
-        setSelectedLanguage(languages[0]);
+	if (Array.isArray(json)) {
+	  setLanguages(json);
+	  setSelectedLanguage(json[0]);
+	}
       });
   }, []);
 
