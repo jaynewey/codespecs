@@ -71,7 +71,7 @@ function ToggleWindowButton<T extends MosaicKey>({
                 path: path.slice(0, path.length - 1),
                 spec: {
                   splitPercentage: {
-                    $set: splitPercentage <= 0 ? 50 : splitPercentage,
+		    $set: splitPercentage <= 0 || splitPercentage >= 100 ? 50 : splitPercentage,
                   },
                 },
               },
