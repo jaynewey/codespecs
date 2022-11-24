@@ -4,8 +4,10 @@ import {
   Eye,
   Icon,
   LayoutList,
+  MediaPause,
   MediaPlay,
   Moon,
+  Square,
   Sun,
   Terminal,
 } from "charm-icons";
@@ -18,6 +20,7 @@ import {
   updateTree,
 } from "react-mosaic-component";
 
+import { defaultWindows } from "../App";
 import ThemeContext from "../contexts/ThemeContext";
 import { WindowStates } from "../hooks/useWindows";
 import "../index.css";
@@ -99,6 +102,8 @@ export default function Topbar({
   const { theme, setTheme } = useContext(ThemeContext);
   const [languages, setLanguages] = useState<string[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState<string>();
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(`${API_ENDPOINT}/languages/`)
@@ -121,50 +126,83 @@ export default function Topbar({
           const [____, setOutput] = windowStates.terminal.output;
           const [_____, setVariablesList] =
             windowStates.variables.variablesList;
-          fetch(`${API_ENDPOINT}/run/`, {
-            method: "POST",
-            body: JSON.stringify({
-              language: selectedLanguage,
-              stdin: input,
-              source_code: sourceCode,
-            }),
-          })
-            .then((response) => response.json())
-            .then((json) => {
-              setTab("output");
-              setOutput(json?.stdout ?? "");
-              setVariablesList(json?.variables ?? []);
+
+          if (!isRunning) {
+            fetch(`${API_ENDPOINT}/run/`, {
+              method: "POST",
+              body: JSON.stringify({
+                language: selectedLanguage,
+                stdin: input,
+                source_code: sourceCode,
+              }),
+            })
+              .then((response) => response.json())
+              .then((json) => {
+                setTab("output");
+                setOutput(json?.stdout ?? "");
+                setVariablesList(json?.variables ?? []);
+              });
+
+            // set up windows
+            setWindows({
+              direction: "row",
+              first: {
+                direction: "column",
+                first: "code",
+                second: "animation",
+                splitPercentage: 0,
+              },
+              second: {
+                direction: "column",
+                first: "terminal",
+                second: "variables",
+                splitPercentage: 30,
+              },
+              splitPercentage: 70,
             });
-          // set up windows
-          setWindows({
-            direction: "row",
-            first: {
-              direction: "column",
-              first: "code",
-              second: "animation",
-              splitPercentage: 0,
-            },
-            second: {
-              direction: "column",
-              first: "terminal",
-              second: "variables",
-              splitPercentage: 30,
-            },
-            splitPercentage: 70,
-          });
+
+            setIsPaused(false);
+          } else {
+            // reset windows to default
+            setWindows(defaultWindows);
+          }
+
+          setIsRunning(!isRunning);
         }}
         disabled={!selectedLanguage}
         className={`flex content-center px-2 text-sm duration-300 border rounded ${
           selectedLanguage
-            ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
+            ? isRunning
+              ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300"
+              : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
             : "bg-zinc-500/20 border-zinc-500 animate-pulse cursor-not-allowed"
         }`}
       >
         <div className="pr-1 py-1">
-          <CharmIcon icon={MediaPlay} />
+          {isRunning ? (
+            <CharmIcon icon={Square} />
+          ) : (
+            <CharmIcon icon={MediaPlay} />
+          )}
         </div>
-        <span className="pt-0.5">Run</span>
+        <span className="pt-0.5">{isRunning ? "Stop" : "Run"}</span>
       </button>
+      {isRunning ? (
+        <button
+          className={`flex content-center text-sm duration-300 border rounded ${
+            isPaused
+              ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-gree-300 text-green-700 dark:text-green-300"
+              : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
+          }`}
+          onClick={() => setIsPaused(!isPaused)}
+        >
+          <div className="p-1">
+            <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
+          </div>
+        </button>
+      ) : (
+        <></>
+      )}
       <div className="border-l border-zinc-500 mx-1" />
       <ToggleWindowButton
         icon={Eye}

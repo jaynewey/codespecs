@@ -43,23 +43,25 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
   };
 }
 
+export const defaultWindows = {
+  direction: "row",
+  first: {
+    direction: "column",
+    first: "code",
+    second: "animation",
+    splitPercentage: 100,
+  },
+  second: {
+    direction: "column",
+    first: "terminal",
+    second: "variables",
+    splitPercentage: 100,
+  },
+  splitPercentage: 70,
+};
+
 function App() {
-  const [windows, setWindows] = useState<MosaicNode<string>>({
-    direction: "row",
-    first: {
-      direction: "column",
-      first: "code",
-      second: "animation",
-      splitPercentage: 100,
-    },
-    second: {
-      direction: "column",
-      first: "terminal",
-      second: "variables",
-      splitPercentage: 100,
-    },
-    splitPercentage: 70,
-  });
+  const [windows, setWindows] = useState<MosaicNode<string>>(defaultWindows);
 
   const windowStates = useWindows();
 
