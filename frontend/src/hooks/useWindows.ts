@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { Variable } from "../components/windows/Variables";
 import { State } from "../components/windows/types";
 
 export type WindowStates = {
@@ -10,8 +11,11 @@ export type WindowStates = {
   terminal: {
     input: State<string>;
     output: State<string>;
+    tab: State<"output" | "input">;
   };
-  variables: {};
+  variables: {
+    variablesList: State<Variable[]>;
+  };
 };
 
 export default function useWindows(): WindowStates {
@@ -23,7 +27,10 @@ export default function useWindows(): WindowStates {
     terminal: {
       input: useState<string>(""),
       output: useState<string>(""),
+      tab: useState("input"),
     },
-    variables: {},
+    variables: {
+      variablesList: useState([]),
+    },
   };
 }

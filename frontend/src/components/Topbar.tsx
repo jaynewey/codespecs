@@ -112,22 +112,30 @@ export default function Topbar({
   }, []);
 
   return (
-    <div
-      onClick={() => {
-        const [input, _] = windowStates.terminal.input;
-        const [sourceCode, __] = windowStates.code.sourceCode;
-        fetch(`${API_ENDPOINT}/run/`, {
-          method: "POST",
-          body: JSON.stringify({
-            language: selectedLanguage,
-            stdin: input,
-            source_code: sourceCode,
-          }),
-        });
-      }}
-      className="sticky shrink flex top-0 w-full border-b border-zinc-500 p-1 gap-x-1 z-50"
-    >
+    <div className="sticky shrink flex top-0 w-full border-b border-zinc-500 p-1 gap-x-1 z-50">
       <button
+        onClick={() => {
+          const [input, _] = windowStates.terminal.input;
+          const [sourceCode, __] = windowStates.code.sourceCode;
+          const [___, setTab] = windowStates.terminal.tab;
+          const [____, setOutput] = windowStates.terminal.output;
+          const [_____, setVariablesList] =
+            windowStates.variables.variablesList;
+          fetch(`${API_ENDPOINT}/run/`, {
+            method: "POST",
+            body: JSON.stringify({
+              language: selectedLanguage,
+              stdin: input,
+              source_code: sourceCode,
+            }),
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              setTab("output");
+              setOutput(json?.stdout ?? "");
+              setVariablesList(json?.variables ?? []);
+            });
+        }}
         disabled={!selectedLanguage}
         className={`flex content-center px-2 text-sm duration-300 border rounded ${
           selectedLanguage

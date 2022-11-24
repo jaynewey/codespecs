@@ -15,12 +15,14 @@ export default function Terminal<T extends MosaicKey>({
   path,
   inputState,
   outputState,
+  tabState,
 }: {
   path: MosaicPath;
   inputState: State<string>;
   outputState: State<string>;
+  tabState: State<"output" | "input">;
 }) {
-  const [tab, setTab] = useState<"output" | "input">("output");
+  const [tab, setTab] = tabState;
   const [input, setInput] = inputState;
   const [output, setOutput] = outputState;
 
@@ -34,19 +36,19 @@ export default function Terminal<T extends MosaicKey>({
           <span className="pl-2">Terminal</span>
           <button
             className={`rounded text-xs ml-2 px-1 hover:bg-gray-500/20 duration-300 ${
-              tab === "output" ? "bg-gray-500/30" : ""
-            }`}
-            onClick={() => setTab("output")}
-          >
-            output
-          </button>
-          <button
-            className={`rounded text-xs ml-2 px-1 hover:bg-gray-500/20 duration-300 ${
               tab === "input" ? "bg-gray-500/30" : ""
             }`}
             onClick={() => setTab("input")}
           >
             input
+          </button>
+          <button
+            className={`rounded text-xs ml-2 px-1 hover:bg-gray-500/20 duration-300 ${
+              tab === "output" ? "bg-gray-500/30" : ""
+            }`}
+            onClick={() => setTab("output")}
+          >
+            output
           </button>
         </div>
       )}

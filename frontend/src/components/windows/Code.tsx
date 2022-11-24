@@ -17,7 +17,7 @@ export default function Code<T extends MosaicKey>({
   path: MosaicPath;
   sourceCodeState: State<string>;
 }) {
-  const [sourceCode, setSourceCode] = sourceCodeState;
+  const [_, setSourceCode] = sourceCodeState;
   return (
     <MosaicWindow<T>
       title="Code"
@@ -36,6 +36,21 @@ export default function Code<T extends MosaicKey>({
           setSourceCode(event.target.value);
         }}
         className="w-full h-full bg-zinc-200 dark:bg-zinc-800 p-4 font-mono resize-none text-sm"
+        placeholder={
+          // TODO: Remove this
+          `array = [1, 2, 3]
+
+number = 7
+
+string = "Hello, world!"
+
+mapping = {
+    "a": "b",
+    "b": "c"
+}
+
+print(string)`
+        }
       />
     </MosaicWindow>
   );

@@ -27,10 +27,16 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
             path={path}
             inputState={windowStates.terminal.input}
             outputState={windowStates.terminal.output}
+            tabState={windowStates.terminal.tab}
           />
         );
       case "variables":
-        return <Variables path={path} />;
+        return (
+          <Variables
+            path={path}
+            variablesListState={windowStates.variables.variablesList}
+          />
+        );
       default:
         return <></>;
     }
