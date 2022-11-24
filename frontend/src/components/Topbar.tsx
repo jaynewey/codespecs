@@ -21,14 +21,14 @@ import {
 import ThemeContext from "../contexts/ThemeContext";
 import "../index.css";
 import CharmIcon from "./CharmIcon";
+import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
 import { getPathToNode, isVisible } from "./Windows";
 import { MosaicKey } from "./windows/types";
 
-const API_ENDPOINT =
-  import.meta.env.PROD
-    ? "https://codespecs.tech/api"
-    : "http://localhost:8081/api";
+const API_ENDPOINT = import.meta.env.PROD
+  ? "https://codespecs.tech/api"
+  : "http://localhost:8081/api";
 
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
@@ -71,7 +71,10 @@ function ToggleWindowButton<T extends MosaicKey>({
                 path: path.slice(0, path.length - 1),
                 spec: {
                   splitPercentage: {
-		    $set: splitPercentage <= 0 || splitPercentage >= 100 ? 50 : splitPercentage,
+                    $set:
+                      splitPercentage <= 0 || splitPercentage >= 100
+                        ? 50
+                        : splitPercentage,
                   },
                 },
               },
@@ -98,10 +101,10 @@ export default function Topbar({
     fetch(`${API_ENDPOINT}/languages/`)
       .then((response) => response.json())
       .then((json) => {
-	if (Array.isArray(json)) {
-	  setLanguages(json);
-	  setSelectedLanguage(json[0]);
-	}
+        if (Array.isArray(json)) {
+          setLanguages(json);
+          setSelectedLanguage(json[0]);
+        }
       });
   }, []);
 
@@ -137,7 +140,11 @@ export default function Topbar({
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </div>
-      <div className="relative group text-sm">
+      <Dropdown
+        options={languages}
+        selectedOption={selectedLanguage}
+        setSelectedOption={setSelectedLanguage}
+      >
         <button
           type="button"
           className={`flex px-2 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
@@ -150,24 +157,7 @@ export default function Topbar({
             <CharmIcon icon={ChevronDown} />
           </div>
         </button>
-        <ul className="absolute flex flex-col top-full right-0 mt-2 p-2 gap-y-1 invisible border border-zinc-500 group-focus-within:visible opacity-0 group-focus-within:opacity-100 -translate-y-1 group-focus-within:translate-y-0 duration-100 overflow-hidden rounded bg-zinc-100 dark:bg-zinc-900">
-          {languages.map((language, i) => (
-            <li
-              key={i}
-              className={`p-1 flex hover:bg-zinc-500/20 ${
-                selectedLanguage === language ? "bg-zinc-500/30" : ""
-              } duration-300 rounded whitespace-nowrap cursor-pointer`}
-            >
-              <a
-                className="w-full text-left"
-                onClick={() => setSelectedLanguage(language)}
-              >
-                {language}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      </Dropdown>
     </div>
   );
 }
