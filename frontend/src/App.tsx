@@ -48,17 +48,17 @@ function App() {
     direction: "row",
     first: {
       direction: "column",
-      first: "animation",
-      second: "terminal",
-      splitPercentage: 60,
+      first: "code",
+      second: "animation",
+      splitPercentage: 100,
     },
     second: {
       direction: "column",
-      first: "code",
+      first: "terminal",
       second: "variables",
-      splitPercentage: 50,
+      splitPercentage: 100,
     },
-    splitPercentage: 60,
+    splitPercentage: 70,
   });
 
   const windowStates = useWindows();

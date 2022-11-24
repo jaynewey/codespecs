@@ -135,6 +135,23 @@ export default function Topbar({
               setOutput(json?.stdout ?? "");
               setVariablesList(json?.variables ?? []);
             });
+          // set up windows
+          setWindows({
+            direction: "row",
+            first: {
+              direction: "column",
+              first: "code",
+              second: "animation",
+              splitPercentage: 0,
+            },
+            second: {
+              direction: "column",
+              first: "terminal",
+              second: "variables",
+              splitPercentage: 30,
+            },
+            splitPercentage: 70,
+          });
         }}
         disabled={!selectedLanguage}
         className={`flex content-center px-2 text-sm duration-300 border rounded ${
