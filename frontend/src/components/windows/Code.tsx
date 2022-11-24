@@ -8,17 +8,16 @@ import {
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
-import { MosaicKey, Window } from "./types";
+import { MosaicKey, State, Window } from "./types";
 
 export default function Code<T extends MosaicKey>({
-  tree,
-  windowKey,
   path,
+  sourceCodeState,
 }: {
-  tree: MosaicNode<T>;
-  windowKey: T;
   path: MosaicPath;
+  sourceCodeState: State<string>;
 }) {
+  const [sourceCode, setSourceCode] = sourceCodeState;
   return (
     <MosaicWindow<T>
       title="Code"
@@ -32,7 +31,12 @@ export default function Code<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      <textarea className="w-full h-full bg-zinc-200 dark:bg-zinc-800 p-4 font-mono resize-none text-sm" />
+      <textarea
+        onBlur={(event) => {
+          setSourceCode(event.target.value);
+        }}
+        className="w-full h-full bg-zinc-200 dark:bg-zinc-800 p-4 font-mono resize-none text-sm"
+      />
     </MosaicWindow>
   );
 }

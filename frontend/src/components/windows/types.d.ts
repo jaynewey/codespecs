@@ -5,6 +5,12 @@ export type MosaicKey = number | string;
 
 export type Window = <T extends MosaicKey>(props: {
   tree: MosaicNode<T>;
-  windowKey: T;
   path: MosaicPath;
 }) => ReactElement;
+
+export type WindowFactory = <T extends MosaicKey>(
+  key: T,
+  path: MosaicPath
+) => ReactElement;
+
+export type State<S> = [S, (S) => void];

@@ -9,20 +9,20 @@ import {
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
-import { MosaicKey, Window } from "./types";
+import { MosaicKey, State, Window } from "./types";
 
 export default function Terminal<T extends MosaicKey>({
-  tree,
-  windowKey,
   path,
+  inputState,
+  outputState,
 }: {
-  tree: MosaicNode<T>;
-  windowKey: T;
   path: MosaicPath;
+  inputState: State<string>;
+  outputState: State<string>;
 }) {
   const [tab, setTab] = useState<"output" | "input">("output");
-  const [output, setOutput] =useState<string>("");
-  const [input, setInput] =useState<string>("");
+  const [input, setInput] = inputState;
+  const [output, setOutput] = outputState;
 
   return (
     <MosaicWindow<T>
@@ -33,7 +33,7 @@ export default function Terminal<T extends MosaicKey>({
           <CharmIcon icon={TerminalCharm} />
           <span className="pl-2">Terminal</span>
           <button
-	    className={`rounded text-xs ml-2 px-1 hover:bg-gray-500/20 duration-300 ${
+            className={`rounded text-xs ml-2 px-1 hover:bg-gray-500/20 duration-300 ${
               tab === "output" ? "bg-gray-500/30" : ""
             }`}
             onClick={() => setTab("output")}
@@ -53,18 +53,19 @@ export default function Terminal<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      {tab === "input" ?
-	<textarea
-	    value={input}
-	    onChange={(event) => setInput(event.target.value)}
-	    className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
-	  />
-	: <textarea
-	    value={output}
-	    readOnly={true}
-	    className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
-	  />
-      }
+      {tab === "input" ? (
+        <textarea
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+          className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
+        />
+      ) : (
+        <textarea
+          value={output}
+          readOnly={true}
+          className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
+        />
+      )}
     </MosaicWindow>
   );
 }

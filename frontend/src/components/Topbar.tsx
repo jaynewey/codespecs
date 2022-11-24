@@ -4,6 +4,7 @@ import {
   Eye,
   Icon,
   LayoutList,
+  MediaPlay,
   Moon,
   Sun,
   Terminal,
@@ -12,20 +13,19 @@ import { useContext, useEffect, useState } from "react";
 import {
   MosaicNode,
   MosaicParent,
-  createExpandUpdate,
   createHideUpdate,
   getNodeAtPath,
   updateTree,
 } from "react-mosaic-component";
 
-import { getPathToNode, isVisible } from "./windows/utils";
-
 import ThemeContext from "../contexts/ThemeContext";
+import { WindowStates } from "../hooks/useWindows";
 import "../index.css";
 import CharmIcon from "./CharmIcon";
 import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
 import { MosaicKey } from "./windows/types";
+import { getPathToNode, isVisible } from "./windows/utils";
 
 const API_ENDPOINT = import.meta.env.PROD
   ? "https://codespecs.tech/api"
@@ -90,9 +90,11 @@ function ToggleWindowButton<T extends MosaicKey>({
 export default function Topbar({
   windows,
   setWindows,
+  windowStates,
 }: {
   windows: MosaicNode<string>;
   setWindows: (windows: MosaicNode<string>) => void;
+  windowStates: WindowStates;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
   const [languages, setLanguages] = useState<string[]>([]);
@@ -110,7 +112,35 @@ export default function Topbar({
   }, []);
 
   return (
-    <div className="sticky shrink flex top-0 w-full border-b border-zinc-500 p-1 gap-x-1 z-50">
+    <div
+      onClick={() => {
+        const [input, _] = windowStates.terminal.input;
+        const [sourceCode, __] = windowStates.code.sourceCode;
+        fetch(`${API_ENDPOINT}/run/`, {
+          method: "POST",
+          body: JSON.stringify({
+            language: selectedLanguage,
+            stdin: input,
+            source_code: sourceCode,
+          }),
+        });
+      }}
+      className="sticky shrink flex top-0 w-full border-b border-zinc-500 p-1 gap-x-1 z-50"
+    >
+      <button
+        disabled={!selectedLanguage}
+        className={`flex content-center px-2 text-sm duration-300 border rounded ${
+          selectedLanguage
+            ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
+            : "bg-zinc-500/20 border-zinc-500 animate-pulse cursor-not-allowed"
+        }`}
+      >
+        <div className="pr-1 py-1">
+          <CharmIcon icon={MediaPlay} />
+        </div>
+        <span className="pt-0.5">Run</span>
+      </button>
+      <div className="border-l border-zinc-500 mx-1" />
       <ToggleWindowButton
         icon={Eye}
         windowKey="animation"
@@ -149,7 +179,9 @@ export default function Topbar({
         <button
           type="button"
           className={`flex px-2 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
-            selectedLanguage ? "" : "animate-pulse bg-zinc-500/20"
+            selectedLanguage
+              ? ""
+              : "animate-pulse bg-zinc-500/20 cursor-not-allowed"
           }`}
           disabled={!selectedLanguage}
         >

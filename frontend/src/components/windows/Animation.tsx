@@ -11,12 +11,8 @@ import CharmIcon from "../CharmIcon";
 import { MosaicKey, Window } from "./types";
 
 export default function Animation<T extends MosaicKey>({
-  tree,
-  windowKey,
   path,
 }: {
-  tree: MosaicNode<T>;
-  windowKey: T;
   path: MosaicPath;
 }) {
   return (
