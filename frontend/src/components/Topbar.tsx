@@ -18,12 +18,13 @@ import {
   updateTree,
 } from "react-mosaic-component";
 
+import { getPathToNode, isVisible } from "./windows/utils";
+
 import ThemeContext from "../contexts/ThemeContext";
 import "../index.css";
 import CharmIcon from "./CharmIcon";
 import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
-import { getPathToNode, isVisible } from "./Windows";
 import { MosaicKey } from "./windows/types";
 
 const API_ENDPOINT = import.meta.env.PROD
