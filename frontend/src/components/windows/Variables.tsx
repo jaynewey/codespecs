@@ -22,7 +22,7 @@ function VariableRow({
   depth = 0,
 }: {
   variable: Variable;
-  depth: number;
+  depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

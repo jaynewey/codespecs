@@ -43,7 +43,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
   };
 }
 
-export const defaultWindows = {
+export const defaultWindows: MosaicNode<string> = {
   direction: "row",
   first: {
     direction: "column",
