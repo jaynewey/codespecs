@@ -34,7 +34,7 @@ function VariableRow({
         }}
         className={`p-1 pl-${
           4 * depth
-        } border-b border-zinc-500 hover:bg-zinc-500/10 duration-300 cursor-pointer`}
+        } border-b border-zinc-500/30 hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
         <div className="flex items-center pl-1">
           {variable?.children?.length ? (
