@@ -85,7 +85,7 @@ export default function Variables<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      <ul className="w-full h-full bg-zinc-100 dark:bg-zinc-900">
+      <ul className="w-full h-full bg-zinc-100 dark:bg-zinc-900 overflow-auto">
         {variablesList.map((variable, i) => (
           <VariableRow variable={variable} key={i} />
         ))}
