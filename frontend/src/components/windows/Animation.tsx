@@ -1,5 +1,5 @@
 import { Eye, Refresh } from "charm-icons";
-import { ReactNode, useState } from "react";
+import { ReactElement, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -15,7 +15,7 @@ import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
 import { MosaicKey, State, Window } from "./types";
 
-function animationFactory(variable: Variable): ReactNode {
+function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
     case "string":
       return (
@@ -45,7 +45,7 @@ export default function Animation<T extends MosaicKey>({
   selectedVariableState,
 }: {
   path: MosaicPath;
-  selectedVariableSTate: State<Variable>;
+  selectedVariableState: State<Variable | null>;
 }) {
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });

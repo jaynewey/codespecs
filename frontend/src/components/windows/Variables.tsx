@@ -18,7 +18,7 @@ function VariableRow({
   depth = 0,
 }: {
   variable: Variable;
-  selectedVariableState: State<Variable>;
+  selectedVariableState: State<Variable | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -77,7 +77,7 @@ export default function Variables<T extends MosaicKey>({
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
-  selectedVariableState: State<Variable>;
+  selectedVariableState: State<Variable | null>;
 }) {
   const [variablesList, _] = variablesListState;
   const [selectedVariable, setSelectedVariable] = selectedVariableState;

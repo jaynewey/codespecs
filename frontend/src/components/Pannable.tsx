@@ -24,7 +24,7 @@ export default function Pannable({
   zoomState?: State<number>;
   translateState?: State<Vector2d>;
   zoomSensitivity?: number;
-  minZoom?: float;
+  minZoom?: number;
   className?: string;
   children: ReactNode;
 }) {
