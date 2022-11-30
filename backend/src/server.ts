@@ -46,42 +46,60 @@ server.post("/api/run/", async () => {
     variables: [
       {
         name: "array",
+        nativeType: "list",
+        likeType: "array",
         value: "[1, 2, 3]",
         children: [
           {
             name: "[0]",
+            nativeType: "int",
+            likeType: "numeric",
             value: "1",
           },
           {
             name: "[1]",
+            nativeType: "int",
+            likeType: "numeric",
             value: "2",
           },
           {
             name: "[2]",
+            nativeType: "int",
+            likeType: "numeric",
             value: "3",
           },
         ],
       },
       {
         name: "number",
+        nativeType: "int",
+        likeType: "numeric",
         value: "7",
         children: [],
       },
       {
         name: "string",
+        nativeType: "str",
+        likeType: "string",
         value: "'Hello, world!'",
         children: [],
       },
       {
         name: "mapping",
+        nativeType: "dict",
+        likeType: "object",
         value: "{'a': 'b', 'c': 'd'}",
         children: [
           {
             name: "'a'",
+            nativeType: "str",
+            likeType: "string",
             value: "'b'",
           },
           {
             name: "'b'",
+            nativeType: "str",
+            likeType: "string",
             value: "'c'",
           },
         ],

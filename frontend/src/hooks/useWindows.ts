@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import { Variable } from "../components/windows/Variables";
+import { Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 
 export type WindowStates = {
-  animation: {};
+  animation: {
+    selectedVariable: State<Variable | null>;
+  };
   code: {
     sourceCode: State<string>;
   };
@@ -14,13 +16,16 @@ export type WindowStates = {
     tab: State<"output" | "input">;
   };
   variables: {
+    selectedVariable: State<Variable | null>;
     variablesList: State<Variable[]>;
   };
 };
 
 export default function useWindows(): WindowStates {
   return {
-    animation: {},
+    animation: {
+      selectedVariable: useState(null),
+    },
     code: {
       sourceCode: useState<string>(""),
     },
@@ -30,6 +35,7 @@ export default function useWindows(): WindowStates {
       tab: useState("input"),
     },
     variables: {
+      selectedVariable: useState(null),
       variablesList: useState([]),
     },
   };

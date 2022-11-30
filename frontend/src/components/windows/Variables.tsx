@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronRight, LayoutList, Tag } from "charm-icons";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -9,34 +9,36 @@ import {
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
+import { Variable } from "../animation/types";
 import { MosaicKey, State } from "./types";
-
-export type Variable = {
-  name: string;
-  value: string;
-  children?: Variable[];
-};
 
 function VariableRow({
   variable,
+  selectedVariableState,
   depth = 0,
 }: {
   variable: Variable;
+  selectedVariableState: State<Variable>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedVariable, setSelectedVariable] = selectedVariableState;
 
   return (
     <>
       <li
         onClick={() => {
           setIsOpen(!isOpen && variable?.children?.length !== undefined);
+          setSelectedVariable(variable);
         }}
-        className={`p-1 pl-${
-          4 * depth
-        } border-b border-zinc-500/30 hover:bg-zinc-500/10 duration-300 cursor-pointer`}
+        className={`p-1 border-b border-zinc-500/30 ${
+          selectedVariable === variable ? "bg-zinc-500/20" : ""
+        } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
-        <div className="flex items-center pl-1">
+        <div
+          className="flex items-center pl-1"
+          style={{ marginLeft: `${depth}rem` }}
+        >
           {variable?.children?.length ? (
             <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
           ) : (
@@ -53,7 +55,12 @@ function VariableRow({
       {variable?.children?.length && isOpen ? (
         <ul>
           {(variable?.children ?? []).map((variable, i) => (
-            <VariableRow variable={variable} depth={depth + 1} key={i} />
+            <VariableRow
+              variable={variable}
+              depth={depth + 1}
+              key={i}
+              selectedVariableState={selectedVariableState}
+            />
           ))}
         </ul>
       ) : (
@@ -66,11 +73,14 @@ function VariableRow({
 export default function Variables<T extends MosaicKey>({
   path,
   variablesListState,
+  selectedVariableState,
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
+  selectedVariableState: State<Variable>;
 }) {
   const [variablesList, _] = variablesListState;
+  const [selectedVariable, setSelectedVariable] = selectedVariableState;
 
   return (
     <MosaicWindow<T>
@@ -87,7 +97,11 @@ export default function Variables<T extends MosaicKey>({
     >
       <ul className="w-full h-full bg-zinc-100 dark:bg-zinc-900 overflow-auto">
         {variablesList.map((variable, i) => (
-          <VariableRow variable={variable} key={i} />
+          <VariableRow
+            variable={variable}
+            key={i}
+            selectedVariableState={selectedVariableState}
+          />
         ))}
       </ul>
     </MosaicWindow>

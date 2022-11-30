@@ -16,7 +16,12 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
   return (key, path) => {
     switch (key) {
       case "animation":
-        return <Animation path={path} />;
+        return (
+          <Animation
+            path={path}
+            selectedVariableState={windowStates.variables.selectedVariable}
+          />
+        );
       case "code":
         return (
           <Code path={path} sourceCodeState={windowStates.code.sourceCode} />
@@ -34,6 +39,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         return (
           <Variables
             path={path}
+            selectedVariableState={windowStates.variables.selectedVariable}
             variablesListState={windowStates.variables.variablesList}
           />
         );
