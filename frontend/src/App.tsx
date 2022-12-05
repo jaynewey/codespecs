@@ -24,7 +24,11 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         );
       case "code":
         return (
-          <Code path={path} sourceCodeState={windowStates.code.sourceCode} />
+          <Code
+            path={path}
+            sourceCodeState={windowStates.code.sourceCode}
+            languageState={windowStates.code.language}
+          />
         );
       case "terminal":
         return (
@@ -76,6 +80,8 @@ function App() {
       <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 dark:text-white">
         <Topbar
           windows={windows}
+          selectedLanguage={windowStates.code.language[0]}
+          setSelectedLanguage={windowStates.code.language[1]}
           setWindows={setWindows}
           windowStates={windowStates}
         />

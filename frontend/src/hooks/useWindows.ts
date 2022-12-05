@@ -9,6 +9,7 @@ export type WindowStates = {
   };
   code: {
     sourceCode: State<string>;
+    language: State<string | null>;
   };
   terminal: {
     input: State<string>;
@@ -28,6 +29,7 @@ export default function useWindows(): WindowStates {
     },
     code: {
       sourceCode: useState<string>(""),
+      language: useState(null),
     },
     terminal: {
       input: useState<string>(""),

@@ -93,15 +93,18 @@ function ToggleWindowButton<T extends MosaicKey>({
 export default function Topbar({
   windows,
   setWindows,
+  selectedLanguage,
+  setSelectedLanguage,
   windowStates,
 }: {
   windows: MosaicNode<string>;
   setWindows: (windows: MosaicNode<string>) => void;
+  selectedLanguage: string | null;
+  setSelectedLanguage: (language: string | null) => void;
   windowStates: WindowStates;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
   const [languages, setLanguages] = useState<string[]>([]);
-  const [selectedLanguage, setSelectedLanguage] = useState<string>();
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -131,7 +134,7 @@ export default function Topbar({
             fetch(`${API_ENDPOINT}/run/`, {
               method: "POST",
               body: JSON.stringify({
-                language: selectedLanguage,
+                language: selectedLanguage ?? "",
                 stdin: input,
                 source_code: sourceCode,
               }),
@@ -236,7 +239,7 @@ export default function Topbar({
       </div>
       <Dropdown
         options={languages}
-        selectedOption={selectedLanguage}
+        selectedOption={selectedLanguage ?? ""}
         setSelectedOption={setSelectedLanguage}
       >
         <button
