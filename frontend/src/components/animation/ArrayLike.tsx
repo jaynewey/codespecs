@@ -14,7 +14,7 @@ export default function ArrayLike({
         <span className="text-zinc-500">: {value.nativeType}</span>
       </p>
       <div className="flex flex-row w-auto border border-zinc-500 divide-x divide-zinc-500 rounded">
-        {(value.children ?? []).map((v, i) => (
+        {(value.indexes ?? []).map((v, i) => (
           <div
             key={i}
             className="p-3 px-4 flex shrink content-center bg-zinc-500/10"

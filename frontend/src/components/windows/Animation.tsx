@@ -13,6 +13,7 @@ import Pannable from "../Pannable";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
+import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
 function animationFactory(variable: Variable): ReactElement {
@@ -43,13 +44,21 @@ function animationFactory(variable: Variable): ReactElement {
 export default function Animation<T extends MosaicKey>({
   path,
   selectedVariableState,
+  variablesListState,
 }: {
   path: MosaicPath;
-  selectedVariableState: State<Variable | null>;
+  selectedVariableState: State<string | null>;
+  variablesListState: State<Variable[]>;
 }) {
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [selectedVariable, _] = selectedVariableState;
+  const [variablesList, __] = variablesListState;
+
+  const variableObj =
+    typeof selectedVariable === "string"
+      ? getVariableByName(selectedVariable, variablesList)
+      : null;
 
   return (
     <MosaicWindow<T>
@@ -79,7 +88,7 @@ export default function Animation<T extends MosaicKey>({
         className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
       >
         <div className="absolute">
-          {selectedVariable ? animationFactory(selectedVariable) : <></>}
+          {variableObj ? animationFactory(variableObj) : <></>}
         </div>
       </Pannable>
     </MosaicWindow>

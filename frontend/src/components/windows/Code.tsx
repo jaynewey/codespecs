@@ -2,7 +2,7 @@ import { Code as CodeCharm } from "charm-icons";
 import Highlight, { Language, defaultProps } from "prism-react-renderer";
 import darkTheme from "prism-react-renderer/themes/nightOwl";
 import lightTheme from "prism-react-renderer/themes/nightOwlLight";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -27,13 +27,16 @@ export default function Code<T extends MosaicKey>({
   path,
   sourceCodeState,
   languageState,
+  highlightedState,
 }: {
   path: MosaicPath;
   sourceCodeState: State<string>;
   languageState: State<string | null>;
+  highlightedState: State<number[]>;
 }) {
   const [sourceCode, setSourceCode] = sourceCodeState;
   const [language, setLanguage] = languageState;
+  const [highlighted, setHighlighted] = highlightedState;
 
   const { theme } = useContext(ThemeContext);
 
@@ -52,7 +55,18 @@ export default function Code<T extends MosaicKey>({
     >
       <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800 py-2 overflow-auto">
         <Editor
-          value={sourceCode}
+          value={`l = [2, 5, 3, 1, 4]
+
+swapped = False
+
+for i in range(len(l) - 1):
+    for j in range(len(l) - i - 1):
+        if l[j] > l[j + 1]:
+            l[j], l[j + 1] = l[j + 1], l[j]
+            swapped = True
+
+    if not swapped:
+        break`}
           onValueChange={(code) => setSourceCode(code)}
           highlight={(code) => {
             return (
@@ -67,7 +81,9 @@ export default function Code<T extends MosaicKey>({
                     {tokens.map((line, i) => (
                       <div
                         {...getLineProps({ line, key: i })}
-                        className="table"
+                        className={`table w-full duration-100 ${
+                          highlighted.includes(i + 1) ? "bg-green-500/20" : ""
+                        }`}
                       >
                         <div className="table-cell text-right w-8 select-none text-zinc-500">
                           {i + 1}
@@ -85,7 +101,7 @@ export default function Code<T extends MosaicKey>({
             );
           }}
           className="bg-zinc-200 dark:bg-zinc-800 font-mono text-sm"
-          textareaClassName="!ml-12"
+          textareaClassName="!ml-12 outline-none"
           tabSize={4}
         />
       </div>

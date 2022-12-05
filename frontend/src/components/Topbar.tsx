@@ -22,6 +22,11 @@ import {
 
 import { defaultWindows } from "../App";
 import ThemeContext from "../contexts/ThemeContext";
+import {
+  AnimationPlayer,
+  DEFAULT_INTERVAL,
+  ProgramTrace,
+} from "../hooks/useAnimationPlayer";
 import { WindowStates } from "../hooks/useWindows";
 import "../index.css";
 import CharmIcon from "./CharmIcon";
@@ -96,14 +101,17 @@ export default function Topbar({
   selectedLanguage,
   setSelectedLanguage,
   windowStates,
+  animationPlayer,
 }: {
   windows: MosaicNode<string>;
   setWindows: (windows: MosaicNode<string>) => void;
   selectedLanguage: string | null;
   setSelectedLanguage: (language: string | null) => void;
   windowStates: WindowStates;
+  animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { setProgramTrace, setAnimInterval } = animationPlayer;
   const [languages, setLanguages] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -127,8 +135,6 @@ export default function Topbar({
           const [sourceCode, __] = windowStates.code.sourceCode;
           const [___, setTab] = windowStates.terminal.tab;
           const [____, setOutput] = windowStates.terminal.output;
-          const [_____, setVariablesList] =
-            windowStates.variables.variablesList;
 
           if (!isRunning) {
             fetch(`${API_ENDPOINT}/run/`, {
@@ -143,17 +149,17 @@ export default function Topbar({
               .then((json) => {
                 setTab("output");
                 setOutput(json?.stdout ?? "");
-                setVariablesList(json?.variables ?? []);
+                setProgramTrace(json as ProgramTrace);
               });
 
             // set up windows
             setWindows({
               direction: "row",
               first: {
-                direction: "column",
+                direction: "row",
                 first: "code",
                 second: "animation",
-                splitPercentage: 0,
+                splitPercentage: 50,
               },
               second: {
                 direction: "column",
@@ -168,6 +174,7 @@ export default function Topbar({
           } else {
             // reset windows to default
             setWindows(defaultWindows);
+            setProgramTrace(null);
           }
 
           setIsRunning(!isRunning);
@@ -194,10 +201,13 @@ export default function Topbar({
         <button
           className={`flex content-center text-sm duration-300 border rounded ${
             isPaused
-              ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-gree-300 text-green-700 dark:text-green-300"
+              ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
               : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
           }`}
-          onClick={() => setIsPaused(!isPaused)}
+          onClick={() => {
+            setAnimInterval(isPaused ? DEFAULT_INTERVAL : 0);
+            setIsPaused(!isPaused);
+          }}
         >
           <div className="p-1">
             <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
