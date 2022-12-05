@@ -60,6 +60,7 @@ export default function Terminal<T extends MosaicKey>({
           value={input}
           onChange={(event) => setInput(event.target.value)}
           className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
+          placeholder="Standard input for the program can be placed here..."
         />
       ) : (
         <textarea

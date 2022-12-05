@@ -5,7 +5,8 @@ export type Variable = {
   value: string;
   nativeType: string;
   likeType: string;
-  children?: Variable[];
+  attributes?: Variable[];
+  indexes?: Variable[];
 };
 
 export type AnimationFactory = (variable: Variable) => ReactElement;

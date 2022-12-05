@@ -4,11 +4,11 @@ import { Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 
 export type WindowStates = {
-  animation: {
-    selectedVariable: State<Variable | null>;
-  };
+  animation: {};
   code: {
     sourceCode: State<string>;
+    language: State<string | null>;
+    highlighted: State<number[]>;
   };
   terminal: {
     input: State<string>;
@@ -16,18 +16,18 @@ export type WindowStates = {
     tab: State<"output" | "input">;
   };
   variables: {
-    selectedVariable: State<Variable | null>;
+    selectedVariable: State<string | null>;
     variablesList: State<Variable[]>;
   };
 };
 
 export default function useWindows(): WindowStates {
   return {
-    animation: {
-      selectedVariable: useState(null),
-    },
+    animation: {},
     code: {
       sourceCode: useState<string>(""),
+      language: useState(null),
+      highlighted: useState([]),
     },
     terminal: {
       input: useState<string>(""),

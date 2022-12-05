@@ -1,6 +1,9 @@
 import cors from "@fastify/cors";
 import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
 
+import * as exampleTrace from "./exampleTrace.json";
+import { languages } from "./languages";
+
 const server: FastifyInstance = Fastify({});
 server.register(cors, {
   origin: "*",
@@ -26,90 +29,10 @@ server.get("/api/", opts, async () => {
 });
 
 server.post("/api/run/", async () => {
-  /*
-   * Response for example python program:
-   *
-   *	array = [1, 2, 3]
-   *
-   *	number = 7
-   *
-   * 	string = "Hello, world!"
-   *
-   *	mapping = {
-   *	    "a": "b",
-   *	    "b": "c"
-   *	}
-   *
-   *	print(string)
-   */
-  return {
-    variables: [
-      {
-        name: "array",
-        nativeType: "list",
-        likeType: "array",
-        value: "[1, 2, 3]",
-        children: [
-          {
-            name: "[0]",
-            nativeType: "int",
-            likeType: "numeric",
-            value: "1",
-          },
-          {
-            name: "[1]",
-            nativeType: "int",
-            likeType: "numeric",
-            value: "2",
-          },
-          {
-            name: "[2]",
-            nativeType: "int",
-            likeType: "numeric",
-            value: "3",
-          },
-        ],
-      },
-      {
-        name: "number",
-        nativeType: "int",
-        likeType: "numeric",
-        value: "7",
-        children: [],
-      },
-      {
-        name: "string",
-        nativeType: "str",
-        likeType: "string",
-        value: "'Hello, world!'",
-        children: [],
-      },
-      {
-        name: "mapping",
-        nativeType: "dict",
-        likeType: "object",
-        value: "{'a': 'b', 'c': 'd'}",
-        children: [
-          {
-            name: "'a'",
-            nativeType: "str",
-            likeType: "string",
-            value: "'b'",
-          },
-          {
-            name: "'b'",
-            nativeType: "str",
-            likeType: "string",
-            value: "'c'",
-          },
-        ],
-      },
-    ],
-    stdout: "Hello, world!",
-  };
+  return exampleTrace;
 });
 
-const languages: RouteShorthandOptions = {
+const languagesRoute: RouteShorthandOptions = {
   schema: {
     response: {
       200: {
@@ -122,13 +45,8 @@ const languages: RouteShorthandOptions = {
   },
 };
 
-server.get("/api/languages/", languages, async () => {
-  return [
-    "Python (3.8.1)",
-    "Python (2.7.17)",
-    "JavaScript (Node.js 12.14.0)",
-    "Java (OpenJDK 13.0.1)",
-  ];
+server.get("/api/languages/", languagesRoute, async () => {
+  return languages;
 });
 
 const start = async () => {

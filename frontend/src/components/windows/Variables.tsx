@@ -12,13 +12,33 @@ import CharmIcon from "../CharmIcon";
 import { Variable } from "../animation/types";
 import { MosaicKey, State } from "./types";
 
+function children(variable: Variable): Variable[] {
+  return [...(variable?.attributes ?? []), ...(variable?.indexes ?? [])];
+}
+
+export function getVariableByName(
+  name: string,
+  variables: Variable[]
+): Variable | null {
+  for (const variable of variables) {
+    if (variable.name === name) {
+      return variable;
+    }
+    const nested = getVariableByName(name, children(variable));
+    if (nested) {
+      return nested;
+    }
+  }
+  return null;
+}
+
 function VariableRow({
   variable,
   selectedVariableState,
   depth = 0,
 }: {
   variable: Variable;
-  selectedVariableState: State<Variable | null>;
+  selectedVariableState: State<string | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -28,18 +48,18 @@ function VariableRow({
     <>
       <li
         onClick={() => {
-          setIsOpen(!isOpen && variable?.children?.length !== undefined);
-          setSelectedVariable(variable);
+          setIsOpen(!isOpen && children(variable).length > 0);
+          setSelectedVariable(variable.name);
         }}
         className={`p-1 border-b border-zinc-500/30 ${
-          selectedVariable === variable ? "bg-zinc-500/20" : ""
+          selectedVariable === variable.name ? "bg-zinc-500/20" : ""
         } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
         <div
           className="flex items-center pl-1"
           style={{ marginLeft: `${depth}rem` }}
         >
-          {variable?.children?.length ? (
+          {children(variable).length ? (
             <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
           ) : (
             <></>
@@ -52,9 +72,9 @@ function VariableRow({
           </span>
         </div>
       </li>
-      {variable?.children?.length && isOpen ? (
+      {children(variable).length && isOpen ? (
         <ul>
-          {(variable?.children ?? []).map((variable, i) => (
+          {children(variable).map((variable, i) => (
             <VariableRow
               variable={variable}
               depth={depth + 1}
@@ -77,7 +97,7 @@ export default function Variables<T extends MosaicKey>({
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
-  selectedVariableState: State<Variable | null>;
+  selectedVariableState: State<string | null>;
 }) {
   const [variablesList, _] = variablesListState;
   const [selectedVariable, setSelectedVariable] = selectedVariableState;

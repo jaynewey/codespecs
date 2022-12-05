@@ -14,7 +14,7 @@ export default function ObjectLike({
         <span className="text-zinc-500">: {value.nativeType}</span>
       </p>
       <div className="flex flex-col w-fit border border-zinc-500 divide-y divide-zinc-500 rounded bg-zinc-500/10">
-        {(value.children ?? []).map((v, i) => (
+        {(value.attributes ?? []).map((v, i) => (
           <div key={i}>
             <div className="flex p-3 w-fit px-4 content-center divide-x divide-zinc-500">
               <span className="m-auto content-center">{v.name}</span>
