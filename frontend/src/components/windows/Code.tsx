@@ -1,6 +1,8 @@
 import { Code as CodeCharm } from "charm-icons";
 import Highlight, { Language, defaultProps } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/nightOwl";
+import darkTheme from "prism-react-renderer/themes/nightOwl";
+import lightTheme from "prism-react-renderer/themes/nightOwlLight";
+import { useContext } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -9,6 +11,7 @@ import {
 } from "react-mosaic-component";
 import Editor from "react-simple-code-editor";
 
+import ThemeContext from "../../contexts/ThemeContext";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, State, Window } from "./types";
@@ -31,6 +34,9 @@ export default function Code<T extends MosaicKey>({
 }) {
   const [sourceCode, setSourceCode] = sourceCodeState;
   const [language, setLanguage] = languageState;
+
+  const { theme } = useContext(ThemeContext);
+
   return (
     <MosaicWindow<T>
       title="Code"
@@ -52,7 +58,7 @@ export default function Code<T extends MosaicKey>({
             return (
               <Highlight
                 {...defaultProps}
-                theme={theme}
+                theme={theme === "dark" ? darkTheme : lightTheme}
                 code={code}
                 language={languageMap[language ?? ""] ?? "clike"}
               >
