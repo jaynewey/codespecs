@@ -55,11 +55,10 @@ export default function Code<T extends MosaicKey>({
     >
       <div className="w-full h-full bg-zinc-200 dark:bg-zinc-800 py-2 overflow-auto">
         <Editor
-          value={`l = [2, 5, 3, 1, 4]
-
-swapped = False
+          value={`l = [5, 2, 4, 1, 3]
 
 for i in range(len(l) - 1):
+    swapped = False
     for j in range(len(l) - i - 1):
         if l[j] > l[j + 1]:
             l[j], l[j + 1] = l[j + 1], l[j]
