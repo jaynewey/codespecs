@@ -1,4 +1,4 @@
-import { Eye, Refresh } from "charm-icons";
+import { Glasses, Refresh } from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -66,7 +66,7 @@ export default function Animation<T extends MosaicKey>({
       className=""
       renderToolbar={() => (
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
-          <CharmIcon icon={Eye} />
+          <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
           <button
             className="ml-auto flex hover:bg-zinc-500/20 text-zinc-500 hover:text-inherit rounded-full p-0.5 duration-300"

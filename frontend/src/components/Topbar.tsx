@@ -1,7 +1,7 @@
 import {
   ChevronDown,
   Code,
-  Eye,
+  Glasses,
   Icon,
   LayoutList,
   MediaPause,
@@ -218,7 +218,7 @@ export default function Topbar({
       )}
       <div className="border-l border-zinc-500 mx-1" />
       <ToggleWindowButton
-        icon={Eye}
+        icon={Glasses}
         windowKey="animation"
         windows={windows}
         setWindows={setWindows}

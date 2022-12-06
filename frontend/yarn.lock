@@ -595,10 +595,10 @@ chalk@^2.0.0:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-charm-icons@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/charm-icons/-/charm-icons-0.17.0.tgz#d06d40691b97248ffda7b8c322fdfb79e88e40da"
-  integrity sha512-RxPhu5VU+ku2WljV2pnqmsOVUj4iLgQE8n2Ul2ZYs011XMTY616PRFzGTUJ1czmX0movT51p5RF4d6izLafVQw==
+charm-icons@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/charm-icons/-/charm-icons-0.18.0.tgz#093b8d48be926b7514c8c315e1d084e6afc4c628"
+  integrity sha512-OQorcThbwwGmTy3EFSadNOKmWRUJ8DyzIi9fcxcPO6MFEP4ZXHfqNCG7nWOGf8nE0smK2p3yRhccYD4hyEygDg==
 
 chokidar@^3.5.3:
   version "3.5.3"

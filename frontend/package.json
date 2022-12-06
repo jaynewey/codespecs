@@ -11,7 +11,7 @@
     "format:check": "prettier ./src/**/*.tsx ./src/**/*.ts ./src/**/*.css --check"
   },
   "dependencies": {
-    "charm-icons": "^0.17.0",
+    "charm-icons": "^0.18.0",
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
