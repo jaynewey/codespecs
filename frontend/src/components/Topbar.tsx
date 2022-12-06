@@ -7,6 +7,7 @@ import {
   MediaPause,
   MediaPlay,
   Moon,
+  Rocket,
   Square,
   Sun,
   Terminal,
@@ -192,10 +193,10 @@ export default function Topbar({
           {isRunning ? (
             <CharmIcon icon={Square} />
           ) : (
-            <CharmIcon icon={MediaPlay} />
+            <CharmIcon icon={Rocket} />
           )}
         </div>
-        <span className="pt-0.5">{isRunning ? "Stop" : "Run"}</span>
+        <span className="pt-0.5">{isRunning ? "Stop" : "Launch"}</span>
       </button>
       {isRunning ? (
         <button
