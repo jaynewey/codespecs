@@ -224,7 +224,7 @@ export default function Topbar({
 
           <div className="flex w-48 gap-2 px-2 align-middle">
             <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
-              {MIN_PLAY_SPEED}x
+              {MIN_PLAY_SPEED}&#215;
             </span>
             <div>
               <Slider
@@ -242,7 +242,7 @@ export default function Topbar({
               />
             </div>
             <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
-              {MAX_PLAY_SPEED}x
+              {MAX_PLAY_SPEED}&#215;
             </span>
           </div>
         </>
