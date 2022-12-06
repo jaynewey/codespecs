@@ -33,12 +33,17 @@ import "../index.css";
 import CharmIcon from "./CharmIcon";
 import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
+import Slider from "./Slider";
 import { MosaicKey } from "./windows/types";
 import { getPathToNode, isVisible } from "./windows/utils";
 
 const API_ENDPOINT = import.meta.env.PROD
   ? "https://codespecs.tech/api"
   : "http://localhost:8081/api";
+
+const MIN_PLAY_SPEED = 0.25;
+const MAX_PLAY_SPEED = 2;
+const PLAY_SPEED_STEP = 0.25;
 
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
@@ -113,6 +118,7 @@ export default function Topbar({
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
   const { setProgramTrace, setAnimInterval } = animationPlayer;
+  const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -199,21 +205,47 @@ export default function Topbar({
         <span className="pt-0.5">{isRunning ? "Stop" : "Launch"}</span>
       </button>
       {isRunning ? (
-        <button
-          className={`flex content-center text-sm duration-300 border rounded ${
-            isPaused
-              ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
-              : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
-          }`}
-          onClick={() => {
-            setAnimInterval(isPaused ? DEFAULT_INTERVAL : 0);
-            setIsPaused(!isPaused);
-          }}
-        >
-          <div className="p-1">
-            <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
+        <>
+          <button
+            className={`flex content-center text-sm duration-300 border rounded ${
+              isPaused
+                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
+                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
+            }`}
+            onClick={() => {
+              setAnimInterval(isPaused ? DEFAULT_INTERVAL / playSpeed : 0);
+              setIsPaused(!isPaused);
+            }}
+          >
+            <div className="p-1">
+              <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
+            </div>
+          </button>
+
+          <div className="flex w-48 gap-2 px-2 align-middle">
+            <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
+              {MIN_PLAY_SPEED}x
+            </span>
+            <div>
+              <Slider
+                value={playSpeed}
+                onChange={(event) => {
+                  setPlaySpeed(event.target.valueAsNumber);
+                  setAnimInterval(
+                    DEFAULT_INTERVAL / event.target.valueAsNumber
+                  );
+                  setIsPaused(false);
+                }}
+                min={MIN_PLAY_SPEED}
+                max={MAX_PLAY_SPEED}
+                step={PLAY_SPEED_STEP}
+              />
+            </div>
+            <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
+              {MAX_PLAY_SPEED}x
+            </span>
           </div>
-        </button>
+        </>
       ) : (
         <></>
       )}
