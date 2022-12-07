@@ -8,6 +8,7 @@ import {
   MediaPlay,
   Moon,
   Rocket,
+  RotateClockwise,
   Square,
   Sun,
   Terminal,
@@ -117,7 +118,7 @@ export default function Topbar({
   animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { setProgramTrace, setAnimInterval } = animationPlayer;
+  const { setProgramTrace, setAnimInterval, setCurrentIndex } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -219,6 +220,17 @@ export default function Topbar({
           >
             <div className="p-1">
               <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
+            </div>
+          </button>
+
+          <button
+            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300"
+            onClick={() => {
+              setCurrentIndex(0);
+            }}
+          >
+            <div className="p-1">
+              <CharmIcon icon={RotateClockwise} />
             </div>
           </button>
 
