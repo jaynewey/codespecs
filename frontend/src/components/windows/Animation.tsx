@@ -1,4 +1,4 @@
-import { Glasses, Refresh } from "charm-icons";
+import { Cross, Glasses, ScreenMaximise } from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -13,6 +13,7 @@ import Pannable from "../Pannable";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
+import ToolbarButton from "./ToolbarButton";
 import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
@@ -68,15 +69,15 @@ export default function Animation<T extends MosaicKey>({
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
-          <button
-            className="ml-auto flex hover:bg-zinc-500/20 text-zinc-500 hover:text-inherit rounded-full p-0.5 duration-300"
+          <ToolbarButton
+            className="ml-auto"
             onClick={() => {
               setZoom(1);
               setTranslate({ x: 0, y: 0 });
             }}
           >
-            <CharmIcon icon={Refresh} />
-          </button>
+            <CharmIcon icon={ScreenMaximise} />
+          </ToolbarButton>
         </div>
       )}
       path={path}
