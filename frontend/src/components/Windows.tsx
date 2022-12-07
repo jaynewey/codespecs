@@ -29,7 +29,7 @@ export default function Windows<T extends MosaicKey>({
           if (currentNode) setWindows(currentNode);
         }}
         resize={{
-          minimumPaneSizePercentage: 0,
+          minimumPaneSizePercentage: 10,
         }}
       />
     </div>

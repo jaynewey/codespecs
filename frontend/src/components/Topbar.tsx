@@ -261,31 +261,6 @@ export default function Topbar({
       ) : (
         <></>
       )}
-      <div className="border-l border-zinc-500 mx-1" />
-      <ToggleWindowButton
-        icon={Glasses}
-        windowKey="animation"
-        windows={windows}
-        setWindows={setWindows}
-      />
-      <ToggleWindowButton
-        icon={Code}
-        windowKey="code"
-        windows={windows}
-        setWindows={setWindows}
-      />
-      <ToggleWindowButton
-        icon={Terminal}
-        windowKey="terminal"
-        windows={windows}
-        setWindows={setWindows}
-      />
-      <ToggleWindowButton
-        icon={LayoutList}
-        windowKey="variables"
-        windows={windows}
-        setWindows={setWindows}
-      />
       <div className="flex ml-auto">
         <IconButton
           icon={theme === "light" ? Sun : Moon}
