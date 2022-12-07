@@ -1,4 +1,4 @@
-import { Cross, Glasses, ScreenMaximise } from "charm-icons";
+import { Cross, Glasses, Info, LayoutList, ScreenMaximise } from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -83,15 +83,32 @@ export default function Animation<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      <Pannable
-        zoomState={[zoom, setZoom]}
-        translateState={[translate, setTranslate]}
-        className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
-      >
-        <div className="absolute">
-          {variableObj ? animationFactory(variableObj) : <></>}
+      {variableObj ? (
+        <Pannable
+          zoomState={[zoom, setZoom]}
+          translateState={[translate, setTranslate]}
+          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
+        >
+          <div className="absolute">{animationFactory(variableObj)}</div>
+        </Pannable>
+      ) : (
+        <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
+          <div className="relative m-auto items-center text-center bg-blue-500/10 border border-blue-500 text-blue-500 rounded-lg p-2">
+            <div className="absolute -top-1 -left-1">
+              <span className="absolute animate-ping inline-flex h-3 w-3 rounded-full bg-blue-500/80"></span>
+              <span className="absolute inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            </div>
+            <div className="pl-2 justify-center">
+              <p>Select a variable to view from the</p>
+              <div className="flex flex-row justify-center items-center text-sm">
+                <CharmIcon icon={LayoutList} />
+                <span className="pl-2">Variables</span>
+              </div>
+              <p>window.</p>
+            </div>
+          </div>
         </div>
-      </Pannable>
+      )}
     </MosaicWindow>
   );
 }
