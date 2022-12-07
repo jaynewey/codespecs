@@ -6,7 +6,7 @@
       "variables": [
         {
           "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
+          "value": "[5, 2, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -20,19 +20,19 @@
           "indexes": [
             {
               "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -44,7 +44,7 @@
             },
             {
               "name": "4",
-              "value": "4",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -57,8 +57,14 @@
       "lineNumber": 3,
       "variables": [
         {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
           "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
+          "value": "[5, 2, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -72,19 +78,19 @@
           "indexes": [
             {
               "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -96,7 +102,65 @@
             },
             {
               "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 4,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[5, 2, 4, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
               "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -121,8 +185,14 @@
           "likeType": "numeric"
         },
         {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
           "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
+          "value": "[5, 2, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -136,19 +206,19 @@
           "indexes": [
             {
               "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -160,7 +230,7 @@
             },
             {
               "name": "4",
-              "value": "4",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -192,7 +262,7 @@
         },
         {
           "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
+          "value": "[5, 2, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -206,19 +276,19 @@
           "indexes": [
             {
               "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -230,7 +300,7 @@
             },
             {
               "name": "4",
-              "value": "4",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -262,7 +332,7 @@
         },
         {
           "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
+          "value": "[2, 5, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -288,7 +358,7 @@
             },
             {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -300,147 +370,7 @@
             },
             {
               "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "False",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
               "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "False",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 5, 3, 1, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -466,83 +396,13 @@
         },
         {
           "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 5, 1, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "False",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 9,
-      "variables": [
-        {
-          "name": "i",
           "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
           "name": "l",
-          "value": "[2, 3, 5, 1, 4]",
+          "value": "[2, 5, 4, 1, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -562,13 +422,13 @@
             },
             {
               "name": "1",
-              "value": "3",
+              "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "2",
-              "value": "5",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -580,707 +440,7 @@
             },
             {
               "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 5, 1, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 5, 1, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 8,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 5, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 9,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 5, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 5, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 5, 4]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 8,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 9,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 11,
-      "variables": [
-        {
-          "name": "i",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -1300,7 +460,567 @@
       "variables": [
         {
           "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
           "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 5, 4, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 5, 4, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 7,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 5, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 8,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 5, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 5, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 5, 1, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 7,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 5, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 8,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 5, 3]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
@@ -1312,7 +1032,7 @@
         },
         {
           "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
+          "value": "[2, 4, 1, 5, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -1332,7 +1052,7 @@
             },
             {
               "name": "1",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -1344,13 +1064,13 @@
             },
             {
               "name": "3",
-              "value": "4",
+              "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "4",
-              "value": "5",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -1370,19 +1090,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
           "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
+          "name": "j",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
           "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
+          "value": "[2, 4, 1, 5, 3]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -1402,7 +1122,7 @@
             },
             {
               "name": "1",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -1414,13 +1134,13 @@
             },
             {
               "name": "3",
-              "value": "4",
+              "value": "5",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "4",
-              "value": "5",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             }
@@ -1440,89 +1160,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
           "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
           "name": "j",
-          "value": "1",
+          "value": "3",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
+          "value": "[2, 4, 1, 3, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -1542,7 +1192,7 @@
             },
             {
               "name": "1",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -1554,77 +1204,7 @@
             },
             {
               "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 3, 1, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -1650,19 +1230,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "1",
+          "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "j",
-          "value": "1",
+          "value": "3",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
+          "value": "[2, 4, 1, 3, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -1682,369 +1262,19 @@
             },
             {
               "name": "1",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
               "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 9,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
+              "name": "2",
               "value": "1",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
               "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
               "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 11,
-      "variables": [
-        {
-          "name": "i",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2070,19 +1300,579 @@
       "variables": [
         {
           "name": "i",
-          "value": "2",
+          "value": "0",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "j",
-          "value": "2",
+          "value": "3",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 10,
+      "variables": [
+        {
+          "name": "i",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 3,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 4,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 4, 1, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 7,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 4, 3, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -2108,13 +1898,153 @@
             },
             {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 8,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 4, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
               "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 4, 3, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2140,19 +2070,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "2",
+          "value": "1",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "j",
-          "value": "0",
+          "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "l",
-          "value": "[2, 1, 3, 4, 5]",
+          "value": "[2, 1, 4, 3, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -2178,13 +2108,13 @@
             },
             {
               "name": "2",
-              "value": "3",
+              "value": "4",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "3",
-              "value": "4",
+              "value": "3",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2210,13 +2140,13 @@
       "variables": [
         {
           "name": "i",
-          "value": "2",
+          "value": "1",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "j",
-          "value": "0",
+          "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
@@ -2280,229 +2210,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 9,
-      "variables": [
-        {
-          "name": "i",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
           "value": "1",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 7,
-      "variables": [
-        {
-          "name": "i",
+          "name": "j",
           "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
           "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
+          "value": "[2, 1, 3, 4, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -2516,153 +2236,13 @@
           "indexes": [
             {
               "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
               "value": "2",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 6,
-      "variables": [
-        {
-          "name": "i",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
               "name": "1",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 11,
-      "variables": [
-        {
-          "name": "i",
-          "value": "2",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "1",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
               "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "2",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2700,19 +2280,19 @@
       "variables": [
         {
           "name": "i",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
           "value": "1",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
           "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
+          "value": "[2, 1, 3, 4, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -2726,13 +2306,13 @@
           "indexes": [
             {
               "name": "0",
-              "value": "1",
+              "value": "2",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "1",
-              "value": "2",
+              "value": "1",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2766,23 +2346,23 @@
       "stdout": ""
     },
     {
-      "lineNumber": 6,
+      "lineNumber": 10,
       "variables": [
         {
           "name": "i",
-          "value": "3",
+          "value": "1",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "j",
-          "value": "0",
+          "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
         {
           "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
+          "value": "[2, 1, 3, 4, 5]",
           "nativeType": "list",
           "likeType": "array",
           "attributes": [
@@ -2796,13 +2376,13 @@
           "indexes": [
             {
               "name": "0",
-              "value": "1",
+              "value": "2",
               "nativeType": "int",
               "likeType": "numeric"
             },
             {
               "name": "1",
-              "value": "2",
+              "value": "1",
               "nativeType": "int",
               "likeType": "numeric"
             },
@@ -2829,6 +2409,286 @@
         {
           "name": "swapped",
           "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 3,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 4,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[2, 1, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
           "nativeType": "bool",
           "likeType": "numeric"
         }
@@ -2840,7 +2700,7 @@
       "variables": [
         {
           "name": "i",
-          "value": "3",
+          "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
@@ -2898,7 +2758,7 @@
         },
         {
           "name": "swapped",
-          "value": "True",
+          "value": "False",
           "nativeType": "bool",
           "likeType": "numeric"
         }
@@ -2906,81 +2766,11 @@
       "stdout": ""
     },
     {
-      "lineNumber": 6,
+      "lineNumber": 8,
       "variables": [
         {
           "name": "i",
-          "value": "3",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "j",
-          "value": "0",
-          "nativeType": "int",
-          "likeType": "numeric"
-        },
-        {
-          "name": "l",
-          "value": "[1, 2, 3, 4, 5]",
-          "nativeType": "list",
-          "likeType": "array",
-          "attributes": [
-            {
-              "name": "len()",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ],
-          "indexes": [
-            {
-              "name": "0",
-              "value": "1",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "1",
-              "value": "2",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "2",
-              "value": "3",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "3",
-              "value": "4",
-              "nativeType": "int",
-              "likeType": "numeric"
-            },
-            {
-              "name": "4",
-              "value": "5",
-              "nativeType": "int",
-              "likeType": "numeric"
-            }
-          ]
-        },
-        {
-          "name": "swapped",
-          "value": "True",
-          "nativeType": "bool",
-          "likeType": "numeric"
-        }
-      ],
-      "stdout": ""
-    },
-    {
-      "lineNumber": 11,
-      "variables": [
-        {
-          "name": "i",
-          "value": "3",
+          "value": "2",
           "nativeType": "int",
           "likeType": "numeric"
         },
@@ -3047,7 +2837,702 @@
     },
     {
       "lineNumber": 5,
-      "variables": [],
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 10,
+      "variables": [
+        {
+          "name": "i",
+          "value": "2",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 3,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "True",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 4,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "1",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 6,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 5,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "lineNumber": 10,
+      "variables": [
+        {
+          "name": "i",
+          "value": "3",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "j",
+          "value": "0",
+          "nativeType": "int",
+          "likeType": "numeric"
+        },
+        {
+          "name": "l",
+          "value": "[1, 2, 3, 4, 5]",
+          "nativeType": "list",
+          "likeType": "array",
+          "attributes": [
+            {
+              "name": "len()",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ],
+          "indexes": [
+            {
+              "name": "0",
+              "value": "1",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "1",
+              "value": "2",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "2",
+              "value": "3",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "3",
+              "value": "4",
+              "nativeType": "int",
+              "likeType": "numeric"
+            },
+            {
+              "name": "4",
+              "value": "5",
+              "nativeType": "int",
+              "likeType": "numeric"
+            }
+          ]
+        },
+        {
+          "name": "swapped",
+          "value": "False",
+          "nativeType": "bool",
+          "likeType": "numeric"
+        }
+      ],
       "stdout": ""
     }
   ]

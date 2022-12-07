@@ -35,16 +35,20 @@ export default function Terminal<T extends MosaicKey>({
           <CharmIcon icon={TerminalCharm} />
           <span className="pl-2">Terminal</span>
           <button
-            className={`rounded-full text-xs ml-2 px-2 hover:bg-gray-500/20 duration-300 ${
-              tab === "input" ? "bg-gray-500/30" : ""
+            className={`rounded-full text-xs ml-2 px-2 hover:bg-zinc-500/20 duration-300 border ${
+              tab === "input"
+                ? "bg-zinc-500/30 border-zinc-500"
+                : "border-hidden"
             }`}
             onClick={() => setTab("input")}
           >
             input
           </button>
           <button
-            className={`rounded-full text-xs ml-1 px-2 hover:bg-gray-500/20 duration-300 ${
-              tab === "output" ? "bg-gray-500/30" : ""
+            className={`rounded-full text-xs ml-1 px-2 hover:bg-zinc-500/20 duration-300 border ${
+              tab === "output"
+                ? "bg-zinc-500/30 border-zinc-500"
+                : "border-hidden"
             }`}
             onClick={() => setTab("output")}
           >

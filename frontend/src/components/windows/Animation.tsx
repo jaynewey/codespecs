@@ -1,4 +1,4 @@
-import { Eye, Refresh } from "charm-icons";
+import { Cross, Glasses, Info, LayoutList, ScreenMaximise } from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -13,6 +13,7 @@ import Pannable from "../Pannable";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
+import ToolbarButton from "./ToolbarButton";
 import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
@@ -66,31 +67,48 @@ export default function Animation<T extends MosaicKey>({
       className=""
       renderToolbar={() => (
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
-          <CharmIcon icon={Eye} />
+          <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
-          <button
-            className="ml-auto flex hover:bg-zinc-500/20 text-zinc-500 hover:text-inherit rounded-full p-0.5 duration-300"
+          <ToolbarButton
+            className="ml-auto"
             onClick={() => {
               setZoom(1);
               setTranslate({ x: 0, y: 0 });
             }}
           >
-            <CharmIcon icon={Refresh} />
-          </button>
+            <CharmIcon icon={ScreenMaximise} />
+          </ToolbarButton>
         </div>
       )}
       path={path}
       draggable={true}
     >
-      <Pannable
-        zoomState={[zoom, setZoom]}
-        translateState={[translate, setTranslate]}
-        className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
-      >
-        <div className="absolute">
-          {variableObj ? animationFactory(variableObj) : <></>}
+      {variableObj ? (
+        <Pannable
+          zoomState={[zoom, setZoom]}
+          translateState={[translate, setTranslate]}
+          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
+        >
+          <div className="absolute">{animationFactory(variableObj)}</div>
+        </Pannable>
+      ) : (
+        <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
+          <div className="relative m-auto items-center text-center bg-blue-500/10 border border-blue-500 text-blue-500 rounded-lg p-2">
+            <div className="absolute -top-1 -left-1">
+              <span className="absolute animate-ping inline-flex h-3 w-3 rounded-full bg-blue-500/80"></span>
+              <span className="absolute inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+            </div>
+            <div className="pl-2 justify-center">
+              <p>Select a variable to view from the</p>
+              <div className="flex flex-row justify-center items-center text-sm">
+                <CharmIcon icon={LayoutList} />
+                <span className="pl-2">Variables</span>
+              </div>
+              <p>window.</p>
+            </div>
+          </div>
         </div>
-      </Pannable>
+      )}
     </MosaicWindow>
   );
 }

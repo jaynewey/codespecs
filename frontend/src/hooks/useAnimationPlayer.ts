@@ -20,6 +20,7 @@ export const DEFAULT_INTERVAL = 1000;
 export type AnimationPlayer = {
   setProgramTrace: (programTrace: ProgramTrace | null) => void;
   setAnimInterval: (animInterval: number) => void;
+  setCurrentIndex: (currentIndex: number) => void;
 };
 
 export default function useAnimationPlayer(
@@ -64,5 +65,5 @@ export default function useAnimationPlayer(
     }
   }, [currentIndex]);
 
-  return { setProgramTrace, setAnimInterval };
+  return { setProgramTrace, setAnimInterval, setCurrentIndex };
 }

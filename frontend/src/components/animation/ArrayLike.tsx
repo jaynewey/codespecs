@@ -1,3 +1,5 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import { AnimationFactory, Variable } from "./types";
 
 export default function ArrayLike({
@@ -7,16 +9,21 @@ export default function ArrayLike({
   value: Variable;
   animationFactory: AnimationFactory;
 }) {
+  const [parent, enableAnimations] = useAutoAnimate<HTMLDivElement>();
+
   return (
     <div className="m-4">
       <p className="font-mono text-xs pb-1">
         {value.name}
         <span className="text-zinc-500">: {value.nativeType}</span>
       </p>
-      <div className="flex flex-row w-auto border border-zinc-500 divide-x divide-zinc-500 rounded">
+      <div
+        className="flex flex-row w-auto border border-zinc-500 divide-x divide-zinc-500 rounded"
+        ref={parent}
+      >
         {(value.indexes ?? []).map((v, i) => (
           <div
-            key={i}
+            key={v.value}
             className="p-3 px-4 flex shrink content-center bg-zinc-500/10"
           >
             {animationFactory(v)}
