@@ -118,11 +118,14 @@ export default function Topbar({
   animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { setProgramTrace, setAnimInterval, setCurrentIndex } = animationPlayer;
+  const { setProgramTrace, setAnimInterval, setCurrentIndex, isPaused } =
+    animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
+
+  const togglePause = () =>
+    setAnimInterval(isPaused ? DEFAULT_INTERVAL / playSpeed : 0);
 
   useEffect(() => {
     fetch(`${API_ENDPOINT}/languages/`)
@@ -177,8 +180,6 @@ export default function Topbar({
               },
               splitPercentage: 70,
             });
-
-            setIsPaused(false);
           } else {
             // reset windows to default
             setWindows(defaultWindows);
@@ -213,10 +214,7 @@ export default function Topbar({
                 ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
                 : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
             }`}
-            onClick={() => {
-              setAnimInterval(isPaused ? DEFAULT_INTERVAL / playSpeed : 0);
-              setIsPaused(!isPaused);
-            }}
+            onClick={() => togglePause()}
           >
             <div className="p-1">
               <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
@@ -246,7 +244,6 @@ export default function Topbar({
                   setAnimInterval(
                     DEFAULT_INTERVAL / event.target.valueAsNumber
                   );
-                  setIsPaused(false);
                 }}
                 min={MIN_PLAY_SPEED}
                 max={MAX_PLAY_SPEED}

@@ -16,11 +16,13 @@ export type ProgramTrace = {
 };
 
 export const DEFAULT_INTERVAL = 1000;
+const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
   setProgramTrace: (programTrace: ProgramTrace | null) => void;
   setAnimInterval: (animInterval: number) => void;
   setCurrentIndex: (currentIndex: number) => void;
+  isPaused: boolean;
 };
 
 export default function useAnimationPlayer(
@@ -35,12 +37,12 @@ export default function useAnimationPlayer(
       const step = () => {
         if (!programTrace.lines.length) {
           return;
-        }
+	}
 
         setCurrentIndex((i) => (i + 1) % programTrace.lines.length);
       };
 
-      if (animInterval > 0) {
+      if (animInterval > PAUSED_INTERVAL) {
         const interval = setInterval(step, animInterval);
 
         return () => clearInterval(interval);
@@ -62,8 +64,18 @@ export default function useAnimationPlayer(
 
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList(programTrace.lines[currentIndex].variables);
+
+      // if we are at last animation frame, pause
+      if (currentIndex === programTrace.lines.length - 1) {
+        setAnimInterval(PAUSED_INTERVAL);
+      }
     }
   }, [currentIndex]);
 
-  return { setProgramTrace, setAnimInterval, setCurrentIndex };
+  return {
+    setProgramTrace,
+    setAnimInterval,
+    setCurrentIndex,
+    isPaused: animInterval === PAUSED_INTERVAL,
+  };
 }
