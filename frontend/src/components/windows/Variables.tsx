@@ -96,7 +96,7 @@ function VariableRow({
                     {tokens.map((line, i) => (
                       <span key={i}>
                         {line.map((token, key) => (
-                          <span {...getTokenProps({ token, key })} />
+                          <span {...getTokenProps({ token, key })} style={{}} />
                         ))}
                       </span>
                     ))}

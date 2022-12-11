@@ -1,7 +1,5 @@
 import { Code as CodeCharm } from "charm-icons";
 import Highlight, { Language, defaultProps } from "prism-react-renderer";
-import darkTheme from "prism-react-renderer/themes/nightOwl";
-import lightTheme from "prism-react-renderer/themes/nightOwlLight";
 import { useContext, useState } from "react";
 import {
   MosaicNode,
@@ -71,7 +69,6 @@ for i in range(len(l) - 1):
             return (
               <Highlight
                 {...defaultProps}
-                theme={theme === "dark" ? darkTheme : lightTheme}
                 code={code}
                 language={languageMap[language ?? ""] ?? "clike"}
               >
@@ -80,6 +77,7 @@ for i in range(len(l) - 1):
                     {tokens.map((line, i) => (
                       <div
                         {...getLineProps({ line, key: i })}
+                        style={{}}
                         className={`table w-full duration-100 ${
                           highlighted.includes(i + 1) ? "bg-green-500/20" : ""
                         }`}
@@ -89,7 +87,10 @@ for i in range(len(l) - 1):
                         </div>
                         <div className="table-cell pl-4">
                           {line.map((token, key) => (
-                            <span {...getTokenProps({ token, key })} />
+                            <span
+                              {...getTokenProps({ token, key })}
+                              style={{}}
+                            />
                           ))}
                         </div>
                       </div>

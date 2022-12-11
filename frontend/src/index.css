@@ -1,4 +1,5 @@
 @import "./components/windows/windows.css";
+@import "./syntax.css";
 
 @tailwind base;
 @tailwind components;
