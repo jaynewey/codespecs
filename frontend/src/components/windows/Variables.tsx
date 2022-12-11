@@ -63,7 +63,9 @@ function VariableRow({
         } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
         <div
-          className="flex items-center pl-1"
+          className={`flex items-center pl-1
+              ${depth ? "border-l border-gray-500" : ""}
+	      `}
           style={{ marginLeft: `${depth}rem` }}
         >
           {children(variable).length ? (
@@ -78,9 +80,7 @@ function VariableRow({
             <></>
           )}
           <span
-            className={`w-full text-sm font-mono pl-2 py-1 truncate ${
-              depth ? "border-l border-gray-500" : ""
-            }`}
+            className="w-full text-sm font-mono pl-2 py-1 truncate"
             onClick={() => setSelectedVariable(variable.name)}
           >
             {variable.name}:{" "}
