@@ -1,4 +1,12 @@
-import { Cross, Crosshair, Glasses, Info, LayoutList } from "charm-icons";
+import {
+  Cross,
+  Crosshair,
+  Glasses,
+  Info,
+  LayoutList,
+  ZoomIn,
+  ZoomOut,
+} from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -10,12 +18,17 @@ import {
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import Pannable from "../Pannable";
+import Slider from "../Slider";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
 import ToolbarButton from "./ToolbarButton";
 import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
+
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 8;
+const ZOOM_STEP = 0.1;
 
 function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
@@ -69,8 +82,29 @@ export default function Animation<T extends MosaicKey>({
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
+          <div className="flex ml-auto gap-1 px-2 align-middle">
+            <ToolbarButton onClick={() => setZoom(zoom - ZOOM_STEP)}>
+              <CharmIcon icon={ZoomOut} />
+            </ToolbarButton>
+            <div className="w-24 h-4">
+              <Slider
+                value={zoom}
+                onChange={(event) => {
+                  setZoom(event.target.valueAsNumber);
+                }}
+                min={MIN_ZOOM}
+                max={MAX_ZOOM}
+                step={ZOOM_STEP}
+                // Stop the toolbar from being dragged when we are interacting with the slider
+                onDragStart={(event) => event.preventDefault()}
+                draggable={true}
+              />
+            </div>
+            <ToolbarButton onClick={() => setZoom(zoom + ZOOM_STEP)}>
+              <CharmIcon icon={ZoomIn} />
+            </ToolbarButton>
+          </div>
           <ToolbarButton
-            className="ml-auto"
             onClick={() => {
               setZoom(1);
               setTranslate({ x: 0, y: 0 });
