@@ -16,7 +16,7 @@ import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, State, Window } from "./types";
 
-const languageMap: { [key: string]: Language } = {
+export const languageMap: { [key: string]: Language } = {
   "Python (3.8.1)": "python",
   "Python (2.7.17)": "python",
   "JavaScript (Node.js 12.14.0)": "javascript",

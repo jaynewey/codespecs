@@ -1,5 +1,8 @@
 import { ChevronDown, ChevronRight, LayoutList, Tag } from "charm-icons";
-import { MouseEvent, useState } from "react";
+import Highlight, { Language, defaultProps } from "prism-react-renderer";
+import darkTheme from "prism-react-renderer/themes/nightOwl";
+import lightTheme from "prism-react-renderer/themes/nightOwlLight";
+import { MouseEvent, useContext, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -7,9 +10,11 @@ import {
   getNodeAtPath,
 } from "react-mosaic-component";
 
+import ThemeContext from "../../contexts/ThemeContext";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { Variable } from "../animation/types";
+import { languageMap } from "./Code";
 import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, State } from "./types";
 
@@ -36,14 +41,19 @@ export function getVariableByName(
 function VariableRow({
   variable,
   selectedVariableState,
+  languageState,
   depth = 0,
 }: {
   variable: Variable;
   selectedVariableState: State<string | null>;
+  languageState: State<string | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedVariable, setSelectedVariable] = selectedVariableState;
+
+  const { theme } = useContext(ThemeContext);
+  const [language, setLanguage] = languageState;
 
   return (
     <>
@@ -75,7 +85,24 @@ function VariableRow({
           >
             {variable.name}:{" "}
             <span className="text-zinc-700 dark:text-zinc-300">
-              {variable.value}
+              <Highlight
+                {...defaultProps}
+                theme={theme === "dark" ? darkTheme : lightTheme}
+                code={variable.value}
+                language={languageMap[language ?? ""] ?? "clike"}
+              >
+                {({ className, tokens, getTokenProps }) => (
+                  <pre className={`${className} inline`}>
+                    {tokens.map((line, i) => (
+                      <span key={i}>
+                        {line.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} />
+                        ))}
+                      </span>
+                    ))}
+                  </pre>
+                )}
+              </Highlight>
             </span>
           </span>
         </div>
@@ -88,6 +115,7 @@ function VariableRow({
               depth={depth + 1}
               key={i}
               selectedVariableState={selectedVariableState}
+              languageState={languageState}
             />
           ))}
         </ul>
@@ -102,10 +130,12 @@ export default function Variables<T extends MosaicKey>({
   path,
   variablesListState,
   selectedVariableState,
+  languageState,
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
   selectedVariableState: State<string | null>;
+  languageState: State<string | null>;
 }) {
   const [variablesList, _] = variablesListState;
   const [selectedVariable, setSelectedVariable] = selectedVariableState;
@@ -129,6 +159,7 @@ export default function Variables<T extends MosaicKey>({
             variable={variable}
             key={i}
             selectedVariableState={selectedVariableState}
+            languageState={languageState}
           />
         ))}
       </ul>

@@ -48,6 +48,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
             path={path}
             selectedVariableState={windowStates.variables.selectedVariable}
             variablesListState={windowStates.variables.variablesList}
+            languageState={windowStates.code.language}
           />
         );
       default:
