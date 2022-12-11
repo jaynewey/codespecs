@@ -4,6 +4,7 @@ import {
   Glasses,
   Icon,
   LayoutList,
+  LightningBolt,
   MediaPause,
   MediaPlay,
   Moon,
@@ -232,11 +233,12 @@ export default function Topbar({
             </div>
           </button>
 
-          <div className="flex w-48 gap-2 px-2 align-middle">
-            <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
-              {MIN_PLAY_SPEED}&#215;
-            </span>
-            <div>
+          <div className="flex gap-1 px-2 align-middle">
+            <div className="flex py-1 align-middle">
+              <CharmIcon icon={LightningBolt} />
+              <span className="text-xs">-</span>
+            </div>
+            <div className="w-24">
               <Slider
                 value={playSpeed}
                 onChange={(event) => {
@@ -250,9 +252,10 @@ export default function Topbar({
                 step={PLAY_SPEED_STEP}
               />
             </div>
-            <span className="m-auto text-xs bg-zinc-500/20 rounded-full px-1">
-              {MAX_PLAY_SPEED}&#215;
-            </span>
+            <div className="flex py-1 align-middle">
+	      <CharmIcon icon={LightningBolt} />
+              <span className="text-xs">+</span>
+            </div>
           </div>
         </>
       ) : (
