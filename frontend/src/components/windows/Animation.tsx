@@ -1,4 +1,4 @@
-import { Cross, Glasses, Info, LayoutList, ScreenMaximise } from "charm-icons";
+import { Cross, Crosshair, Glasses, Info, LayoutList } from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -76,7 +76,7 @@ export default function Animation<T extends MosaicKey>({
               setTranslate({ x: 0, y: 0 });
             }}
           >
-            <CharmIcon icon={ScreenMaximise} />
+            <CharmIcon icon={Crosshair} />
           </ToolbarButton>
         </div>
       )}
