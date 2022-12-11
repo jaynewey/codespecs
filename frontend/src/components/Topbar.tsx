@@ -204,7 +204,7 @@ export default function Topbar({
             <CharmIcon icon={Rocket} />
           )}
         </div>
-        <span className="pt-0.5">{isRunning ? "Stop" : "Launch"}</span>
+        <span className="pt-0.5">{isRunning ? "Stop" : "Run"}</span>
       </button>
       {isRunning ? (
         <>
