@@ -29,6 +29,7 @@ import { MosaicKey, State, Window } from "./types";
 const MIN_ZOOM = 0.5;
 const MAX_ZOOM = 8;
 const ZOOM_STEP = 0.1;
+const ZOOM_BUTTON_STEP = 0.5;
 
 function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
@@ -83,7 +84,16 @@ export default function Animation<T extends MosaicKey>({
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
           <div className="flex ml-auto gap-1 px-2 align-middle">
-            <ToolbarButton onClick={() => setZoom(zoom - ZOOM_STEP)}>
+            <ToolbarButton
+              onClick={() =>
+                setZoom(
+                  Math.min(
+                    Math.max(zoom - ZOOM_BUTTON_STEP, MIN_ZOOM),
+                    MAX_ZOOM
+                  )
+                )
+              }
+            >
               <CharmIcon icon={ZoomOut} />
             </ToolbarButton>
             <div className="w-24 h-4">
@@ -100,7 +110,16 @@ export default function Animation<T extends MosaicKey>({
                 draggable={true}
               />
             </div>
-            <ToolbarButton onClick={() => setZoom(zoom + ZOOM_STEP)}>
+            <ToolbarButton
+              onClick={() =>
+                setZoom(
+                  Math.min(
+                    Math.max(zoom + ZOOM_BUTTON_STEP, MIN_ZOOM),
+                    MAX_ZOOM
+                  )
+                )
+              }
+            >
               <CharmIcon icon={ZoomIn} />
             </ToolbarButton>
           </div>
