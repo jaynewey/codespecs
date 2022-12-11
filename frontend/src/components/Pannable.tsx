@@ -7,7 +7,7 @@ type Vector2d = {
   y: number;
 };
 
-const ZOOM_SENSITIVITY = 30;
+const ZOOM_SENSITIVITY = 15;
 const DEFAULT_MIN_ZOOM = 0.1;
 const DEFAULT_MAX_ZOOM = Number.MAX_VALUE;
 
@@ -42,7 +42,10 @@ export default function Pannable({
       onWheel={(event) => {
         setZoom(
           Math.min(
-            Math.max(zoom - event.deltaY / zoomSensitivity, minZoom),
+            Math.max(
+              zoom - (Math.sign(event.deltaY) / zoomSensitivity) * zoom,
+              minZoom
+            ),
             maxZoom
           )
         );
