@@ -10,6 +10,7 @@ import {
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { Variable } from "../animation/types";
+import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, State } from "./types";
 
 function children(variable: Variable): Variable[] {
@@ -47,11 +48,7 @@ function VariableRow({
   return (
     <>
       <li
-        onClick={() => {
-          setIsOpen(!isOpen && children(variable).length > 0);
-          setSelectedVariable(variable.name);
-        }}
-        className={`p-1 border-b border-zinc-500/30 ${
+        className={`px-1 ${
           selectedVariable === variable.name ? "bg-zinc-500/20" : ""
         } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
@@ -60,11 +57,22 @@ function VariableRow({
           style={{ marginLeft: `${depth}rem` }}
         >
           {children(variable).length ? (
-            <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
+            <ToolbarButton
+              onClick={() =>
+                setIsOpen(!isOpen && children(variable).length > 0)
+              }
+            >
+              <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
+            </ToolbarButton>
           ) : (
             <></>
           )}
-          <span className="text-sm font-mono pl-2 truncate">
+          <span
+            className={`w-full text-sm font-mono pl-2 py-1 truncate ${
+              depth ? "border-l border-gray-500" : ""
+            }`}
+            onClick={() => setSelectedVariable(variable.name)}
+          >
             {variable.name}:{" "}
             <span className="text-zinc-700 dark:text-zinc-300">
               {variable.value}
