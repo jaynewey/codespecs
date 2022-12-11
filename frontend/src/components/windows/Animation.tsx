@@ -121,6 +121,8 @@ export default function Animation<T extends MosaicKey>({
         <Pannable
           zoomState={[zoom, setZoom]}
           translateState={[translate, setTranslate]}
+          minZoom={MIN_ZOOM}
+          maxZoom={MAX_ZOOM}
           className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
         >
           <div className="absolute">{animationFactory(variableObj)}</div>
