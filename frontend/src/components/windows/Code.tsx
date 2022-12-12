@@ -73,12 +73,12 @@ for i in range(len(l) - 1):
                 language={languageMap[language ?? ""] ?? "clike"}
               >
                 {({ tokens, getLineProps, getTokenProps }) => (
-                  <pre className="text-left overflow-auto">
+                  <pre className="text-left">
                     {tokens.map((line, i) => (
                       <div
                         {...getLineProps({ line, key: i })}
                         style={{}}
-                        className={`table w-full duration-100 ${
+                        className={`table table-fixed w-full duration-100 whitespace-pre-wrap ${
                           highlighted.includes(i + 1) ? "bg-green-500/20" : ""
                         }`}
                       >
@@ -101,7 +101,7 @@ for i in range(len(l) - 1):
             );
           }}
           className="bg-zinc-200 dark:bg-zinc-800 font-mono text-sm"
-          textareaClassName="!ml-12 outline-none"
+          textareaClassName="!pl-12 outline-none"
           tabSize={4}
         />
       </div>
