@@ -136,7 +136,17 @@ export default function Animation<T extends MosaicKey>({
           maxZoom={MAX_ZOOM}
           className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
         >
-          <div className="absolute">{animationFactory(variableObj)}</div>
+          <div className="absolute">
+            <div className="m-4 bg-zinc-500/10 rounded-lg p-3">
+              <p className="font-mono text-xs pb-2">
+                {variableObj.name}
+                <span className="text-zinc-500">
+                  : {variableObj.nativeType}
+                </span>
+              </p>
+              <div className="flex m-auto">{animationFactory(variableObj)}</div>
+            </div>
+          </div>
         </Pannable>
       ) : (
         <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
