@@ -28,7 +28,7 @@ import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
 const MIN_ZOOM = 0.5;
-const MAX_ZOOM = 8;
+const MAX_ZOOM = 2;
 const ZOOM_STEP = 0.1;
 const ZOOM_BUTTON_STEP = 0.5;
 
