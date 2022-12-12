@@ -1,11 +1,6 @@
 import { ReactNode, useState } from "react";
 
-type State<S> = [S, (s: S) => void];
-
-type Vector2d = {
-  x: number;
-  y: number;
-};
+import { State, Vector2d } from "./types";
 
 const ZOOM_SENSITIVITY = 15;
 const DEFAULT_MIN_ZOOM = 0.1;
