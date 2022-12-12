@@ -37,7 +37,7 @@ export default function useAnimationPlayer(
       const step = () => {
         if (!programTrace.lines.length) {
           return;
-	}
+        }
 
         setCurrentIndex((i) => (i + 1) % programTrace.lines.length);
       };
@@ -50,8 +50,8 @@ export default function useAnimationPlayer(
     } else {
       const [, setHighlighted] = windowStates.code.highlighted;
       setHighlighted([]);
-      const [, setSelectedVariable] = windowStates.variables.selectedVariable;
-      setSelectedVariable(null);
+      const [, setSelectedVariables] = windowStates.variables.selectedVariables;
+      setSelectedVariables([]);
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList([]);
     }

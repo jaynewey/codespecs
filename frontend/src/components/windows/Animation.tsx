@@ -17,6 +17,7 @@ import {
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
+import Draggable, { DragArea } from "../Draggable";
 import Pannable from "../Pannable";
 import Slider from "../Slider";
 import ArrayLike from "../animation/ArrayLike";
@@ -50,22 +51,17 @@ function animationFactory(variable: Variable): ReactElement {
 
 export default function Animation<T extends MosaicKey>({
   path,
-  selectedVariableState,
+  selectedVariablesState,
   variablesListState,
 }: {
   path: MosaicPath;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
   variablesListState: State<Variable[]>;
 }) {
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  const [selectedVariable, _] = selectedVariableState;
+  const [selectedVariables, _] = selectedVariablesState;
   const [variablesList, __] = variablesListState;
-
-  const variableObj =
-    typeof selectedVariable === "string"
-      ? getVariableByName(selectedVariable, variablesList)
-      : null;
 
   return (
     <MosaicWindow<T>
@@ -128,26 +124,37 @@ export default function Animation<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      {variableObj ? (
-        <Pannable
-          zoomState={[zoom, setZoom]}
-          translateState={[translate, setTranslate]}
-          minZoom={MIN_ZOOM}
-          maxZoom={MAX_ZOOM}
-          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
-        >
-          <div className="absolute">
-            <div className="m-4 bg-zinc-500/10 rounded-lg p-3">
-              <p className="font-mono text-xs pb-2">
-                {variableObj.name}
-                <span className="text-zinc-500">
-                  : {variableObj.nativeType}
-                </span>
-              </p>
-              <div className="flex m-auto">{animationFactory(variableObj)}</div>
-            </div>
-          </div>
-        </Pannable>
+      {selectedVariables.length ? (
+        <DragArea zoom={zoom} className="w-full h-full">
+          <Pannable
+            zoomState={[zoom, setZoom]}
+            translateState={[translate, setTranslate]}
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
+            className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
+          >
+            {selectedVariables.map((variableName) => {
+              const variable = getVariableByName(variableName, variablesList);
+              return variable ? (
+                <Draggable key={variable.name} className="cursor-move">
+                  <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300">
+                    <p className="font-mono text-xs pb-2">
+                      {variable.name}
+                      <span className="text-zinc-500">
+                        : {variable.nativeType}
+                      </span>
+                    </p>
+                    <div className="flex m-auto">
+                      {animationFactory(variable)}
+                    </div>
+                  </div>
+                </Draggable>
+              ) : (
+                <></>
+              );
+            })}
+          </Pannable>
+        </DragArea>
       ) : (
         <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
           <div className="relative m-auto items-center text-center bg-blue-500/10 border border-blue-500 text-blue-500 rounded-lg p-2">

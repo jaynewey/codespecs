@@ -40,17 +40,17 @@ export function getVariableByName(
 
 function VariableRow({
   variable,
-  selectedVariableState,
+  selectedVariablesState,
   languageState,
   depth = 0,
 }: {
   variable: Variable;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
   languageState: State<string | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedVariable, setSelectedVariable] = selectedVariableState;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
 
   const { theme } = useContext(ThemeContext);
   const [language, setLanguage] = languageState;
@@ -59,7 +59,7 @@ function VariableRow({
     <>
       <li
         className={`px-1 ${
-          selectedVariable === variable.name ? "bg-zinc-500/20" : ""
+          selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""
         } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
         <div
@@ -81,7 +81,21 @@ function VariableRow({
           )}
           <span
             className="w-full text-sm font-mono pl-2 py-1 truncate"
-            onClick={() => setSelectedVariable(variable.name)}
+            onClick={() =>
+              setSelectedVariables(
+                selectedVariables.includes(variable.name)
+                  ? [
+                      ...selectedVariables.slice(
+                        0,
+                        selectedVariables.indexOf(variable.name)
+                      ),
+                      ...selectedVariables.slice(
+                        selectedVariables.indexOf(variable.name) + 1
+                      ),
+                    ]
+                  : [...selectedVariables, variable.name]
+              )
+            }
           >
             {variable.name}:{" "}
             <span className="text-zinc-700 dark:text-zinc-300">
@@ -114,7 +128,7 @@ function VariableRow({
               variable={variable}
               depth={depth + 1}
               key={i}
-              selectedVariableState={selectedVariableState}
+              selectedVariablesState={selectedVariablesState}
               languageState={languageState}
             />
           ))}
@@ -129,16 +143,16 @@ function VariableRow({
 export default function Variables<T extends MosaicKey>({
   path,
   variablesListState,
-  selectedVariableState,
+  selectedVariablesState,
   languageState,
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
   languageState: State<string | null>;
 }) {
   const [variablesList, _] = variablesListState;
-  const [selectedVariable, setSelectedVariable] = selectedVariableState;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
 
   return (
     <MosaicWindow<T>
@@ -158,7 +172,7 @@ export default function Variables<T extends MosaicKey>({
           <VariableRow
             variable={variable}
             key={i}
-            selectedVariableState={selectedVariableState}
+            selectedVariablesState={selectedVariablesState}
             languageState={languageState}
           />
         ))}

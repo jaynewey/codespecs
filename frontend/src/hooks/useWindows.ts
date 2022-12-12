@@ -16,7 +16,7 @@ export type WindowStates = {
     tab: State<"output" | "input">;
   };
   variables: {
-    selectedVariable: State<string | null>;
+    selectedVariables: State<string[]>;
     variablesList: State<Variable[]>;
   };
 };
@@ -35,7 +35,7 @@ export default function useWindows(): WindowStates {
       tab: useState("input"),
     },
     variables: {
-      selectedVariable: useState(null),
+      selectedVariables: useState([]),
       variablesList: useState([]),
     },
   };
