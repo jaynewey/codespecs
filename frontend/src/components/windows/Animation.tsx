@@ -60,8 +60,8 @@ export default function Animation<T extends MosaicKey>({
 }) {
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  const [selectedVariables, _] = selectedVariablesState;
-  const [variablesList, __] = variablesListState;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
+  const [variablesList] = variablesListState;
 
   return (
     <MosaicWindow<T>
@@ -138,12 +138,30 @@ export default function Animation<T extends MosaicKey>({
               return variable ? (
                 <Draggable key={variable.name} className="cursor-move">
                   <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300">
-                    <p className="font-mono text-xs pb-2">
-                      {variable.name}
-                      <span className="text-zinc-500">
-                        : {variable.nativeType}
+                    <div className="flex flew-row pb-2">
+                      <span className="font-mono text-xs pr-2 my-auto">
+                        {variable.name}
+                        <span className="text-zinc-500">
+                          : {variable.nativeType}
+                        </span>
                       </span>
-                    </p>
+                      <ToolbarButton
+                        className="ml-auto"
+                        onClick={() =>
+                          setSelectedVariables([
+                            ...selectedVariables.slice(
+                              0,
+                              selectedVariables.indexOf(variable.name)
+                            ),
+                            ...selectedVariables.slice(
+                              selectedVariables.indexOf(variable.name) + 1
+                            ),
+                          ])
+                        }
+                      >
+                        <CharmIcon icon={Cross} />
+                      </ToolbarButton>
+                    </div>
                     <div className="flex m-auto">
                       {animationFactory(variable)}
                     </div>
