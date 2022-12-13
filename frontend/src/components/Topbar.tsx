@@ -190,11 +190,11 @@ export default function Topbar({
           setIsRunning(!isRunning);
         }}
         disabled={!selectedLanguage}
-        className={`flex content-center px-2 text-sm duration-300 border rounded hover:shadow-md ${
+        className={`flex content-center px-2 text-sm duration-300 border rounded hover:shadow-md focus:ring-2 ${
           selectedLanguage
             ? isRunning
-              ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:shadow-red-500"
-              : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500"
+              ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:shadow-red-500 ring-red-500"
+              : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500 ring-green-500"
             : "bg-zinc-500/20 border-zinc-500 animate-pulse cursor-not-allowed"
         }`}
       >
@@ -210,10 +210,10 @@ export default function Topbar({
       {isRunning ? (
         <>
           <button
-            className={`flex content-center text-sm duration-300 border rounded hover:shadow-md ${
+            className={`flex content-center text-sm duration-300 border rounded hover:shadow-md focus:ring-2 ${
               isPaused
-                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500"
-                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300 hover:shadow-amber-500"
+                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500 ring-green-500"
+                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300 hover:shadow-amber-500 ring-amber-500"
             }`}
             onClick={() => togglePause()}
           >
@@ -223,7 +223,7 @@ export default function Topbar({
           </button>
 
           <button
-            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:shadow-md hover:shadow-blue-500"
+            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:shadow-md hover:shadow-blue-500 focus:ring-2 ring-blue-500"
             onClick={() => {
               setCurrentIndex(0);
             }}
