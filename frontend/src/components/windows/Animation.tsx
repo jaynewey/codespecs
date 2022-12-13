@@ -68,7 +68,7 @@ export default function Animation<T extends MosaicKey>({
       title="Animation"
       className=""
       renderToolbar={() => (
-        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
+        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
           <div className="flex ml-auto gap-1 px-2 align-middle">
@@ -137,7 +137,7 @@ export default function Animation<T extends MosaicKey>({
               const variable = getVariableByName(variableName, variablesList);
               return variable ? (
                 <Draggable key={variable.name} className="cursor-move">
-                  <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300">
+                  <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md">
                     <div className="flex flew-row pb-2">
                       <span className="font-mono text-xs pr-2 my-auto">
                         {variable.name}

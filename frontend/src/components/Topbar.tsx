@@ -140,7 +140,7 @@ export default function Topbar({
   }, []);
 
   return (
-    <div className="sticky shrink flex top-0 w-full border-b border-zinc-500 p-1 gap-x-1 z-50">
+    <div className="sticky shrink flex top-0 w-full border-b border-zinc-300 dark:border-zinc-800 p-2 gap-x-2 z-50">
       <button
         onClick={() => {
           const [input, _] = windowStates.terminal.input;
@@ -190,51 +190,51 @@ export default function Topbar({
           setIsRunning(!isRunning);
         }}
         disabled={!selectedLanguage}
-        className={`flex content-center px-2 text-sm duration-300 border rounded ${
+        className={`flex content-center px-2 text-sm duration-300 border rounded hover:shadow-md ${
           selectedLanguage
             ? isRunning
-              ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300"
-              : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
+              ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:shadow-red-500"
+              : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500"
             : "bg-zinc-500/20 border-zinc-500 animate-pulse cursor-not-allowed"
         }`}
       >
-        <div className="pr-1 py-1">
+        <div className="pr-1 py-1.5">
           {isRunning ? (
             <CharmIcon icon={Square} />
           ) : (
             <CharmIcon icon={Rocket} />
           )}
         </div>
-        <span className="pt-0.5">{isRunning ? "Stop" : "Run"}</span>
+        <span className="pt-1">{isRunning ? "Stop" : "Run"}</span>
       </button>
       {isRunning ? (
         <>
           <button
-            className={`flex content-center text-sm duration-300 border rounded ${
+            className={`flex content-center text-sm duration-300 border rounded hover:shadow-md ${
               isPaused
-                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300"
-                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300"
+                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500"
+                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300 hover:shadow-amber-500"
             }`}
             onClick={() => togglePause()}
           >
-            <div className="p-1">
+            <div className="p-1.5">
               <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
             </div>
           </button>
 
           <button
-            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300"
+            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:shadow-md hover:shadow-blue-500"
             onClick={() => {
               setCurrentIndex(0);
             }}
           >
-            <div className="p-1">
+            <div className="p-1.5">
               <CharmIcon icon={RotateClockwise} />
             </div>
           </button>
 
           <div className="flex gap-1 px-2 align-middle">
-            <div className="flex py-1 align-middle">
+            <div className="flex py-1 m-auto">
               <CharmIcon icon={LightningBolt} />
               <span className="text-xs">-</span>
             </div>
@@ -252,8 +252,8 @@ export default function Topbar({
                 step={PLAY_SPEED_STEP}
               />
             </div>
-            <div className="flex py-1 align-middle">
-	      <CharmIcon icon={LightningBolt} />
+            <div className="flex py-1 m-auto">
+              <CharmIcon icon={LightningBolt} />
               <span className="text-xs">+</span>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function Topbar({
       >
         <button
           type="button"
-          className={`flex px-2 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
+          className={`flex px-2 py-0.5 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
             selectedLanguage
               ? ""
               : "animate-pulse bg-zinc-500/20 cursor-not-allowed"

@@ -159,7 +159,7 @@ export default function Variables<T extends MosaicKey>({
       title="Variables"
       className=""
       renderToolbar={() => (
-        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
+        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={LayoutList} />
           <span className="pl-2">Variables</span>
         </div>

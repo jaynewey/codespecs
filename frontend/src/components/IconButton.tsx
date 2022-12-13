@@ -13,7 +13,7 @@ export default function IconButton({
 }) {
   return (
     <button
-      className={`border border-zinc-500 rounded p-1 hover:bg-gray-500/20 duration-300 ${className}`}
+      className={`border border-zinc-500 rounded p-1.5 hover:bg-gray-500/20 duration-300 ${className}`}
       onClick={onClick}
     >
       <CharmIcon icon={icon} />

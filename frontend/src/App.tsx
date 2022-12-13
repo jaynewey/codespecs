@@ -82,7 +82,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 dark:text-white">
+      <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200">
         <Topbar
           windows={windows}
           selectedLanguage={windowStates.code.language[0]}
