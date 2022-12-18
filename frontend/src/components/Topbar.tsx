@@ -47,7 +47,7 @@ const API_ENDPOINT = import.meta.env.PROD
 
 const MIN_PLAY_SPEED = 0.25;
 const MAX_PLAY_SPEED = 2;
-const PLAY_SPEED_STEP = 0.25;
+const PLAY_SPEED_STEP = 0.05;
 
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
