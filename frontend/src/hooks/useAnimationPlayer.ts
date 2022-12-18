@@ -19,8 +19,10 @@ export const DEFAULT_INTERVAL = 1500;
 const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
+  programTrace: ProgramTrace | null;
   setProgramTrace: (programTrace: ProgramTrace | null) => void;
   setAnimInterval: (animInterval: number) => void;
+  currentIndex: number;
   setCurrentIndex: (currentIndex: number) => void;
   isPaused: boolean;
 };
@@ -73,8 +75,10 @@ export default function useAnimationPlayer(
   }, [currentIndex]);
 
   return {
+    programTrace,
     setProgramTrace,
     setAnimInterval,
+    currentIndex,
     setCurrentIndex,
     isPaused: animInterval === PAUSED_INTERVAL,
   };

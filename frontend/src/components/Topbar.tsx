@@ -1,4 +1,6 @@
 import {
+  ArrowDown,
+  ArrowUp,
   ChevronDown,
   Code,
   Glasses,
@@ -119,8 +121,14 @@ export default function Topbar({
   animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { setProgramTrace, setAnimInterval, setCurrentIndex, isPaused } =
-    animationPlayer;
+  const {
+    programTrace,
+    setProgramTrace,
+    setAnimInterval,
+    currentIndex,
+    setCurrentIndex,
+    isPaused,
+  } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [languages, setLanguages] = useState<string[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -232,6 +240,34 @@ export default function Topbar({
               <CharmIcon icon={RotateClockwise} />
             </div>
           </button>
+
+          <IconButton
+            icon={ArrowUp}
+            onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+            className={
+              currentIndex <= 0
+                ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
+                : ""
+            }
+            disabled={currentIndex <= 0}
+          />
+
+          <IconButton
+            icon={ArrowDown}
+            onClick={() => {
+              if (programTrace !== null) {
+                setCurrentIndex(
+                  Math.min(programTrace.lines.length - 1, currentIndex + 1)
+                );
+              }
+            }}
+            className={
+              currentIndex >= (programTrace?.lines?.length ?? 0) - 1
+                ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
+                : ""
+            }
+            disabled={currentIndex >= (programTrace?.lines?.length ?? 0) - 1}
+          />
 
           <div className="flex gap-1 px-2 align-middle">
             <div className="flex py-1 m-auto">
