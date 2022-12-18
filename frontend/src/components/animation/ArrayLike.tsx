@@ -1,4 +1,4 @@
-import { getTransitionSizes } from "@formkit/auto-animate";
+import { AutoAnimationPlugin, getTransitionSizes } from "@formkit/auto-animate";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import { AnimationFactory, Variable } from "./types";
@@ -10,8 +10,13 @@ const TRANSLATE_FACTOR = -0.15;
  * Exemplary AutoAnimate plugin which accentuates the changes
  * in element positions by setting border and scaling moved objects.
  */
-function autoAnimatePlugin(el, action, oldCoords, newCoords) {
-  let keyframes;
+const autoAnimatePlugin: AutoAnimationPlugin = (
+  el,
+  action,
+  oldCoords,
+  newCoords
+) => {
+  let keyframes: Keyframe[] = [];
   if (action === "add") {
     keyframes = [
       { transform: "scale(0)", opacity: 0 },
@@ -28,8 +33,8 @@ function autoAnimatePlugin(el, action, oldCoords, newCoords) {
     ];
   }
   if (action === "remain") {
-    const deltaX = oldCoords.left - newCoords.left;
-    const deltaY = oldCoords.top - newCoords.top;
+    const deltaX = (oldCoords?.left ?? 0) - (newCoords?.left ?? 0);
+    const deltaY = (oldCoords?.top ?? 0) - (newCoords?.top ??0);
     keyframes =
       deltaX === 0 && deltaY === 0
         ? []
@@ -55,7 +60,7 @@ function autoAnimatePlugin(el, action, oldCoords, newCoords) {
     duration: 900,
     easing: "ease-out",
   });
-}
+};
 
 export default function ArrayLike({
   value,
