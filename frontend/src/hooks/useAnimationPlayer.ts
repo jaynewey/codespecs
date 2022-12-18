@@ -15,7 +15,7 @@ export type ProgramTrace = {
   lines: Line[];
 };
 
-export const DEFAULT_INTERVAL = 1000;
+export const DEFAULT_INTERVAL = 1500;
 const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
