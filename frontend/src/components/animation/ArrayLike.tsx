@@ -34,7 +34,7 @@ const autoAnimatePlugin: AutoAnimationPlugin = (
   }
   if (action === "remain") {
     const deltaX = (oldCoords?.left ?? 0) - (newCoords?.left ?? 0);
-    const deltaY = (oldCoords?.top ?? 0) - (newCoords?.top ??0);
+    const deltaY = (oldCoords?.top ?? 0) - (newCoords?.top ?? 0);
     keyframes =
       deltaX === 0 && deltaY === 0
         ? []
