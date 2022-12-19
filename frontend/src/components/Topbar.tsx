@@ -282,22 +282,24 @@ export default function Topbar({
 
           <div className="flex gap-1 px-2 align-middle">
             <div className="flex py-1 m-auto">
-              <ToolbarButton
-                onClick={() => {
-                  const newSpeed = Math.min(
-                    Math.max(
-                      playSpeed - PLAY_SPEED_BUTTON_STEP,
-                      MIN_PLAY_SPEED
-                    ),
-                    MAX_PLAY_SPEED
-                  );
-                  setPlaySpeed(newSpeed);
-                  setAnimInterval(DEFAULT_INTERVAL / newSpeed);
-                }}
-              >
-                <CharmIcon icon={LightningBolt} />
-                <span className="text-xs">-</span>
-              </ToolbarButton>
+              <Tooltip text="Decrease playback speed">
+                <ToolbarButton
+                  onClick={() => {
+                    const newSpeed = Math.min(
+                      Math.max(
+                        playSpeed - PLAY_SPEED_BUTTON_STEP,
+                        MIN_PLAY_SPEED
+                      ),
+                      MAX_PLAY_SPEED
+                    );
+                    setPlaySpeed(newSpeed);
+                    setAnimInterval(DEFAULT_INTERVAL / newSpeed);
+                  }}
+                >
+                  <CharmIcon icon={LightningBolt} />
+                  <span className="text-xs">-</span>
+                </ToolbarButton>
+              </Tooltip>
             </div>
             <div className="w-24">
               <Slider
@@ -313,23 +315,26 @@ export default function Topbar({
                 step={PLAY_SPEED_STEP}
               />
             </div>
+
             <div className="flex py-1 m-auto">
-              <ToolbarButton
-                onClick={() => {
-                  const newSpeed = Math.min(
-                    Math.max(
-                      playSpeed + PLAY_SPEED_BUTTON_STEP,
-                      MIN_PLAY_SPEED
-                    ),
-                    MAX_PLAY_SPEED
-                  );
-                  setPlaySpeed(newSpeed);
-                  setAnimInterval(DEFAULT_INTERVAL / newSpeed);
-                }}
-              >
-                <CharmIcon icon={LightningBolt} />
-                <span className="text-xs">+</span>
-              </ToolbarButton>
+              <Tooltip text="Increase playback speed">
+                <ToolbarButton
+                  onClick={() => {
+                    const newSpeed = Math.min(
+                      Math.max(
+                        playSpeed + PLAY_SPEED_BUTTON_STEP,
+                        MIN_PLAY_SPEED
+                      ),
+                      MAX_PLAY_SPEED
+                    );
+                    setPlaySpeed(newSpeed);
+                    setAnimInterval(DEFAULT_INTERVAL / newSpeed);
+                  }}
+                >
+                  <CharmIcon icon={LightningBolt} />
+                  <span className="text-xs">+</span>
+                </ToolbarButton>
+              </Tooltip>
             </div>
           </div>
         </>
