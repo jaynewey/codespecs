@@ -39,6 +39,7 @@ import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
 import Slider from "./Slider";
 import Tooltip from "./Tooltip";
+import ToolbarButton from "./windows/ToolbarButton";
 import { MosaicKey } from "./windows/types";
 import { getPathToNode, isVisible } from "./windows/utils";
 
@@ -49,6 +50,7 @@ const API_ENDPOINT = import.meta.env.PROD
 const MIN_PLAY_SPEED = 0.25;
 const MAX_PLAY_SPEED = 2;
 const PLAY_SPEED_STEP = 0.05;
+const PLAY_SPEED_BUTTON_STEP = 0.25;
 
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
@@ -280,8 +282,22 @@ export default function Topbar({
 
           <div className="flex gap-1 px-2 align-middle">
             <div className="flex py-1 m-auto">
-              <CharmIcon icon={LightningBolt} />
-              <span className="text-xs">-</span>
+              <ToolbarButton
+                onClick={() => {
+                  const newSpeed = Math.min(
+                    Math.max(
+                      playSpeed - PLAY_SPEED_BUTTON_STEP,
+                      MIN_PLAY_SPEED
+                    ),
+                    MAX_PLAY_SPEED
+                  );
+                  setPlaySpeed(newSpeed);
+                  setAnimInterval(DEFAULT_INTERVAL / newSpeed);
+                }}
+              >
+                <CharmIcon icon={LightningBolt} />
+                <span className="text-xs">-</span>
+              </ToolbarButton>
             </div>
             <div className="w-24">
               <Slider
@@ -298,8 +314,22 @@ export default function Topbar({
               />
             </div>
             <div className="flex py-1 m-auto">
-              <CharmIcon icon={LightningBolt} />
-              <span className="text-xs">+</span>
+              <ToolbarButton
+                onClick={() => {
+                  const newSpeed = Math.min(
+                    Math.max(
+                      playSpeed + PLAY_SPEED_BUTTON_STEP,
+                      MIN_PLAY_SPEED
+                    ),
+                    MAX_PLAY_SPEED
+                  );
+                  setPlaySpeed(newSpeed);
+                  setAnimInterval(DEFAULT_INTERVAL / newSpeed);
+                }}
+              >
+                <CharmIcon icon={LightningBolt} />
+                <span className="text-xs">+</span>
+              </ToolbarButton>
             </div>
           </div>
         </>
