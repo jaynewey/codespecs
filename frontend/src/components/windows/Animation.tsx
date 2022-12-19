@@ -35,9 +35,13 @@ const ZOOM_BUTTON_STEP = 0.5;
 function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
     case "string":
-      return <span className="m-auto token string">{variable.value}</span>;
+      return (
+        <span className="m-auto font-mono token string">{variable.value}</span>
+      );
     case "numeric":
-      return <span className="m-auto token number">{variable.value}</span>;
+      return (
+        <span className="m-auto font-mono token number">{variable.value}</span>
+      );
     case "array":
       return <ArrayLike animationFactory={animationFactory} value={variable} />;
     case "object":
