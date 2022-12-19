@@ -20,6 +20,7 @@ import CharmIcon from "../CharmIcon";
 import Draggable, { DragArea } from "../Draggable";
 import Pannable from "../Pannable";
 import Slider from "../Slider";
+import Tooltip from "../Tooltip";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
@@ -76,18 +77,21 @@ export default function Animation<T extends MosaicKey>({
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
           <div className="flex ml-auto gap-1 px-2 align-middle">
-            <ToolbarButton
-              onClick={() =>
-                setZoom(
-                  Math.min(
-                    Math.max(zoom - ZOOM_BUTTON_STEP, MIN_ZOOM),
-                    MAX_ZOOM
+            <Tooltip text="Zoom out">
+              <ToolbarButton
+                onClick={() =>
+                  setZoom(
+                    Math.min(
+                      Math.max(zoom - ZOOM_BUTTON_STEP, MIN_ZOOM),
+                      MAX_ZOOM
+                    )
                   )
-                )
-              }
-            >
-              <CharmIcon icon={ZoomOut} />
-            </ToolbarButton>
+                }
+              >
+                <CharmIcon icon={ZoomOut} />
+              </ToolbarButton>
+            </Tooltip>
+
             <div className="w-24 h-4">
               <Slider
                 value={zoom}
@@ -102,27 +106,33 @@ export default function Animation<T extends MosaicKey>({
                 draggable={true}
               />
             </div>
-            <ToolbarButton
-              onClick={() =>
-                setZoom(
-                  Math.min(
-                    Math.max(zoom + ZOOM_BUTTON_STEP, MIN_ZOOM),
-                    MAX_ZOOM
+
+            <Tooltip text="Zoom in">
+              <ToolbarButton
+                onClick={() =>
+                  setZoom(
+                    Math.min(
+                      Math.max(zoom + ZOOM_BUTTON_STEP, MIN_ZOOM),
+                      MAX_ZOOM
+                    )
                   )
-                )
-              }
-            >
-              <CharmIcon icon={ZoomIn} />
-            </ToolbarButton>
+                }
+              >
+                <CharmIcon icon={ZoomIn} />
+              </ToolbarButton>
+            </Tooltip>
           </div>
-          <ToolbarButton
-            onClick={() => {
-              setZoom(1);
-              setTranslate({ x: 0, y: 0 });
-            }}
-          >
-            <CharmIcon icon={Crosshair} />
-          </ToolbarButton>
+
+          <Tooltip text="Reset camera" position="bottom-right">
+            <ToolbarButton
+              onClick={() => {
+                setZoom(1);
+                setTranslate({ x: 0, y: 0 });
+              }}
+            >
+              <CharmIcon icon={Crosshair} />
+            </ToolbarButton>
+          </Tooltip>
         </div>
       )}
       path={path}

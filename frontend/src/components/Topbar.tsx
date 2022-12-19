@@ -38,6 +38,7 @@ import CharmIcon from "./CharmIcon";
 import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
 import Slider from "./Slider";
+import Tooltip from "./Tooltip";
 import { MosaicKey } from "./windows/types";
 import { getPathToNode, isVisible } from "./windows/utils";
 
@@ -217,57 +218,65 @@ export default function Topbar({
       </button>
       {isRunning ? (
         <>
-          <button
-            className={`flex content-center text-sm duration-300 border rounded hover:shadow-md focus:ring-2 ${
-              isPaused
-                ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500 ring-green-500"
-                : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300 hover:shadow-amber-500 ring-amber-500"
-            }`}
-            onClick={() => togglePause()}
-          >
-            <div className="p-1.5">
-              <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
-            </div>
-          </button>
+          <Tooltip text={isPaused ? "Resume" : "Pause"}>
+            <button
+              className={`flex content-center text-sm duration-300 border rounded hover:shadow-md focus:ring-2 ${
+                isPaused
+                  ? "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500 ring-green-500"
+                  : "bg-amber-500/10 hover:bg-amber-500/20 border-amber-700 dark:border-amber-300 text-amber-700 dark:text-amber-300 hover:shadow-amber-500 ring-amber-500"
+              }`}
+              onClick={() => togglePause()}
+            >
+              <div className="p-1.5">
+                <CharmIcon icon={isPaused ? MediaPlay : MediaPause} />
+              </div>
+            </button>
+          </Tooltip>
 
-          <button
-            className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:shadow-md hover:shadow-blue-500 focus:ring-2 ring-blue-500"
-            onClick={() => {
-              setCurrentIndex(0);
-            }}
-          >
-            <div className="p-1.5">
-              <CharmIcon icon={RotateClockwise} />
-            </div>
-          </button>
+          <Tooltip text="Restart">
+            <button
+              className="flex content-center text-sm duration-300 border rounded bg-blue-500/10 hover:bg-blue-500/20 border-blue-700 dark:border-blue-300 text-blue-700 dark:text-blue-300 hover:shadow-md hover:shadow-blue-500 focus:ring-2 ring-blue-500"
+              onClick={() => {
+                setCurrentIndex(0);
+              }}
+            >
+              <div className="p-1.5">
+                <CharmIcon icon={RotateClockwise} />
+              </div>
+            </button>
+          </Tooltip>
 
-          <IconButton
-            icon={ArrowUp}
-            onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
-            className={
-              currentIndex <= 0
-                ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
-                : ""
-            }
-            disabled={currentIndex <= 0}
-          />
-
-          <IconButton
-            icon={ArrowDown}
-            onClick={() => {
-              if (programTrace !== null) {
-                setCurrentIndex(
-                  Math.min(programTrace.lines.length - 1, currentIndex + 1)
-                );
+          <Tooltip text="Step back">
+            <IconButton
+              icon={ArrowUp}
+              onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+              className={
+                currentIndex <= 0
+                  ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
+                  : ""
               }
-            }}
-            className={
-              currentIndex >= (programTrace?.lines?.length ?? 0) - 1
-                ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
-                : ""
-            }
-            disabled={currentIndex >= (programTrace?.lines?.length ?? 0) - 1}
-          />
+              disabled={currentIndex <= 0}
+            />
+          </Tooltip>
+
+          <Tooltip text="Step forward">
+            <IconButton
+              icon={ArrowDown}
+              onClick={() => {
+                if (programTrace !== null) {
+                  setCurrentIndex(
+                    Math.min(programTrace.lines.length - 1, currentIndex + 1)
+                  );
+                }
+              }}
+              className={
+                currentIndex >= (programTrace?.lines?.length ?? 0) - 1
+                  ? "bg-zinc-500/20 cursor-not-allowed text-zinc-500/50 border-zinc-500/50"
+                  : ""
+              }
+              disabled={currentIndex >= (programTrace?.lines?.length ?? 0) - 1}
+            />
+          </Tooltip>
 
           <div className="flex gap-1 px-2 align-middle">
             <div className="flex py-1 m-auto">
@@ -298,10 +307,14 @@ export default function Topbar({
         <></>
       )}
       <div className="flex ml-auto">
-        <IconButton
-          icon={theme === "light" ? Sun : Moon}
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        />
+        <Tooltip
+          text={theme === "light" ? "Switch to dark" : "Switch to light"}
+        >
+          <IconButton
+            icon={theme === "light" ? Sun : Moon}
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          />
+        </Tooltip>
       </div>
       <Dropdown
         options={languages}
