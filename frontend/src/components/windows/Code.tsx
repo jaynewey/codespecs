@@ -14,6 +14,13 @@ import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, State, Window } from "./types";
 
+export const fileMap: { [key: string]: string } = {
+  "Python (3.8.1)": "main.py",
+  "Python (2.7.17)": "main.py",
+  "JavaScript (Node.js 12.14.0)": "script.js",
+  "Java (OpenJDK 13.0.1)": "Main.java",
+};
+
 export const languageMap: { [key: string]: Language } = {
   "Python (3.8.1)": "python",
   "Python (2.7.17)": "python",
@@ -43,9 +50,16 @@ export default function Code<T extends MosaicKey>({
       title="Code"
       className=""
       renderToolbar={() => (
-        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
+        <div className="flex items-center p-2 gap-x-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={CodeCharm} />
-          <span className="pl-2">Code</span>
+          {language !== null ? (
+            <>
+              <span className="font-mono">{fileMap[language] ?? ""}</span>
+              <span className="text-xs text-zinc-500">{language}</span>
+            </>
+          ) : (
+            <span className="h-3 w-36 bg-zinc-500/20 animate-pulse rounded-full" />
+          )}
         </div>
       )}
       path={path}
