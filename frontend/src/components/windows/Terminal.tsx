@@ -33,7 +33,6 @@ export default function Terminal<T extends MosaicKey>({
       renderToolbar={() => (
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={TerminalCharm} />
-          <span className="pl-2">Terminal</span>
           <button
             className={`rounded-full text-xs ml-2 px-2 hover:bg-zinc-500/20 duration-300 border ${
               tab === "input"
