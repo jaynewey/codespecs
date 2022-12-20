@@ -18,7 +18,7 @@
 .mosaic-split.-row {
   width: 1px;
   margin-left: -1px;
-  @apply bg-zinc-500;
+  @apply bg-zinc-300 dark:bg-zinc-800;
 }
 
 .mosaic-split.-row .mosaic-split-line {
@@ -28,7 +28,7 @@
 .mosaic-split.-column {
   height: 1px;
   margin-top: -1px;
-  @apply bg-zinc-500;
+  @apply bg-zinc-300 dark:bg-zinc-800;
 }
 
 .mosaic-split.-column .mosaic-split-line {
@@ -45,12 +45,12 @@
 }
 
 .mosaic-drop-target .drop-target-container .drop-target-hover {
-  @apply absolute inset-0 z-50 border border-zinc-500 bg-zinc-500/10 opacity-90 duration-300 delay-200;
+  @apply absolute inset-0 z-50 border border-zinc-500 bg-zinc-500/10 opacity-90 duration-300 delay-200 backdrop-blur-md;
 }
 
 .mosaic-window .mosaic-window-toolbar,
 .mosaic-preview .mosaic-window-toolbar {
-  @apply flex items-center justify-between shrink-0 h-7;
+  @apply flex items-center justify-between shrink-0 h-8;
   z-index: 4;
 }
 

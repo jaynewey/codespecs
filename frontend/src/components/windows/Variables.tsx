@@ -1,5 +1,8 @@
 import { ChevronDown, ChevronRight, LayoutList, Tag } from "charm-icons";
-import { MouseEvent, useState } from "react";
+import Highlight, { Language, defaultProps } from "prism-react-renderer";
+import darkTheme from "prism-react-renderer/themes/nightOwl";
+import lightTheme from "prism-react-renderer/themes/nightOwlLight";
+import { MouseEvent, useContext, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -7,9 +10,12 @@ import {
   getNodeAtPath,
 } from "react-mosaic-component";
 
+import ThemeContext from "../../contexts/ThemeContext";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { Variable } from "../animation/types";
+import { languageMap } from "./Code";
+import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, State } from "./types";
 
 function children(variable: Variable): Variable[] {
@@ -34,40 +40,83 @@ export function getVariableByName(
 
 function VariableRow({
   variable,
-  selectedVariableState,
+  selectedVariablesState,
+  languageState,
   depth = 0,
 }: {
   variable: Variable;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
+  languageState: State<string | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedVariable, setSelectedVariable] = selectedVariableState;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
+
+  const { theme } = useContext(ThemeContext);
+  const [language, setLanguage] = languageState;
 
   return (
     <>
       <li
-        onClick={() => {
-          setIsOpen(!isOpen && children(variable).length > 0);
-          setSelectedVariable(variable.name);
-        }}
-        className={`p-1 border-b border-zinc-500/30 ${
-          selectedVariable === variable.name ? "bg-zinc-500/20" : ""
+        className={`px-1 ${
+          selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""
         } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
       >
         <div
-          className="flex items-center pl-1"
+          className={`flex items-center pl-1
+              ${depth ? "border-l border-gray-500" : ""}
+	      `}
           style={{ marginLeft: `${depth}rem` }}
         >
           {children(variable).length ? (
-            <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
+            <ToolbarButton
+              onClick={() =>
+                setIsOpen(!isOpen && children(variable).length > 0)
+              }
+            >
+              <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
+            </ToolbarButton>
           ) : (
             <></>
           )}
-          <span className="text-sm font-mono pl-2 truncate">
+          <span
+            className="w-full text-sm font-mono pl-2 py-1 truncate"
+            onClick={() =>
+              setSelectedVariables(
+                selectedVariables.includes(variable.name)
+                  ? [
+                      ...selectedVariables.slice(
+                        0,
+                        selectedVariables.indexOf(variable.name)
+                      ),
+                      ...selectedVariables.slice(
+                        selectedVariables.indexOf(variable.name) + 1
+                      ),
+                    ]
+                  : [...selectedVariables, variable.name]
+              )
+            }
+          >
             {variable.name}:{" "}
             <span className="text-zinc-700 dark:text-zinc-300">
-              {variable.value}
+              <Highlight
+                {...defaultProps}
+                theme={theme === "dark" ? darkTheme : lightTheme}
+                code={variable.value}
+                language={languageMap[language ?? ""] ?? "clike"}
+              >
+                {({ className, tokens, getTokenProps }) => (
+                  <pre className={`${className} inline`}>
+                    {tokens.map((line, i) => (
+                      <span key={i}>
+                        {line.map((token, key) => (
+                          <span {...getTokenProps({ token, key })} style={{}} />
+                        ))}
+                      </span>
+                    ))}
+                  </pre>
+                )}
+              </Highlight>
             </span>
           </span>
         </div>
@@ -79,7 +128,8 @@ function VariableRow({
               variable={variable}
               depth={depth + 1}
               key={i}
-              selectedVariableState={selectedVariableState}
+              selectedVariablesState={selectedVariablesState}
+              languageState={languageState}
             />
           ))}
         </ul>
@@ -93,21 +143,23 @@ function VariableRow({
 export default function Variables<T extends MosaicKey>({
   path,
   variablesListState,
-  selectedVariableState,
+  selectedVariablesState,
+  languageState,
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
+  languageState: State<string | null>;
 }) {
   const [variablesList, _] = variablesListState;
-  const [selectedVariable, setSelectedVariable] = selectedVariableState;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
 
   return (
     <MosaicWindow<T>
       title="Variables"
       className=""
       renderToolbar={() => (
-        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
+        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={LayoutList} />
           <span className="pl-2">Variables</span>
         </div>
@@ -120,7 +172,8 @@ export default function Variables<T extends MosaicKey>({
           <VariableRow
             variable={variable}
             key={i}
-            selectedVariableState={selectedVariableState}
+            selectedVariablesState={selectedVariablesState}
+            languageState={languageState}
           />
         ))}
       </ul>

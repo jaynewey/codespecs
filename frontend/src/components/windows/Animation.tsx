@@ -1,4 +1,12 @@
-import { Cross, Glasses, Info, LayoutList, ScreenMaximise } from "charm-icons";
+import {
+  Cross,
+  Crosshair,
+  Glasses,
+  Info,
+  LayoutList,
+  ZoomIn,
+  ZoomOut,
+} from "charm-icons";
 import { ReactElement, useState } from "react";
 import {
   MosaicNode,
@@ -9,7 +17,10 @@ import {
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
+import Draggable, { DragArea } from "../Draggable";
 import Pannable from "../Pannable";
+import Slider from "../Slider";
+import Tooltip from "../Tooltip";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
@@ -17,19 +28,20 @@ import ToolbarButton from "./ToolbarButton";
 import { getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 2;
+const ZOOM_STEP = 0.1;
+const ZOOM_BUTTON_STEP = 0.5;
+
 function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
     case "string":
       return (
-        <span className="text-green-700 dark:text-green-300">
-          {variable.value}
-        </span>
+        <span className="m-auto font-mono token string">{variable.value}</span>
       );
     case "numeric":
       return (
-        <span className="m-auto text-purple-700 dark:text-purple-300">
-          {variable.value}
-        </span>
+        <span className="m-auto font-mono token number">{variable.value}</span>
       );
     case "array":
       return <ArrayLike animationFactory={animationFactory} value={variable} />;
@@ -44,53 +56,137 @@ function animationFactory(variable: Variable): ReactElement {
 
 export default function Animation<T extends MosaicKey>({
   path,
-  selectedVariableState,
+  selectedVariablesState,
   variablesListState,
 }: {
   path: MosaicPath;
-  selectedVariableState: State<string | null>;
+  selectedVariablesState: State<string[]>;
   variablesListState: State<Variable[]>;
 }) {
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  const [selectedVariable, _] = selectedVariableState;
-  const [variablesList, __] = variablesListState;
-
-  const variableObj =
-    typeof selectedVariable === "string"
-      ? getVariableByName(selectedVariable, variablesList)
-      : null;
+  const [selectedVariables, setSelectedVariables] = selectedVariablesState;
+  const [variablesList] = variablesListState;
 
   return (
     <MosaicWindow<T>
       title="Animation"
       className=""
       renderToolbar={() => (
-        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-500">
+        <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={Glasses} />
           <span className="pl-2">Animation</span>
-          <ToolbarButton
-            className="ml-auto"
-            onClick={() => {
-              setZoom(1);
-              setTranslate({ x: 0, y: 0 });
-            }}
-          >
-            <CharmIcon icon={ScreenMaximise} />
-          </ToolbarButton>
+          <div className="flex ml-auto gap-1 px-2 align-middle">
+            <Tooltip text="Zoom out">
+              <ToolbarButton
+                onClick={() =>
+                  setZoom(
+                    Math.min(
+                      Math.max(zoom - ZOOM_BUTTON_STEP, MIN_ZOOM),
+                      MAX_ZOOM
+                    )
+                  )
+                }
+              >
+                <CharmIcon icon={ZoomOut} />
+              </ToolbarButton>
+            </Tooltip>
+
+            <div className="w-24 h-4">
+              <Slider
+                value={zoom}
+                onChange={(event) => {
+                  setZoom(event.target.valueAsNumber);
+                }}
+                min={MIN_ZOOM}
+                max={MAX_ZOOM}
+                step={ZOOM_STEP}
+                // Stop the toolbar from being dragged when we are interacting with the slider
+                onDragStart={(event) => event.preventDefault()}
+                draggable={true}
+              />
+            </div>
+
+            <Tooltip text="Zoom in">
+              <ToolbarButton
+                onClick={() =>
+                  setZoom(
+                    Math.min(
+                      Math.max(zoom + ZOOM_BUTTON_STEP, MIN_ZOOM),
+                      MAX_ZOOM
+                    )
+                  )
+                }
+              >
+                <CharmIcon icon={ZoomIn} />
+              </ToolbarButton>
+            </Tooltip>
+          </div>
+
+          <Tooltip text="Reset camera" position="bottom-right">
+            <ToolbarButton
+              onClick={() => {
+                setZoom(1);
+                setTranslate({ x: 0, y: 0 });
+              }}
+            >
+              <CharmIcon icon={Crosshair} />
+            </ToolbarButton>
+          </Tooltip>
         </div>
       )}
       path={path}
       draggable={true}
     >
-      {variableObj ? (
-        <Pannable
-          zoomState={[zoom, setZoom]}
-          translateState={[translate, setTranslate]}
-          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
-        >
-          <div className="absolute">{animationFactory(variableObj)}</div>
-        </Pannable>
+      {selectedVariables.length ? (
+        <DragArea zoom={zoom} className="w-full h-full">
+          <Pannable
+            zoomState={[zoom, setZoom]}
+            translateState={[translate, setTranslate]}
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
+            className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
+          >
+            {selectedVariables.map((variableName) => {
+              const variable = getVariableByName(variableName, variablesList);
+              return variable ? (
+                <Draggable key={variable.name} className="cursor-move">
+                  <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md">
+                    <div className="flex flew-row pb-2">
+                      <span className="font-mono text-xs pr-2 my-auto">
+                        {variable.name}
+                        <span className="text-zinc-500">
+                          : {variable.nativeType}
+                        </span>
+                      </span>
+                      <ToolbarButton
+                        className="ml-auto"
+                        onClick={() =>
+                          setSelectedVariables([
+                            ...selectedVariables.slice(
+                              0,
+                              selectedVariables.indexOf(variable.name)
+                            ),
+                            ...selectedVariables.slice(
+                              selectedVariables.indexOf(variable.name) + 1
+                            ),
+                          ])
+                        }
+                      >
+                        <CharmIcon icon={Cross} />
+                      </ToolbarButton>
+                    </div>
+                    <div className="flex m-auto">
+                      {animationFactory(variable)}
+                    </div>
+                  </div>
+                </Draggable>
+              ) : (
+                <></>
+              );
+            })}
+          </Pannable>
+        </DragArea>
       ) : (
         <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
           <div className="relative m-auto items-center text-center bg-blue-500/10 border border-blue-500 text-blue-500 rounded-lg p-2">

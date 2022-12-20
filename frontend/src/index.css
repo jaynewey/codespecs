@@ -1,4 +1,5 @@
 @import "./components/windows/windows.css";
+@import "./syntax.css";
 
 @tailwind base;
 @tailwind components;
@@ -6,10 +7,10 @@
 
 @layer utilities {
   .thumb-zinc::-webkit-slider-thumb {
-    @apply appearance-none h-4 aspect-square bg-zinc-500/20 hover:bg-zinc-500/30 duration-300 border border-solid border-zinc-500 rounded-full;
+    @apply appearance-none h-4 w-4 bg-zinc-500/20 hover:bg-zinc-500/30 duration-300 border border-solid border-zinc-500 rounded-full;
   }
 
   .thumb-zinc::-moz-range-thumb {
-    @apply appearance-none h-4 aspect-square bg-zinc-500/20 hover:bg-zinc-500/30 duration-300 border border-solid border-zinc-500 rounded-full;
+    @apply appearance-none h-4 w-4 bg-zinc-500/20 hover:bg-zinc-500/30 duration-300 border border-solid border-zinc-500 rounded-full;
   }
 }

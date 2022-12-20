@@ -20,7 +20,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         return (
           <Animation
             path={path}
-            selectedVariableState={windowStates.variables.selectedVariable}
+            selectedVariablesState={windowStates.variables.selectedVariables}
             variablesListState={windowStates.variables.variablesList}
           />
         );
@@ -46,8 +46,9 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         return (
           <Variables
             path={path}
-            selectedVariableState={windowStates.variables.selectedVariable}
+            selectedVariablesState={windowStates.variables.selectedVariables}
             variablesListState={windowStates.variables.variablesList}
+            languageState={windowStates.code.language}
           />
         );
       default:
@@ -81,7 +82,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 dark:text-white">
+      <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200">
         <Topbar
           windows={windows}
           selectedLanguage={windowStates.code.language[0]}

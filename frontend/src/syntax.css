@@ -1,0 +1,77 @@
+.token.plain {
+  @apply text-zinc-900 dark:text-zinc-100;
+}
+
+.token.comment,
+.token.prolog,
+.token.cdata {
+  @apply text-zinc-500;
+}
+
+.token.punctuation {
+  @apply text-zinc-600 dark:text-zinc-300;
+}
+
+.namespace {
+  @apply text-rose-600 dark:text-rose-300;
+}
+
+.token.deleted {
+  @apply text-zinc-600 dark:text-zinc-300 opacity-50;
+}
+
+.token.symbol,
+.token.property {
+  @apply text-blue-600 dark:text-blue-300;
+}
+
+.token.tag,
+.token.operator,
+.token.keyword {
+  @apply text-blue-600 dark:text-blue-300;
+}
+
+.token.boolean {
+  @apply text-orange-600 dark:text-orange-300;
+}
+
+.token.number {
+  @apply text-fuchsia-600 dark:text-fuchsia-300;
+}
+
+.token.constant,
+.token.function,
+.token.builtin,
+.token.char {
+  @apply text-red-600 dark:text-red-300;
+}
+
+.token.selector,
+.token.doctype {
+  @apply text-blue-600 dark:text-blue-300;
+}
+
+.token.attr-name,
+.token.inserted {
+  @apply text-zinc-600 dark:text-zinc-300;
+}
+
+.token.string,
+.token.url,
+.token.entity,
+.language-css .token.string,
+.style .token.string {
+  @apply text-green-600 dark:text-green-300;
+}
+
+.token.class-name,
+.token.atrule,
+.token.attr-value {
+  @apply text-zinc-600 dark:text-zinc-300;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  @apply text-amber-600 dark:text-amber-300;
+}

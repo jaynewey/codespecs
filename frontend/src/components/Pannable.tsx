@@ -1,14 +1,10 @@
 import { ReactNode, useState } from "react";
 
-type State<S> = [S, (s: S) => void];
+import { State, Vector2d } from "./types";
 
-type Vector2d = {
-  x: number;
-  y: number;
-};
-
-const ZOOM_SENSITIVITY = 30;
-const MIN_ZOOM = 0.1;
+const ZOOM_SENSITIVITY = 15;
+const DEFAULT_MIN_ZOOM = 0.1;
+const DEFAULT_MAX_ZOOM = Number.MAX_VALUE;
 
 /**
  * Wrap any component to make it pannable and zoomable using the scroll wheel and mouse.
@@ -17,7 +13,8 @@ export default function Pannable({
   zoomState,
   translateState,
   zoomSensitivity = ZOOM_SENSITIVITY,
-  minZoom = MIN_ZOOM,
+  minZoom = DEFAULT_MIN_ZOOM,
+  maxZoom = DEFAULT_MAX_ZOOM,
   className,
   children,
 }: {
@@ -25,6 +22,7 @@ export default function Pannable({
   translateState?: State<Vector2d>;
   zoomSensitivity?: number;
   minZoom?: number;
+  maxZoom?: number;
   className?: string;
   children: ReactNode;
 }) {
@@ -37,7 +35,15 @@ export default function Pannable({
     <div
       className={className ?? ""}
       onWheel={(event) => {
-        setZoom(Math.max(zoom - event.deltaY / zoomSensitivity, minZoom));
+        setZoom(
+          Math.min(
+            Math.max(
+              zoom - (Math.sign(event.deltaY) / zoomSensitivity) * zoom,
+              minZoom
+            ),
+            maxZoom
+          )
+        );
       }}
       onMouseDown={(event) =>
         setLastDragPos({ x: event.clientX, y: event.clientY })
