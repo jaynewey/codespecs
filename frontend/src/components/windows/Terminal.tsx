@@ -62,7 +62,6 @@ export default function Terminal<T extends MosaicKey>({
       {tab === "input" ? (
         <Editor
           value={input}
-          placeholder="Standard input for the program can be placed here..."
           highlight={(code) => {
             return (
               <pre className="text-left">
@@ -87,6 +86,9 @@ export default function Terminal<T extends MosaicKey>({
           className="w-full h-full bg-zinc-100 dark:bg-zinc-900 font-mono text-sm"
           textareaClassName="!pl-10 outline-none"
           tabSize={4}
+          placeholder={`Standard input can be specified before running e.g.
+First Input
+Second Input`}
         />
       ) : (
         <textarea
