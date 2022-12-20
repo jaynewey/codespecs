@@ -1,4 +1,4 @@
-import { Terminal as TerminalCharm } from "charm-icons";
+import { Info, Terminal as TerminalCharm } from "charm-icons";
 import { useState } from "react";
 import {
   MosaicNode,
@@ -6,6 +6,7 @@ import {
   MosaicWindow,
   getNodeAtPath,
 } from "react-mosaic-component";
+import Editor from "react-simple-code-editor";
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
@@ -59,11 +60,33 @@ export default function Terminal<T extends MosaicKey>({
       draggable={true}
     >
       {tab === "input" ? (
-        <textarea
+        <Editor
           value={input}
-          onChange={(event) => setInput(event.target.value)}
-          className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
           placeholder="Standard input for the program can be placed here..."
+          highlight={(code) => {
+            return (
+              <pre className="text-left">
+                {code.split("\n").map((line, i) => (
+                  <div className="table table-fixed w-full duration-100 whitespace-pre-wrap">
+                    <div className="table-cell text-right w-6 select-none text-zinc-500">
+                      {input === "" ? (
+                        <span className="flex justify-end">
+                          <CharmIcon icon={Info} />
+                        </span>
+                      ) : (
+                        i + 1
+                      )}
+                    </div>
+                    <div className="table-cell pl-4">{line}</div>
+                  </div>
+                ))}
+              </pre>
+            );
+          }}
+          onValueChange={(code) => setInput(code)}
+          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 font-mono text-sm"
+          textareaClassName="!pl-10 outline-none"
+          tabSize={4}
         />
       ) : (
         <textarea
