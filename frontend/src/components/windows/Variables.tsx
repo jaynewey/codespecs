@@ -61,34 +61,35 @@ function VariableRow({
         className={`flex items-center pl-1 hover:bg-zinc-500/10 duration-300 cursor-pointer
         ${selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""}
 	`}
+        onClick={() =>
+          setSelectedVariables(
+            selectedVariables.includes(variable.name)
+              ? [
+                  ...selectedVariables.slice(
+                    0,
+                    selectedVariables.indexOf(variable.name)
+                  ),
+                  ...selectedVariables.slice(
+                    selectedVariables.indexOf(variable.name) + 1
+                  ),
+                ]
+              : [...selectedVariables, variable.name]
+          )
+        }
       >
         {children(variable).length ? (
           <ToolbarButton
-            onClick={() => setIsOpen(!isOpen && children(variable).length > 0)}
+            onClick={(event) => {
+              setIsOpen(!isOpen && children(variable).length > 0);
+              event.stopPropagation();
+            }}
           >
             <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
           </ToolbarButton>
         ) : (
           <></>
         )}
-        <span
-          className="w-full text-sm font-mono pl-2 py-1 truncate"
-          onClick={() =>
-            setSelectedVariables(
-              selectedVariables.includes(variable.name)
-                ? [
-                    ...selectedVariables.slice(
-                      0,
-                      selectedVariables.indexOf(variable.name)
-                    ),
-                    ...selectedVariables.slice(
-                      selectedVariables.indexOf(variable.name) + 1
-                    ),
-                  ]
-                : [...selectedVariables, variable.name]
-            )
-          }
-        >
+        <span className="w-full text-sm font-mono pl-2 py-1 truncate">
           {variable.name}:{" "}
           <span className="text-zinc-700 dark:text-zinc-300">
             <Highlight
