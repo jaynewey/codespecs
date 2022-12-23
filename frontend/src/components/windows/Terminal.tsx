@@ -66,7 +66,10 @@ export default function Terminal<T extends MosaicKey>({
             return (
               <pre className="text-left">
                 {code.split("\n").map((line, i) => (
-                  <div className="table table-fixed w-full duration-100 whitespace-pre-wrap">
+                  <div
+                    className="table table-fixed w-full duration-100 whitespace-pre-wrap"
+                    key={i}
+                  >
                     <div className="table-cell text-right w-6 select-none text-zinc-500">
                       {input === "" ? (
                         <span className="flex justify-end">
