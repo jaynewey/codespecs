@@ -52,9 +52,11 @@ export function DragArea({
  * anywhere within the bounds of the drag area.
  */
 export default function Draggable({
+  onDrag,
   className,
   children,
 }: {
+  onDrag: () => void;
   className: string;
   children: ReactNode;
 }) {
@@ -65,6 +67,7 @@ export default function Draggable({
 
   const doTranslate = (position: Vector2d) => {
     if (lastDragPos !== null) {
+      onDrag();
       setTranslate({
         x: translate.x - (lastDragPos.x - position.x) / zoom,
         y: translate.y - (lastDragPos.y - position.y) / zoom,

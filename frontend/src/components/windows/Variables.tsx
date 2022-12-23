@@ -18,7 +18,7 @@ import { languageMap } from "./Code";
 import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, State } from "./types";
 
-function children(variable: Variable): Variable[] {
+export function children(variable: Variable): Variable[] {
   return [...(variable?.attributes ?? []), ...(variable?.indexes ?? [])];
 }
 
