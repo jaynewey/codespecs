@@ -30,7 +30,6 @@ export default function Terminal<T extends MosaicKey>({
   return (
     <MosaicWindow<T>
       title="Terminal"
-      className=""
       renderToolbar={() => (
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={TerminalCharm} />
@@ -59,47 +58,49 @@ export default function Terminal<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      {tab === "input" ? (
-        <Editor
-          value={input}
-          highlight={(code) => {
-            return (
-              <pre className="text-left">
-                {code.split("\n").map((line, i) => (
-                  <div
-                    className="table table-fixed w-full duration-100 whitespace-pre-wrap"
-                    key={i}
-                  >
-                    <div className="table-cell text-right w-6 select-none text-zinc-500">
-                      {input === "" ? (
-                        <span className="flex justify-end">
-                          <CharmIcon icon={Info} />
-                        </span>
-                      ) : (
-                        i + 1
-                      )}
+      <div className="py-2 w-full h-full bg-zinc-100 dark:bg-zinc-900">
+        {tab === "input" ? (
+          <Editor
+            value={input}
+            highlight={(code) => {
+              return (
+                <pre className="text-left">
+                  {code.split("\n").map((line, i) => (
+                    <div
+                      className="table table-fixed w-full duration-100 whitespace-pre-wrap"
+                      key={i}
+                    >
+                      <div className="table-cell text-right w-6 select-none text-zinc-500">
+                        {input === "" ? (
+                          <span className="flex justify-end">
+                            <CharmIcon icon={Info} />
+                          </span>
+                        ) : (
+                          i + 1
+                        )}
+                      </div>
+                      <div className="table-cell pl-4">{line}</div>
                     </div>
-                    <div className="table-cell pl-4">{line}</div>
-                  </div>
-                ))}
-              </pre>
-            );
-          }}
-          onValueChange={(code) => setInput(code)}
-          className="w-full h-full bg-zinc-100 dark:bg-zinc-900 font-mono text-sm"
-          textareaClassName="!pl-10 outline-none"
-          tabSize={4}
-          placeholder={`Standard input can be specified before running e.g.
+                  ))}
+                </pre>
+              );
+            }}
+            onValueChange={(code) => setInput(code)}
+            className="font-mono text-sm bg-inherit w-full h-full"
+            textareaClassName="!pl-10 outline-none"
+            tabSize={4}
+            placeholder={`Standard input can be specified before running e.g.
 First Input
 Second Input`}
-        />
-      ) : (
-        <textarea
-          value={output}
-          readOnly={true}
-          className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 font-mono resize-none text-sm"
-        />
-      )}
+          />
+        ) : (
+          <textarea
+            value={output}
+            readOnly={true}
+            className="font-mono resize-none text-sm px-2 bg-inherit w-full h-full"
+          />
+        )}
+      </div>
     </MosaicWindow>
   );
 }
