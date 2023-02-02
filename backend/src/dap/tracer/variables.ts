@@ -63,11 +63,6 @@ export function getVariables(
             (objectOrNone(variables?.body)?.variables ?? [])
               .filter(
                 (variable: DapVariable) =>
-                  // TODO: Make exclusions part of language specific config
-                  variable?.name !== "__proto__" &&
-                  variable?.name !== "constructor" &&
-                  variable?.name !== "prototype" &&
-                  !/.*\[\[.*\]\].*/.test(variable?.name) &&
                   (includer ?? (() => true))(variable) &&
                   // hide 'internal' properties
                   variable?.presentationHint?.visibility !== "internal"

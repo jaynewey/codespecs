@@ -4,6 +4,8 @@ import { Event, Request, Response } from "./generated/debugAdapterProtocol";
 
 const HOST = "127.0.0.1";
 const PORT = 5678;
+const MAX_RETRIES = 10;
+const RETRY_INTERVAL = 100;
 
 type RawRequest = Omit<Request, "seq" | "type">;
 
@@ -16,10 +18,10 @@ export default class Connection {
   private responseHandlers = new Map<number, (response: Response) => void>();
   private eventHandlers = new Map<string, ((event: Event) => void)[]>();
   private seq = 0;
+  private retries = 0;
 
-  constructor(host: string = HOST, port: number = PORT) {
+  constructor() {
     this.socket = new Socket();
-    this.socket.connect(port, host);
 
     this.socket.on("data", (data: string | Buffer) => {
       String(data)
@@ -49,6 +51,25 @@ export default class Connection {
     });
   }
 
+  public connect(host: string = HOST, port: number = PORT): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.socket.on("error", (error) => {
+        if (this.retries >= MAX_RETRIES) {
+          reject();
+        }
+
+        if ((error as any)?.code === "ECONNREFUSED") {
+          setTimeout(() => this.socket.connect(port, host), RETRY_INTERVAL);
+          this.retries += 1;
+        }
+      });
+
+      this.socket.on("ready", () => resolve());
+
+      this.socket.connect(port, host);
+    });
+  }
+
   public close() {
     this.socket.destroy();
   }
@@ -65,9 +86,6 @@ export default class Connection {
     const requestStr = JSON.stringify(request);
     this.socket.write(
       `Content-Length: ${requestStr.length}\r\n\r\n${requestStr}`
-    );
-    console.log(
-      `sending: Content-Length: ${requestStr.length}\r\n\r\n${requestStr}`
     );
 
     return new Promise((resolve) => {

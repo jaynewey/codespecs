@@ -16,6 +16,10 @@ export default class DapClient {
     this.connection = new Connection();
   }
 
+  public connect(): Promise<void> {
+    return this.connection.connect();
+  }
+
   public close() {
     this.connection.close();
   }
