@@ -20,34 +20,45 @@ export default class Connection {
   private seq = 0;
   private retries = 0;
 
+  private buffer = "";
+
   constructor() {
     this.socket = new Socket();
 
     this.socket.on("data", (data: string | Buffer) => {
-      String(data)
+      const parts = (this.buffer + String(data))
         ?.split(/Content-Length: [0-9]*\r\n\r\n/)
-        ?.slice(1)
-        .forEach((jsonData) => {
-          const message = JSON.parse(jsonData ?? "{}");
+        ?.slice(1);
+      parts.forEach((part, i) => {
+        let message: Response | Event | undefined = undefined;
 
-          switch (message?.type) {
-            case "response":
-              if (message?.request_seq !== undefined) {
-                const handler = this.responseHandlers.get(message.request_seq);
-
-                if (handler !== undefined) handler(message as Response);
-              }
-              break;
-            case "event":
-              if (message?.event !== undefined) {
-                const handlers = this.eventHandlers.get(message.event);
-
-                if (handlers !== undefined)
-                  handlers.forEach((handler) => handler(message as Event));
-              }
-              break;
+        try {
+          message = JSON.parse(part ?? "{}");
+        } catch (err) {
+          if (i === parts.length - 1) {
+            this.buffer += part;
           }
-        });
+          return;
+        }
+
+        switch (message?.type) {
+          case "response":
+            if (message?.request_seq !== undefined) {
+              const handler = this.responseHandlers.get(message.request_seq);
+
+              if (handler !== undefined) handler(message as Response);
+            }
+            break;
+          case "event":
+            if (message?.event !== undefined) {
+              const handlers = this.eventHandlers.get(message.event);
+
+              if (handlers !== undefined)
+                handlers.forEach((handler) => handler(message as Event));
+            }
+            break;
+        }
+      });
     });
   }
 
