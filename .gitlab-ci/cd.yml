@@ -13,7 +13,7 @@ build:
   services:
    - docker:18.09-dind
   script:
-    - docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
+    - DOCKER_BUILDKIT=0 docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
   except:
     - master
@@ -26,11 +26,11 @@ build_and_deploy:
   tags:
     - deployment
   script:
-    - docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
+    - DOCKER_BUILDKIT=0 docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
 
     - chmod og= $ID_RSA
-    - apk update && apk add openssh-client git
+    - apk update && apk add openssh-client
     - scp -i $ID_RSA -o StrictHostKeyChecking=no ./$TAG_LATEST.tar root@$SERVER_IP:~/$TAG_LATEST.tar
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker container rm -f fyp || true"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "test -d /etc/letsencrypt/live/$DOMAIN || ( apt update && apt install -y python3-certbot-nginx && certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos -m $EMAIL )"
