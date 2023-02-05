@@ -30,7 +30,7 @@ build_and_deploy:
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
 
     - chmod og= $ID_RSA
-    - apk update && apk add openssh-client
+    - apk update && apk add openssh-client git
     - scp -i $ID_RSA -o StrictHostKeyChecking=no ./$TAG_LATEST.tar root@$SERVER_IP:~/$TAG_LATEST.tar
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker container rm -f fyp || true"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "test -d /etc/letsencrypt/live/$DOMAIN || ( apt update && apt install -y python3-certbot-nginx && certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos -m $EMAIL )"
