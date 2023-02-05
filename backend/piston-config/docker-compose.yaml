@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+    api:
+        image: ghcr.io/engineer-man/piston
+        container_name: piston_api
+        restart: always
+        ports:
+            - 2000:2000
+        volumes:
+            - ./data/piston/packages:/piston/packages
+        environment:
+            - PISTON_DISABLE_NETWORKING=false
+            - PISTON_RUN_TIMEOUT=60000
+            - PISTON_OUTPUT_MAX_SIZE=65536
+        tmpfs:
+            - /piston/jobs:exec,uid=1000,gid=1000,mode=711
+            - /tmp:exec
+

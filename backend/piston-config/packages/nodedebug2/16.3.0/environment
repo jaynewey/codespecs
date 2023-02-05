@@ -1,0 +1,5 @@
+export DA_TEST_DISABLE_TELEMETRY=true
+
+export PKG_DIR="$(dirname "$(realpath $0)")"
+
+export PATH=$PWD/tracer/dap:$PWD/node/bin:$PATH
