@@ -18,7 +18,7 @@ import { languageMap } from "./Code";
 import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, State } from "./types";
 
-function children(variable: Variable): Variable[] {
+export function children(variable: Variable): Variable[] {
   return [...(variable?.attributes ?? []), ...(variable?.indexes ?? [])];
 }
 
@@ -56,71 +56,63 @@ function VariableRow({
   const [language, setLanguage] = languageState;
 
   return (
-    <>
-      <li
-        className={`px-1 ${
-          selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""
-        } hover:bg-zinc-500/10 duration-300 cursor-pointer`}
+    <li className={`${depth > 0 ? "ml-4 border-l border-zinc-500" : ""}`}>
+      <div
+        className={`flex items-center pl-1 hover:bg-zinc-500/10 duration-300 cursor-pointer
+        ${selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""}
+	`}
+        onClick={() =>
+          setSelectedVariables(
+            selectedVariables.includes(variable.name)
+              ? [
+                  ...selectedVariables.slice(
+                    0,
+                    selectedVariables.indexOf(variable.name)
+                  ),
+                  ...selectedVariables.slice(
+                    selectedVariables.indexOf(variable.name) + 1
+                  ),
+                ]
+              : [...selectedVariables, variable.name]
+          )
+        }
       >
-        <div
-          className={`flex items-center pl-1
-              ${depth ? "border-l border-gray-500" : ""}
-	      `}
-          style={{ marginLeft: `${depth}rem` }}
-        >
-          {children(variable).length ? (
-            <ToolbarButton
-              onClick={() =>
-                setIsOpen(!isOpen && children(variable).length > 0)
-              }
-            >
-              <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
-            </ToolbarButton>
-          ) : (
-            <></>
-          )}
-          <span
-            className="w-full text-sm font-mono pl-2 py-1 truncate"
-            onClick={() =>
-              setSelectedVariables(
-                selectedVariables.includes(variable.name)
-                  ? [
-                      ...selectedVariables.slice(
-                        0,
-                        selectedVariables.indexOf(variable.name)
-                      ),
-                      ...selectedVariables.slice(
-                        selectedVariables.indexOf(variable.name) + 1
-                      ),
-                    ]
-                  : [...selectedVariables, variable.name]
-              )
-            }
+        {children(variable).length ? (
+          <ToolbarButton
+            onClick={(event) => {
+              setIsOpen(!isOpen && children(variable).length > 0);
+              event.stopPropagation();
+            }}
           >
-            {variable.name}:{" "}
-            <span className="text-zinc-700 dark:text-zinc-300">
-              <Highlight
-                {...defaultProps}
-                theme={theme === "dark" ? darkTheme : lightTheme}
-                code={variable.value}
-                language={languageMap[language ?? ""] ?? "clike"}
-              >
-                {({ className, tokens, getTokenProps }) => (
-                  <pre className={`${className} inline`}>
-                    {tokens.map((line, i) => (
-                      <span key={i}>
-                        {line.map((token, key) => (
-                          <span {...getTokenProps({ token, key })} style={{}} />
-                        ))}
-                      </span>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-            </span>
+            <CharmIcon icon={isOpen ? ChevronDown : ChevronRight} />
+          </ToolbarButton>
+        ) : (
+          <></>
+        )}
+        <span className="w-full text-sm font-mono pl-2 py-1 truncate">
+          {variable.name}:{" "}
+          <span className="text-zinc-700 dark:text-zinc-300">
+            <Highlight
+              {...defaultProps}
+              theme={theme === "dark" ? darkTheme : lightTheme}
+              code={variable.value}
+              language={languageMap[language ?? ""] ?? "clike"}
+            >
+              {({ className, tokens, getTokenProps }) => (
+                <pre className={`${className} inline`}>
+                  {tokens.map((line, i) => (
+                    <span key={i}>
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} style={{}} />
+                      ))}
+                    </span>
+                  ))}
+                </pre>
+              )}
+            </Highlight>
           </span>
-        </div>
-      </li>
+        </span>
+      </div>
       {children(variable).length && isOpen ? (
         <ul>
           {children(variable).map((variable, i) => (
@@ -136,7 +128,7 @@ function VariableRow({
       ) : (
         <></>
       )}
-    </>
+    </li>
   );
 }
 

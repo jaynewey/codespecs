@@ -13,8 +13,12 @@ build:
   services:
    - docker:18.09-dind
   script:
-    - docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
+    - DOCKER_BUILDKIT=0 docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
+
+    - apk update && apk add bash docker-compose git nodejs npm yarn
+    - cd ./backend && yarn install && yarn dap-client && yarn build
+    - bash ./build-piston.sh
   except:
     - master
 
@@ -26,7 +30,7 @@ build_and_deploy:
   tags:
     - deployment
   script:
-    - docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
+    - DOCKER_BUILDKIT=0 docker build -t $TAG_LATEST . --build-arg DOMAIN=$DOMAIN
     - docker save -o ./$TAG_LATEST.tar $TAG_LATEST
 
     - chmod og= $ID_RSA
@@ -36,6 +40,16 @@ build_and_deploy:
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "test -d /etc/letsencrypt/live/$DOMAIN || ( apt update && apt install -y python3-certbot-nginx && certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos -m $EMAIL )"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker load -i ~/$TAG_LATEST.tar"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "docker run -d -p 80:80 -p 443:443 -v /etc/letsencrypt:/etc/letsencrypt --name fyp $TAG_LATEST"
+
+    - tar -czvf backend.tar.gz ./backend
+    - scp -i $ID_RSA -o StrictHostKeyChecking=no ./backend.tar.gz root@$SERVER_IP:~/backend.tar.gz
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "~/backend/piston/piston stop || true" 
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "rm -rf ~/backend || true" 
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "tar -xvf ~/backend.tar.gz -C ~/ && rm ~/backend.tar.gz"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "apt update && apt install -y bash docker-compose git"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend && npm i --global yarn && yarn install && yarn dap-client && yarn build"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend && bash ./build-piston.sh"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend/piston && docker exec piston_api sh -c 'rm -rf /piston/packages/*' && ./cli/index.js ppman install nodedebug2=16.3.0"
   environment:
     name: production
     url: http://$SERVER_IP

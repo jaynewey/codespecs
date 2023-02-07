@@ -7,13 +7,14 @@ import {
   ZoomIn,
   ZoomOut,
 } from "charm-icons";
-import { ReactElement, useState } from "react";
+import { ReactElement, createRef, useState } from "react";
 import {
   MosaicNode,
   MosaicPath,
   MosaicWindow,
   getNodeAtPath,
 } from "react-mosaic-component";
+import Xarrow, { Xwrapper, useXarrow } from "react-xarrows";
 
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
@@ -25,7 +26,7 @@ import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
 import ToolbarButton from "./ToolbarButton";
-import { getVariableByName } from "./Variables";
+import { children, getVariableByName } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
 const MIN_ZOOM = 0.5;
@@ -67,6 +68,8 @@ export default function Animation<T extends MosaicKey>({
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [selectedVariables, setSelectedVariables] = selectedVariablesState;
   const [variablesList] = variablesListState;
+
+  const updateXarrow = useXarrow();
 
   return (
     <MosaicWindow<T>
@@ -150,8 +153,15 @@ export default function Animation<T extends MosaicKey>({
             {selectedVariables.map((variableName) => {
               const variable = getVariableByName(variableName, variablesList);
               return variable ? (
-                <Draggable key={variable.name} className="cursor-move">
-                  <div className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md">
+                <Draggable
+                  key={variable.name}
+                  className="cursor-move"
+                  onDrag={updateXarrow}
+                >
+                  <div
+                    className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md"
+                    id={variable.name}
+                  >
                     <div className="flex flew-row pb-2">
                       <span className="font-mono text-xs pr-2 my-auto">
                         {variable.name}
@@ -186,6 +196,28 @@ export default function Animation<T extends MosaicKey>({
               );
             })}
           </Pannable>
+          <Xwrapper>
+            {selectedVariables.map((variableName) => {
+              const variable = getVariableByName(variableName, variablesList);
+              return variable ? (
+                <div key={variable.name} className="text-zinc-500">
+                  {children(variable)
+                    .filter((a) => selectedVariables.includes(a.name))
+                    .map((a, i) => (
+                      <Xarrow
+                        color={"currentColor"}
+                        strokeWidth={zoom}
+                        start={variable.name}
+                        end={a.name}
+                        key={i}
+                      />
+                    ))}
+                </div>
+              ) : (
+                <></>
+              );
+            })}
+          </Xwrapper>
         </DragArea>
       ) : (
         <div className="w-full h-full flex bg-zinc-100 dark:bg-zinc-900">
