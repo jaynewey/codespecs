@@ -2,7 +2,6 @@ FROM node:16-alpine
 
 WORKDIR /usr/src/app
 
-COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 COPY nginx.template ./
 
@@ -14,8 +13,6 @@ RUN envsubst '$DOMAIN' < "./nginx.template" > "/etc/nginx/nginx.conf"
 
 # install frontend dependencies
 RUN yarn --cwd ./frontend install
-# install backend dependencies
-RUN yarn --cwd ./backend install
 
 # add the rest of our app to the fs
 COPY . .
@@ -27,4 +24,4 @@ RUN cp -r ./frontend/dist/* /var/www/$DOMAIN/html/
 
 # serve files
 EXPOSE 80 443
-CMD /usr/sbin/nginx -g "daemon off;" & yarn --cwd ./backend prod
+CMD /usr/sbin/nginx -g "daemon off;"
