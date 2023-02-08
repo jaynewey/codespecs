@@ -1,3 +1,5 @@
+import { EventEmitter } from "node:events";
+
 import { Language } from "../../languages";
 import { arrayOrNone, objectOrNone } from "../../utils";
 import DapClient from "../generated/dapClient";
@@ -8,7 +10,8 @@ export function addHandlers(
   client: DapClient,
   codePath: string,
   language: Language,
-  includer?: VariableIncluder
+  includer?: VariableIncluder,
+  eventEmitter?: EventEmitter
 ): Promise<ProgramTrace> {
   return new Promise((resolve, reject) => {
     const programTrace: ProgramTrace = {
@@ -63,11 +66,13 @@ export function addHandlers(
             const variablesReference = body?.scopes?.[0]?.variablesReference;
             getVariables(client, variablesReference, includer).then(
               (variables) => {
-                programTrace.lines.push({
+                const line = {
                   lineNumber: lineNumber,
                   variables: variables.flat(1),
                   stdout: "", // TODO: support program output
-                });
+                };
+                programTrace.lines.push(line);
+                eventEmitter?.emit("pushLine", line);
 
                 if (typeof threadId === "number") {
                   client.next({ threadId: threadId });
