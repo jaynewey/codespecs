@@ -17,15 +17,15 @@ http {
     include /etc/letsencrypt/options-ssl-nginx.conf;
 
     location /piston/ {
-		  # deal with CORS
-			add_header 'Access-Control-Allow-Origin' '*';
+      # deal with CORS
+      add_header 'Access-Control-Allow-Origin' '*';
       add_header 'Access-Control-Allow-Credentials' 'true';
       add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
       add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
-		  # pass to piston api running on 2000
+      # pass to piston api running on 2000
       proxy_pass http://127.0.0.1:2000/;
 
-		  proxy_set_header Host      $host:$server_port;
+      proxy_set_header Host      $host:$server_port;
       proxy_set_header X-Real-IP $remote_addr;
     }
 
