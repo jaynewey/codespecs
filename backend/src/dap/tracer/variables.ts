@@ -29,19 +29,22 @@ export function guessType(
  */
 export async function getAttributesAndIndexes(
   client: DapClient,
-  variable: DapVariable
+  variable: DapVariable,
+  includer?: VariableIncluder
 ): Promise<{ attributes: Variable[]; indexes: Variable[] }> {
   // guess it's an index by the name being an integer only made of digits
   // TODO: prefer using indexed/named filter over this method however fallback to this
   //       when the adapter doesn't return a different set of children e.g debugpy
   const isIndex = (name: string): boolean => name.match(/^[0-9]+$/) !== null;
 
-  return getVariables(client, variable?.variablesReference).then((children) => {
-    return {
-      attributes: children.filter((child) => !isIndex(child.name)),
-      indexes: children.filter((child) => isIndex(child.name)),
-    };
-  });
+  return getVariables(client, variable?.variablesReference, includer).then(
+    (children) => {
+      return {
+        attributes: children.filter((child) => !isIndex(child.name)),
+        indexes: children.filter((child) => isIndex(child.name)),
+      };
+    }
+  );
 }
 
 /**
@@ -68,7 +71,7 @@ export function getVariables(
                   variable?.presentationHint?.visibility !== "internal"
               )
               .map(async (variable: DapVariable) => {
-                return getAttributesAndIndexes(client, variable).then(
+                return getAttributesAndIndexes(client, variable, includer).then(
                   ({ attributes, indexes }) => {
                     return {
                       name: variable?.name ?? "",
