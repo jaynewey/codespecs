@@ -16,7 +16,7 @@ import CharmIcon from "../CharmIcon";
 import { Variable } from "../animation/types";
 import { languageMap } from "./Code";
 import ToolbarButton from "./ToolbarButton";
-import { MosaicKey, State } from "./types";
+import { MosaicKey, Runtime, State } from "./types";
 
 export function children(variable: Variable): Variable[] {
   return [...(variable?.attributes ?? []), ...(variable?.indexes ?? [])];
@@ -41,19 +41,19 @@ export function getVariableByName(
 function VariableRow({
   variable,
   selectedVariablesState,
-  languageState,
+  runtimeState,
   depth = 0,
 }: {
   variable: Variable;
   selectedVariablesState: State<string[]>;
-  languageState: State<string | null>;
+  runtimeState: State<Runtime | null>;
   depth?: number;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedVariables, setSelectedVariables] = selectedVariablesState;
 
   const { theme } = useContext(ThemeContext);
-  const [language, setLanguage] = languageState;
+  const [runtime] = runtimeState;
 
   return (
     <li className={`${depth > 0 ? "ml-4 border-l border-zinc-500" : ""}`}>
@@ -96,7 +96,7 @@ function VariableRow({
               {...defaultProps}
               theme={theme === "dark" ? darkTheme : lightTheme}
               code={variable.value}
-              language={languageMap[language ?? ""] ?? "clike"}
+              language={languageMap[runtime?.language ?? ""] ?? "clike"}
             >
               {({ className, tokens, getTokenProps }) => (
                 <pre className={`${className} inline`}>
@@ -121,7 +121,7 @@ function VariableRow({
               depth={depth + 1}
               key={i}
               selectedVariablesState={selectedVariablesState}
-              languageState={languageState}
+              runtimeState={runtimeState}
             />
           ))}
         </ul>
@@ -136,12 +136,12 @@ export default function Variables<T extends MosaicKey>({
   path,
   variablesListState,
   selectedVariablesState,
-  languageState,
+  runtimeState,
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
   selectedVariablesState: State<string[]>;
-  languageState: State<string | null>;
+  runtimeState: State<Runtime | null>;
 }) {
   const [variablesList, _] = variablesListState;
   const [selectedVariables, setSelectedVariables] = selectedVariablesState;
@@ -165,7 +165,7 @@ export default function Variables<T extends MosaicKey>({
             variable={variable}
             key={i}
             selectedVariablesState={selectedVariablesState}
-            languageState={languageState}
+            runtimeState={runtimeState}
           />
         ))}
       </ul>
