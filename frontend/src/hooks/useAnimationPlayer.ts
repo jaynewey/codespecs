@@ -72,6 +72,14 @@ export default function useAnimationPlayer(
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList(programTrace.lines[currentIndex].variables);
 
+      const [, setOutput] = windowStates.terminal.output;
+      setOutput(
+        programTrace.lines
+          .map((line) => line.stdout)
+          .slice(0, currentIndex + 1)
+          .join("")
+      );
+
       // if we are at last animation frame, pause
       if (currentIndex === programTrace.lines.length - 1) {
         setAnimInterval(PAUSED_INTERVAL);
