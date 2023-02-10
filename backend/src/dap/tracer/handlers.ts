@@ -74,9 +74,8 @@ export function addHandlers(
                 programTrace.lines.push(line);
                 eventEmitter?.emit("pushLine", line);
 
-                if (typeof threadId === "number") {
-                  client.next({ threadId: threadId });
-                }
+              if (typeof threadId === "number") {
+                client.next({ threadId: threadId, granularity: "line" });
               }
             );
           });
