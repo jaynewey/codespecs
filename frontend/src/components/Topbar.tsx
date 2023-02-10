@@ -210,7 +210,6 @@ export default function Topbar({
 									.forEach((msg: string) => {
 										try {
 											const line = JSON.parse(msg);
-											console.log(line);
 											setProgramTrace((programTrace) => {
 												return programTrace
 													? {
@@ -219,9 +218,7 @@ export default function Topbar({
 													}
 													: programTrace;
 											});
-										} catch (e) {
-											console.log(e);
-										}
+										} catch (e) { }
 									});
 							}
 						});
