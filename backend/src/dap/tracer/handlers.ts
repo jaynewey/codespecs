@@ -3,6 +3,7 @@ import { EventEmitter } from "node:events";
 import { Language } from "../../languages";
 import { arrayOrNone, objectOrNone } from "../../utils";
 import DapClient from "../generated/dapClient";
+import { Scope } from "../generated/debugAdapterProtocol";
 import { ProgramTrace, VariableIncluder } from "./types";
 import { getVariables } from "./variables";
 
@@ -46,7 +47,6 @@ export function addHandlers(
       client.threads().then(() => {
         client.stackTrace({ threadId: threadId }).then((response) => {
           const body = objectOrNone(response?.body) ?? {};
-
           const stackFrame = (arrayOrNone(body?.stackFrames) ?? []).filter(
             (stackFrame) => stackFrame?.source?.path === codePath
           )?.[0];
@@ -62,22 +62,27 @@ export function addHandlers(
 
           client.scopes({ frameId: frameId }).then((response) => {
             const body = objectOrNone(response?.body) ?? {};
-            // need variables reference
-            const variablesReference = body?.scopes?.[0]?.variablesReference;
-            getVariables(client, variablesReference, includer).then(
-              (variables) => {
-                const line = {
-                  lineNumber: lineNumber,
-                  variables: variables.flat(1),
-                  stdout: "", // TODO: support program output
-                };
-                programTrace.lines.push(line);
-                eventEmitter?.emit("pushLine", line);
+            Promise.all(
+              body?.scopes
+                ?.filter((scope: Scope) => !scope.expensive)
+                ?.map(async (scope: Scope) => {
+                  // need variables reference
+                  const variablesReference = scope?.variablesReference;
+                  return getVariables(client, variablesReference, includer);
+                })
+            ).then((variables) => {
+              const line = {
+                lineNumber: lineNumber,
+                variables: variables.flat(1),
+                stdout: "", // TODO: support program output
+              };
+              programTrace.lines.push(line);
+              eventEmitter?.emit("pushLine", line);
 
               if (typeof threadId === "number") {
                 client.next({ threadId: threadId, granularity: "line" });
               }
-            );
+            });
           });
         });
       });
