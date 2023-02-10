@@ -33,6 +33,7 @@ export default class Tracer extends EventEmitter {
         .initialize({
           adapterID: "pydevd", //pydevd?
           pathFormat: "path",
+          supportsVariableType: true,
         })
         .then(() => {
           client.launch({
