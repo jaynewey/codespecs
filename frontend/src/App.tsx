@@ -29,7 +29,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
           <Code
             path={path}
             sourceCodeState={windowStates.code.sourceCode}
-            languageState={windowStates.code.language}
+            runtimeState={windowStates.code.runtime}
             highlightedState={windowStates.code.highlighted}
           />
         );
@@ -48,7 +48,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
             path={path}
             selectedVariablesState={windowStates.variables.selectedVariables}
             variablesListState={windowStates.variables.variablesList}
-            languageState={windowStates.code.language}
+            runtimeState={windowStates.code.runtime}
           />
         );
       default:
@@ -85,8 +85,8 @@ function App() {
       <div className="flex flex-col h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200">
         <Topbar
           windows={windows}
-          selectedLanguage={windowStates.code.language[0]}
-          setSelectedLanguage={windowStates.code.language[1]}
+          selectedRuntime={windowStates.code.runtime[0]}
+          setSelectedRuntime={windowStates.code.runtime[1]}
           setWindows={setWindows}
           windowStates={windowStates}
           animationPlayer={animationPlayer}

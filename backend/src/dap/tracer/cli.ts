@@ -1,7 +1,7 @@
 import { exec } from "child_process";
 import path from "path";
 
-import traceProgram from "./traceProgram";
+import Tracer from "./tracer";
 
 const args = process.argv.slice(2);
 
@@ -24,15 +24,22 @@ if (!args?.[0] || ["-h", "--help"].includes(args?.[0])) {
     const adapter = exec(config.adapterCommand);
 
     adapter.on("spawn", () => {
-      // run tracer, retry if fails
-      traceProgram(
+      const tracer = new Tracer();
+      // print live trace to stdout
+      let seq = 0;
+      tracer.on("pushLine", (line) => {
+        const lineStr = JSON.stringify({ ...line, ...{ seq: seq } });
+        seq += 1;
+        console.log(`Content-Length: ${lineStr.length}\r\n\r\n${lineStr}`);
+      });
+
+      // run tracer
+      tracer.traceProgram(
         path.resolve(configDir, config.codePath),
         path.resolve(configDir, config?.programPath ?? config.codePath),
         config.language,
         config.includer
-      ).then((programTrace) => {
-        console.log(JSON.stringify(programTrace, null, 2));
-      });
+      );
     });
   });
 }

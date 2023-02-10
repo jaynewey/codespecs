@@ -14,3 +14,9 @@ export type WindowFactory = <T extends MosaicKey>(
 ) => ReactElement;
 
 export type State<S> = [S, (S) => void];
+
+export type Runtime = {
+  language: string;
+  version: string;
+  aliases: string[];
+};

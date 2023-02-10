@@ -2,15 +2,17 @@ import { ReactNode } from "react";
 
 import "../index.css";
 
-export default function Dropdown({
+export default function Dropdown<T>({
   options,
   selectedOption,
   setSelectedOption,
+  optionToString,
   children,
 }: {
-  options: string[];
-  selectedOption?: string;
-  setSelectedOption: (option: string) => void;
+  options: T[];
+  selectedOption?: T;
+  setSelectedOption: (option: T) => void;
+  optionToString: (option: T) => string;
   children: ReactNode;
 }) {
   return (
@@ -25,7 +27,7 @@ export default function Dropdown({
             } duration-300 rounded whitespace-nowrap cursor-pointer`}
             onClick={() => setSelectedOption(option)}
           >
-            {option}
+            {optionToString(option)}
           </li>
         ))}
       </ul>

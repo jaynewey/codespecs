@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
@@ -16,32 +17,31 @@ export type ProgramTrace = {
 };
 
 export const DEFAULT_INTERVAL = 1500;
-const PAUSED_INTERVAL = 0;
+export const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
   programTrace: ProgramTrace | null;
-  setProgramTrace: (programTrace: ProgramTrace | null) => void;
+  setProgramTrace: Dispatch<SetStateAction<ProgramTrace | null>>;
   setAnimInterval: (animInterval: number) => void;
   currentIndex: number;
   setCurrentIndex: (currentIndex: number) => void;
   isPaused: boolean;
+  inProgress: boolean;
+  setInProgress: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function useAnimationPlayer(
   windowStates: WindowStates
 ): AnimationPlayer {
+  const [inProgress, setInProgress] = useState<boolean>(false);
   const [programTrace, setProgramTrace] = useState<ProgramTrace | null>(null);
   const [animInterval, setAnimInterval] = useState<number>(DEFAULT_INTERVAL);
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
 
   useEffect(() => {
-    if (programTrace) {
+    if (inProgress) {
       const step = () => {
-        if (!programTrace.lines.length) {
-          return;
-        }
-
-        setCurrentIndex((i) => (i + 1) % programTrace.lines.length);
+        setCurrentIndex((i) => i + 1);
       };
 
       if (animInterval > PAUSED_INTERVAL) {
@@ -57,10 +57,15 @@ export default function useAnimationPlayer(
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList([]);
     }
-  }, [programTrace, animInterval]);
+  }, [inProgress, animInterval]);
 
   useEffect(() => {
-    if (programTrace) {
+    if (programTrace && (programTrace?.lines ?? []).length) {
+      if (currentIndex >= programTrace.lines.length) {
+        setCurrentIndex(0);
+        return;
+      }
+
       const [, setHighlighted] = windowStates.code.highlighted;
       setHighlighted([programTrace.lines[currentIndex].lineNumber]);
 
@@ -81,5 +86,7 @@ export default function useAnimationPlayer(
     currentIndex,
     setCurrentIndex,
     isPaused: animInterval === PAUSED_INTERVAL,
+    inProgress,
+    setInProgress,
   };
 }

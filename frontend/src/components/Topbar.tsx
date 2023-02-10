@@ -39,13 +39,20 @@ import Dropdown from "./Dropdown";
 import IconButton from "./IconButton";
 import Slider from "./Slider";
 import Tooltip from "./Tooltip";
+import { fileMap } from "./windows/Code";
 import ToolbarButton from "./windows/ToolbarButton";
-import { MosaicKey } from "./windows/types";
+import { MosaicKey, Runtime } from "./windows/types";
 import { getPathToNode, isVisible } from "./windows/utils";
 
 const API_ENDPOINT = import.meta.env.PROD
-  ? "https://codespecs.tech/api"
-  : "http://localhost:8081/api";
+  ? "codespecs.tech/piston/api/v2"
+  : "127.0.0.1:2001/api/v2";
+const REST_ENDPOINT = import.meta.env.PROD
+  ? `https://${API_ENDPOINT}`
+  : `http://${API_ENDPOINT}`;
+const WS_ENDPOINT = import.meta.env.PROD
+  ? `wss://${API_ENDPOINT}`
+  : `ws://127.0.0.1:2002/api/v2`;
 
 const MIN_PLAY_SPEED = 0.25;
 const MAX_PLAY_SPEED = 2;
@@ -111,15 +118,15 @@ function ToggleWindowButton<T extends MosaicKey>({
 export default function Topbar({
   windows,
   setWindows,
-  selectedLanguage,
-  setSelectedLanguage,
+  selectedRuntime,
+  setSelectedRuntime,
   windowStates,
   animationPlayer,
 }: {
   windows: MosaicNode<string>;
   setWindows: (windows: MosaicNode<string>) => void;
-  selectedLanguage: string | null;
-  setSelectedLanguage: (language: string | null) => void;
+  selectedRuntime: Runtime | null;
+  setSelectedRuntime: (runtime: Runtime | null) => void;
   windowStates: WindowStates;
   animationPlayer: AnimationPlayer;
 }) {
@@ -131,21 +138,22 @@ export default function Topbar({
     currentIndex,
     setCurrentIndex,
     isPaused,
+    setInProgress,
   } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
-  const [languages, setLanguages] = useState<string[]>([]);
+  const [runtimes, setRuntimes] = useState<Runtime[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
   const togglePause = () =>
     setAnimInterval(isPaused ? DEFAULT_INTERVAL / playSpeed : 0);
 
   useEffect(() => {
-    fetch(`${API_ENDPOINT}/languages/`)
+    fetch(`${REST_ENDPOINT}/runtimes/`)
       .then((response) => response.json())
       .then((json) => {
         if (Array.isArray(json)) {
-          setLanguages(json);
-          setSelectedLanguage(json[0]);
+          setRuntimes(json);
+          setSelectedRuntime(json?.[0]);
         }
       });
   }, []);
@@ -160,22 +168,68 @@ export default function Topbar({
           const [____, setOutput] = windowStates.terminal.output;
 
           if (!isRunning) {
-            fetch(`${API_ENDPOINT}/run/`, {
-              method: "POST",
-              body: JSON.stringify({
-                language: selectedLanguage ?? "",
-                stdin: input,
-                source_code: sourceCode,
-              }),
-            })
-              .then((response) => response.json())
-              .then((json) => {
-                setTab("output");
-                setOutput(json?.stdout ?? "");
-                setProgramTrace(json as ProgramTrace);
-              });
+            if (!selectedRuntime) {
+              return;
+            }
 
-            // set up windows
+            const request = {
+              type: "init",
+              language: selectedRuntime?.language,
+              version: selectedRuntime?.version,
+              files: [
+                {
+                  name: fileMap[selectedRuntime.language],
+                  content: sourceCode,
+                },
+              ],
+              run_timeout: 30000,
+            };
+
+            const socket = new WebSocket(`${WS_ENDPOINT}/connect`);
+
+            setProgramTrace({ language: selectedRuntime.language, lines: [] });
+
+            // Connection opened
+            socket.addEventListener("open", () => {
+              socket.send(JSON.stringify(request));
+            });
+
+            // Listen for messages
+            socket.addEventListener("message", (event) => {
+              let json = null;
+              try {
+                json = JSON.parse(event.data);
+              } catch (e) {
+                return;
+              }
+
+              if (json?.type === "data") {
+                json.data
+                  ?.split(/Content-Length: [0-9]*\r\n\r\n/)
+                  ?.slice(1)
+                  .forEach((msg: string) => {
+                    try {
+                      const line = JSON.parse(msg);
+                      console.log(line);
+                      setProgramTrace((programTrace) => {
+                        return programTrace
+                          ? {
+                              language: programTrace.language,
+                              lines: [...programTrace.lines, line],
+                            }
+                          : programTrace;
+                      });
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  });
+              }
+            });
+
+            setAnimInterval(DEFAULT_INTERVAL);
+            setPlaySpeed(1);
+            setCurrentIndex(0);
+            setTab("output");
             setWindows({
               direction: "row",
               first: {
@@ -198,11 +252,12 @@ export default function Topbar({
             setProgramTrace(null);
           }
 
+          setInProgress(!isRunning);
           setIsRunning(!isRunning);
         }}
-        disabled={!selectedLanguage}
+        disabled={!selectedRuntime}
         className={`flex content-center px-2 text-sm duration-300 border rounded hover:shadow-md focus:ring-2 ${
-          selectedLanguage
+          selectedRuntime
             ? isRunning
               ? "bg-red-500/10 hover:bg-red-500/20 border-red-700 dark:border-red-300 text-red-700 dark:text-red-300 hover:shadow-red-500 ring-red-500"
               : "bg-green-500/10 hover:bg-green-500/20 border-green-700 dark:border-green-300 text-green-700 dark:text-green-300 hover:shadow-green-500 ring-green-500"
@@ -352,20 +407,23 @@ export default function Topbar({
         </Tooltip>
       </div>
       <Dropdown
-        options={languages}
-        selectedOption={selectedLanguage ?? ""}
-        setSelectedOption={setSelectedLanguage}
+        options={runtimes}
+        selectedOption={selectedRuntime}
+        setSelectedOption={setSelectedRuntime}
+        optionToString={(runtime) => runtime?.language ?? "?"}
       >
         <button
           type="button"
           className={`flex px-2 py-0.5 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
-            selectedLanguage
+            selectedRuntime
               ? ""
               : "animate-pulse bg-zinc-500/20 cursor-not-allowed"
           }`}
-          disabled={!selectedLanguage}
+          disabled={!selectedRuntime}
         >
-          <span className="pt-0.5">{selectedLanguage ?? "Loading..."}</span>
+          <span className="pt-0.5">
+            {selectedRuntime?.language ?? "Loading..."}
+          </span>
           <div className="pl-1 py-1">
             <CharmIcon icon={ChevronDown} />
           </div>

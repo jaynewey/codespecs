@@ -1,4 +1,9 @@
-import { MosaicNode, MosaicParent, MosaicPath, getNodeAtPath } from "react-mosaic-component";
+import {
+  MosaicNode,
+  MosaicParent,
+  MosaicPath,
+  getNodeAtPath,
+} from "react-mosaic-component";
 
 import { MosaicKey } from "./types";
 

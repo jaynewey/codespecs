@@ -2,12 +2,13 @@ import { useState } from "react";
 
 import { Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
+import { Runtime } from "../components/windows/types";
 
 export type WindowStates = {
   animation: {};
   code: {
     sourceCode: State<string>;
-    language: State<string | null>;
+    runtime: State<Runtime | null>;
     highlighted: State<number[]>;
   };
   terminal: {
@@ -26,7 +27,7 @@ export default function useWindows(): WindowStates {
     animation: {},
     code: {
       sourceCode: useState<string>(""),
-      language: useState(null),
+      runtime: useState(null),
       highlighted: useState([]),
     },
     terminal: {
