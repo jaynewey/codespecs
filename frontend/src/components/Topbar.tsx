@@ -59,6 +59,8 @@ const MAX_PLAY_SPEED = 2;
 const PLAY_SPEED_STEP = 0.05;
 const PLAY_SPEED_BUTTON_STEP = 0.25;
 
+const RUN_TIMEOUT = 30000;
+
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
   windowKey,
@@ -182,7 +184,7 @@ export default function Topbar({
                   content: sourceCode,
                 },
               ],
-              run_timeout: 30000,
+              run_timeout: RUN_TIMEOUT,
             };
 
             const socket = new WebSocket(`${WS_ENDPOINT}/connect`);
