@@ -252,7 +252,6 @@ export default function Topbar({
             webSocket?.send(
               JSON.stringify({ type: "signal", signal: "SIGKILL" })
             );
-            webSocket?.close();
             setWebSocket(undefined);
             // reset windows to default
             setOutput([]);
