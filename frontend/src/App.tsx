@@ -31,6 +31,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
             sourceCodeState={windowStates.code.sourceCode}
             runtimeState={windowStates.code.runtime}
             highlightedState={windowStates.code.highlighted}
+            isRunningState={windowStates.code.isRunning}
           />
         );
       case "terminal":

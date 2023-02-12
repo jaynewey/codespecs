@@ -34,15 +34,18 @@ export default function Code<T extends MosaicKey>({
   sourceCodeState,
   runtimeState,
   highlightedState,
+  isRunningState,
 }: {
   path: MosaicPath;
   sourceCodeState: State<string>;
   runtimeState: State<Runtime | null>;
   highlightedState: State<number[]>;
+  isRunningState: State<boolean>;
 }) {
   const [sourceCode, setSourceCode] = sourceCodeState;
   const [runtime] = runtimeState;
   const [highlighted, setHighlighted] = highlightedState;
+  const [isRunning] = isRunningState;
 
   const { theme } = useContext(ThemeContext);
 
@@ -73,7 +76,9 @@ export default function Code<T extends MosaicKey>({
       <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 py-2 overflow-auto">
         <Editor
           value={sourceCode}
-          onValueChange={(code) => setSourceCode(code)}
+          onValueChange={(code) => {
+            if (!isRunning) setSourceCode(code);
+          }}
           highlight={(code) => {
             return (
               <Highlight

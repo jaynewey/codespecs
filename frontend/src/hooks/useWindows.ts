@@ -15,6 +15,7 @@ export type WindowStates = {
     sourceCode: State<string>;
     runtime: State<Runtime | null>;
     highlighted: State<number[]>;
+    isRunning: State<boolean>;
   };
   terminal: {
     input: State<string>;
@@ -34,6 +35,7 @@ export default function useWindows(): WindowStates {
       sourceCode: useState<string>(""),
       runtime: useState(null),
       highlighted: useState([]),
+      isRunning: useState(false),
     },
     terminal: {
       input: useState<string>(""),

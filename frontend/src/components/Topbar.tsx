@@ -144,7 +144,7 @@ export default function Topbar({
   } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [runtimes, setRuntimes] = useState<Runtime[]>([]);
-  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [isRunning, setIsRunning] = windowStates.code.isRunning;
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>();
 
   const togglePause = () =>
