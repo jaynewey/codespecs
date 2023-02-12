@@ -95,7 +95,7 @@ First Input
 Second Input`}
           />
         ) : (
-          <ul className="font-mono resize-none text-sm bg-inherit w-full h-full overflow-auto">
+          <ul className="font-mono resize-none text-sm bg-inherit w-full h-full whitespace-pre-wrap overflow-auto">
             {output.map((line, i) => {
               return (
                 <li key={i}>
