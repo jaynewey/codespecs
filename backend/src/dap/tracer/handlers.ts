@@ -32,6 +32,7 @@ export function addHandlers(
       lines: [],
     };
     const lineBuffer: Line[] = [];
+    let configurationDone = false;
 
     client.onInitializedEvent(() => {
       // once initialised, set breakpoints
@@ -44,16 +45,27 @@ export function addHandlers(
         .then(() => {
           // once breakpoints are set, tell the server we are done configuring
           client.configurationDone();
+          configurationDone = true;
         });
     });
 
     client.onOutputEvent((event) => {
       const body = objectOrNone(event?.body) ?? {};
+
+      // if we have no lines to attach output to, give up
+      if (!lineBuffer.length) {
+        return;
+      }
+      // assume this output is from the latest line in the buffer
+      const line = lineBuffer[lineBuffer.length - 1];
       // we only care about standard output
       if (body?.category === "stdout") {
-        // assume this output is from the latest line in the buffer
         // append to it just to ensure we're not throwing away data
-        lineBuffer[lineBuffer.length - 1].stdout += body.output;
+        line.stdout = (line.stdout ?? "") + body.output;
+      } else if (body?.category === "stderr") {
+        if (configurationDone) {
+          line.stderr = (line.stderr ?? "") + body.output;
+        }
       }
     });
 
@@ -82,7 +94,6 @@ export function addHandlers(
             stackFrame?.source?.path !== codePath
           ) {
             client.stepOut({ threadId });
-            flushLines(lineBuffer, programTrace, eventEmitter);
             return;
           }
 
@@ -100,7 +111,6 @@ export function addHandlers(
               const line = {
                 lineNumber: lineNumber,
                 variables: variables.flat(1),
-                stdout: "",
               };
               // buffer our lines before pushing them to give a chance for events
               // to "catch up" - for example stdout events are often late

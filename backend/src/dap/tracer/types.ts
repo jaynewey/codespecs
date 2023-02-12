@@ -13,7 +13,8 @@ export type Variable = {
 export type Line = {
   lineNumber: number;
   variables: Variable[];
-  stdout: string;
+  stdout?: string;
+  stderr?: string;
 };
 
 export type ProgramTrace = {

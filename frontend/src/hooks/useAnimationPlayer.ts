@@ -8,7 +8,8 @@ import { WindowStates } from "./useWindows";
 export type Line = {
   lineNumber: number;
   variables: Variable[];
-  stdout: string;
+  stdout?: string;
+  stderr?: string;
 };
 
 export type ProgramTrace = {
@@ -75,9 +76,10 @@ export default function useAnimationPlayer(
       const [, setOutput] = windowStates.terminal.output;
       setOutput(
         programTrace.lines
-          .map((line) => line.stdout)
+          .map((line) => {
+            return { stdout: line.stdout, stderr: line.stderr };
+          })
           .slice(0, currentIndex + 1)
-          .join("")
       );
 
       // if we are at last animation frame, pause

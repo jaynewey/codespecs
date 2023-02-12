@@ -4,6 +4,11 @@ import { Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 import { Runtime } from "../components/windows/types";
 
+export type Output = {
+  stdout: string;
+  stderr: string;
+};
+
 export type WindowStates = {
   animation: {};
   code: {
@@ -13,7 +18,7 @@ export type WindowStates = {
   };
   terminal: {
     input: State<string>;
-    output: State<string>;
+    output: State<Output[]>;
     tab: State<"output" | "input">;
   };
   variables: {
@@ -32,7 +37,7 @@ export default function useWindows(): WindowStates {
     },
     terminal: {
       input: useState<string>(""),
-      output: useState<string>(""),
+      output: useState<Output[]>([]),
       tab: useState("input"),
     },
     variables: {

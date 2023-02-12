@@ -247,6 +247,7 @@ export default function Topbar({
             });
           } else {
             // reset windows to default
+            setOutput([]);
             setWindows(defaultWindows);
             setProgramTrace(null);
           }
