@@ -13,6 +13,7 @@ import ThemeContext from "../../contexts/ThemeContext";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, Runtime, State, Window } from "./types";
+import { runtimeName } from "./utils";
 
 export const fileMap: { [key: string]: string } = {
   "Python (3.8.1)": "main.py",
@@ -57,7 +58,9 @@ export default function Code<T extends MosaicKey>({
               <span className="font-mono">
                 {fileMap[runtime.language] ?? ""}
               </span>
-              <span className="text-xs text-zinc-500">{runtime.version}</span>
+              <span className="text-xs text-zinc-500">
+                {runtimeName(runtime)}
+              </span>
             </>
           ) : (
             <span className="h-3 w-36 bg-zinc-500/20 animate-pulse rounded-full" />

@@ -5,7 +5,7 @@ import {
   getNodeAtPath,
 } from "react-mosaic-component";
 
-import { MosaicKey } from "./types";
+import { MosaicKey, Runtime } from "./types";
 
 export function isVisible<T extends MosaicKey>(
   tree: MosaicNode<T>,
@@ -54,4 +54,13 @@ export function getPathToNode<T extends MosaicKey>(
   const path: MosaicPath = [];
   search(tree, key, path);
   return path;
+}
+
+export function runtimeName(runtime: Runtime | null): string {
+  switch (runtime?.language ?? "") {
+    case "javascript (via node-debug2)":
+      return `JavaScript (Node ${runtime?.version})`;
+    default:
+      return "?";
+  }
 }

@@ -8,6 +8,7 @@ import {
 } from "react-mosaic-component";
 import Editor from "react-simple-code-editor";
 
+import { Output } from "../../hooks/useWindows";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, State, Window } from "./types";
@@ -20,7 +21,7 @@ export default function Terminal<T extends MosaicKey>({
 }: {
   path: MosaicPath;
   inputState: State<string>;
-  outputState: State<string>;
+  outputState: State<Output[]>;
   tabState: State<"output" | "input">;
 }) {
   const [tab, setTab] = tabState;
@@ -58,7 +59,7 @@ export default function Terminal<T extends MosaicKey>({
       path={path}
       draggable={true}
     >
-      <div className="py-2 w-full h-full bg-zinc-100 dark:bg-zinc-900">
+      <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900">
         {tab === "input" ? (
           <Editor
             value={input}
@@ -94,11 +95,26 @@ First Input
 Second Input`}
           />
         ) : (
-          <textarea
-            value={output}
-            readOnly={true}
-            className="font-mono resize-none text-sm px-2 bg-inherit w-full h-full"
-          />
+          <ul className="font-mono resize-none text-sm bg-inherit w-full h-full overflow-auto">
+            {output.map((line, i) => {
+              return (
+                <li key={i}>
+                  {line.stdout ? (
+                    <li className="px-2">{line.stdout}</li>
+                  ) : (
+                    <></>
+                  )}
+                  {line.stderr ? (
+                    <li className="px-2 text-red-500 bg-red-500/10">
+                      {line.stderr}
+                    </li>
+                  ) : (
+                    <></>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         )}
       </div>
     </MosaicWindow>

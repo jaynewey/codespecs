@@ -42,7 +42,7 @@ import Tooltip from "./Tooltip";
 import { fileMap } from "./windows/Code";
 import ToolbarButton from "./windows/ToolbarButton";
 import { MosaicKey, Runtime } from "./windows/types";
-import { getPathToNode, isVisible } from "./windows/utils";
+import { getPathToNode, isVisible, runtimeName } from "./windows/utils";
 
 const API_ENDPOINT = import.meta.env.PROD
   ? "codespecs.tech/piston/api/v2"
@@ -58,6 +58,8 @@ const MIN_PLAY_SPEED = 0.25;
 const MAX_PLAY_SPEED = 2;
 const PLAY_SPEED_STEP = 0.05;
 const PLAY_SPEED_BUTTON_STEP = 0.25;
+
+const RUN_TIMEOUT = 30000;
 
 function ToggleWindowButton<T extends MosaicKey>({
   icon,
@@ -182,7 +184,7 @@ export default function Topbar({
                   content: sourceCode,
                 },
               ],
-              run_timeout: 30000,
+              run_timeout: RUN_TIMEOUT,
             };
 
             const socket = new WebSocket(`${WS_ENDPOINT}/connect`);
@@ -210,7 +212,6 @@ export default function Topbar({
                   .forEach((msg: string) => {
                     try {
                       const line = JSON.parse(msg);
-                      console.log(line);
                       setProgramTrace((programTrace) => {
                         return programTrace
                           ? {
@@ -219,9 +220,7 @@ export default function Topbar({
                             }
                           : programTrace;
                       });
-                    } catch (e) {
-                      console.log(e);
-                    }
+                    } catch (e) {}
                   });
               }
             });
@@ -248,6 +247,7 @@ export default function Topbar({
             });
           } else {
             // reset windows to default
+            setOutput([]);
             setWindows(defaultWindows);
             setProgramTrace(null);
           }
@@ -410,7 +410,7 @@ export default function Topbar({
         options={runtimes}
         selectedOption={selectedRuntime}
         setSelectedOption={setSelectedRuntime}
-        optionToString={(runtime) => runtime?.language ?? "?"}
+        optionToString={runtimeName}
       >
         <button
           type="button"
@@ -422,7 +422,7 @@ export default function Topbar({
           disabled={!selectedRuntime}
         >
           <span className="pt-0.5">
-            {selectedRuntime?.language ?? "Loading..."}
+            {runtimeName(selectedRuntime) ?? "Loading..."}
           </span>
           <div className="pl-1 py-1">
             <CharmIcon icon={ChevronDown} />
