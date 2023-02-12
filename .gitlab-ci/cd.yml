@@ -49,7 +49,8 @@ build_and_deploy:
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "apt update && apt install -y bash docker-compose git"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend && npm i --global yarn && yarn install && yarn dap-client && yarn build"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend && bash ./build-piston.sh"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend/piston && docker exec piston_api sh -c 'rm -rf /piston/packages/*' && ./cli/index.js ppman install nodedebug2=16.3.0"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend/piston && docker exec piston_api sh -c 'rm -rf /piston/packages/*'"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no root@$SERVER_IP "cd ~/backend/piston && ./cli/index.js ppman install nodedebug2=16.3.0 debugpy=3.10.0"
   environment:
     name: production
     url: http://$SERVER_IP

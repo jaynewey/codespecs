@@ -60,6 +60,8 @@ export function runtimeName(runtime: Runtime | null): string {
   switch (runtime?.language ?? "") {
     case "javascript (via node-debug2)":
       return `JavaScript (Node ${runtime?.version})`;
+    case "python (via debugpy)":
+      return `Python (${runtime?.version})`;
     default:
       return "?";
   }

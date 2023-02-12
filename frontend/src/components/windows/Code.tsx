@@ -16,14 +16,14 @@ import { MosaicKey, Runtime, State, Window } from "./types";
 import { runtimeName } from "./utils";
 
 export const fileMap: { [key: string]: string } = {
-  "Python (3.8.1)": "main.py",
+  "python (via debugpy)": "main.py",
   "Python (2.7.17)": "main.py",
   "javascript (via node-debug2)": "main.js",
   "Java (OpenJDK 13.0.1)": "Main.java",
 };
 
 export const languageMap: { [key: string]: Language } = {
-  "Python (3.8.1)": "python",
+  "python (via debugpy)": "python",
   "Python (2.7.17)": "python",
   "javascript (via node-debug2)": "javascript",
   "Java (OpenJDK 13.0.1)": "javascript", // closest thing we have :)
