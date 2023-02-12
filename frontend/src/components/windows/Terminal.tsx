@@ -95,10 +95,10 @@ First Input
 Second Input`}
           />
         ) : (
-          <ul className="font-mono resize-none text-sm bg-inherit w-full h-full whitespace-pre-wrap overflow-auto">
+          <div className="font-mono resize-none text-sm bg-inherit w-full h-full whitespace-pre-wrap overflow-y-auto break-all">
             {output.map((line, i) => {
               return (
-                <li key={i}>
+                <ul key={i}>
                   {line.stdout ? (
                     <li className="px-2">{line.stdout}</li>
                   ) : (
@@ -111,10 +111,10 @@ Second Input`}
                   ) : (
                     <></>
                   )}
-                </li>
+                </ul>
               );
             })}
-          </ul>
+          </div>
         )}
       </div>
     </MosaicWindow>
