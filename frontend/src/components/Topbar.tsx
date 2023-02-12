@@ -145,6 +145,7 @@ export default function Topbar({
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [runtimes, setRuntimes] = useState<Runtime[]>([]);
   const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [webSocket, setWebSocket] = useState<WebSocket | undefined>();
 
   const togglePause = () =>
     setAnimInterval(isPaused ? DEFAULT_INTERVAL / playSpeed : 0);
@@ -188,6 +189,7 @@ export default function Topbar({
             };
 
             const socket = new WebSocket(`${WS_ENDPOINT}/connect`);
+            setWebSocket(socket);
 
             setProgramTrace({ language: selectedRuntime.language, lines: [] });
 
@@ -246,6 +248,12 @@ export default function Topbar({
               splitPercentage: 70,
             });
           } else {
+            // tell piston to kill process
+            webSocket?.send(
+              JSON.stringify({ type: "signal", signal: "SIGKILL" })
+            );
+            webSocket?.close();
+            setWebSocket(undefined);
             // reset windows to default
             setOutput([]);
             setWindows(defaultWindows);
