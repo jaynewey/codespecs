@@ -110,7 +110,14 @@ export function addHandlers(
             ).then((variables) => {
               const line = {
                 lineNumber: lineNumber,
-                variables: variables.flat(1),
+                // assume first occurence of variable name is most local
+                variables: variables.flat(1).filter(
+                  (v, i, a) =>
+                    !a
+                      .slice(0, i)
+                      .map((v) => v.name)
+                      .includes(v.name)
+                ),
               };
               // buffer our lines before pushing them to give a chance for events
               // to "catch up" - for example stdout events are often late

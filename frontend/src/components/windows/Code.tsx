@@ -16,14 +16,14 @@ import { MosaicKey, Runtime, State, Window } from "./types";
 import { runtimeName } from "./utils";
 
 export const fileMap: { [key: string]: string } = {
-  "Python (3.8.1)": "main.py",
+  "python (via debugpy)": "main.py",
   "Python (2.7.17)": "main.py",
   "javascript (via node-debug2)": "main.js",
   "Java (OpenJDK 13.0.1)": "Main.java",
 };
 
 export const languageMap: { [key: string]: Language } = {
-  "Python (3.8.1)": "python",
+  "python (via debugpy)": "python",
   "Python (2.7.17)": "python",
   "javascript (via node-debug2)": "javascript",
   "Java (OpenJDK 13.0.1)": "javascript", // closest thing we have :)
@@ -34,15 +34,18 @@ export default function Code<T extends MosaicKey>({
   sourceCodeState,
   runtimeState,
   highlightedState,
+  isRunningState,
 }: {
   path: MosaicPath;
   sourceCodeState: State<string>;
   runtimeState: State<Runtime | null>;
   highlightedState: State<number[]>;
+  isRunningState: State<boolean>;
 }) {
   const [sourceCode, setSourceCode] = sourceCodeState;
   const [runtime] = runtimeState;
   const [highlighted, setHighlighted] = highlightedState;
+  const [isRunning] = isRunningState;
 
   const { theme } = useContext(ThemeContext);
 
@@ -73,7 +76,9 @@ export default function Code<T extends MosaicKey>({
       <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 py-2 overflow-auto">
         <Editor
           value={sourceCode}
-          onValueChange={(code) => setSourceCode(code)}
+          onValueChange={(code) => {
+            if (!isRunning) setSourceCode(code);
+          }}
           highlight={(code) => {
             return (
               <Highlight
