@@ -24,6 +24,7 @@ export function addHandlers(
   codePath: string,
   language: Language,
   includer?: VariableIncluder,
+  entrypoint?: number,
   eventEmitter?: EventEmitter
 ): Promise<ProgramTrace> {
   return new Promise((resolve, reject) => {
@@ -39,7 +40,8 @@ export function addHandlers(
       client
         .setBreakpoints({
           // want to stop at first line and step through each line
-          breakpoints: [{ line: 1 }],
+          // assume program starts at line 1 unless stated otherwise
+          breakpoints: [{ line: entrypoint ?? 1 }],
           source: { path: codePath },
         })
         .then(() => {

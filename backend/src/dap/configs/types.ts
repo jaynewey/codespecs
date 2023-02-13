@@ -7,4 +7,5 @@ export type Config = {
   programPath?: string;
   language: Language;
   includer: VariableIncluder;
+  entrypoint?: number;
 };
