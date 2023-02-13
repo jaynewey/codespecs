@@ -75,7 +75,7 @@ export function addHandlers(
 
       if (typeof threadId !== "number") {
         client.close();
-        reject();
+        resolve(programTrace);
       }
 
       client.threads().then(() => {
