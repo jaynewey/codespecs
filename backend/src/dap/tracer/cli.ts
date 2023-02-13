@@ -38,7 +38,8 @@ if (!args?.[0] || ["-h", "--help"].includes(args?.[0])) {
         path.resolve(configDir, config.codePath),
         path.resolve(configDir, config?.programPath ?? config.codePath),
         config.language,
-        config.includer
+        config.includer,
+        config?.entrypoint
       );
     });
   });

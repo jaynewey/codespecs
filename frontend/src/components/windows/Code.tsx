@@ -17,16 +17,14 @@ import { runtimeName } from "./utils";
 
 export const fileMap: { [key: string]: string } = {
   "python (via debugpy)": "main.py",
-  "Python (2.7.17)": "main.py",
   "javascript (via node-debug2)": "main.js",
-  "Java (OpenJDK 13.0.1)": "Main.java",
+  "c++ (via codelldb)": "main.cpp",
 };
 
 export const languageMap: { [key: string]: Language } = {
   "python (via debugpy)": "python",
-  "Python (2.7.17)": "python",
   "javascript (via node-debug2)": "javascript",
-  "Java (OpenJDK 13.0.1)": "javascript", // closest thing we have :)
+  "c++ (via codelldb)": "cpp",
 };
 
 export default function Code<T extends MosaicKey>({

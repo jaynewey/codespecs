@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DAP_DIR="$(dirname "$(realpath $0)")/tracer/dap"
+
+node $DAP_DIR/tracer/cli.js $DAP_DIR/configs/codelldb-cpp.js

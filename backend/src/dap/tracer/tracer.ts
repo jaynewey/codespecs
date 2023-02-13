@@ -14,7 +14,8 @@ export default class Tracer extends EventEmitter {
     codePath: string,
     programPath: string,
     language: Language,
-    includer?: VariableIncluder
+    includer?: VariableIncluder,
+    entrypoint?: number
   ): Promise<ProgramTrace> {
     const client = new DapClient();
 
@@ -24,6 +25,7 @@ export default class Tracer extends EventEmitter {
       codePath,
       language,
       includer,
+      entrypoint,
       this
     );
 
