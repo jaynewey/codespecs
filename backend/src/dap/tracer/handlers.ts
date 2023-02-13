@@ -27,7 +27,7 @@ export function addHandlers(
   entrypoint?: number,
   eventEmitter?: EventEmitter
 ): Promise<ProgramTrace> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const programTrace: ProgramTrace = {
       language: language,
       lines: [],
