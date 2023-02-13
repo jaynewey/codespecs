@@ -35,7 +35,8 @@ export async function getAttributesAndIndexes(
   // guess it's an index by the name being an integer only made of digits
   // TODO: prefer using indexed/named filter over this method however fallback to this
   //       when the adapter doesn't return a different set of children e.g debugpy
-  const isIndex = (name: string): boolean => name.match(/^[0-9]+$/) !== null;
+  const isIndex = (name: string): boolean =>
+    /^[0-9]+$/.test(name) || /^\[[0-9]\]$/.test(name);
 
   return getVariables(client, variable?.variablesReference, includer).then(
     (children) => {
