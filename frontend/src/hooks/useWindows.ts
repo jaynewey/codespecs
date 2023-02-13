@@ -20,6 +20,7 @@ export type WindowStates = {
   terminal: {
     input: State<string>;
     output: State<Output[]>;
+    error: State<string>;
     tab: State<"output" | "input">;
   };
   variables: {
@@ -40,6 +41,7 @@ export default function useWindows(): WindowStates {
     terminal: {
       input: useState<string>(""),
       output: useState<Output[]>([]),
+      error: useState<string>(""),
       tab: useState("input"),
     },
     variables: {

@@ -40,6 +40,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
             path={path}
             inputState={windowStates.terminal.input}
             outputState={windowStates.terminal.output}
+            errorState={windowStates.terminal.error}
             tabState={windowStates.terminal.tab}
           />
         );

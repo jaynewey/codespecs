@@ -165,10 +165,11 @@ export default function Topbar({
     <div className="sticky shrink flex top-0 w-full border-b border-zinc-300 dark:border-zinc-800 p-2 gap-x-2 z-50">
       <button
         onClick={() => {
-          const [input, _] = windowStates.terminal.input;
-          const [sourceCode, __] = windowStates.code.sourceCode;
-          const [___, setTab] = windowStates.terminal.tab;
-          const [____, setOutput] = windowStates.terminal.output;
+          const [input] = windowStates.terminal.input;
+          const [sourceCode] = windowStates.code.sourceCode;
+          const [, setTab] = windowStates.terminal.tab;
+          const [, setOutput] = windowStates.terminal.output;
+          const [, setError] = windowStates.terminal.error;
 
           if (!isRunning) {
             if (!selectedRuntime) {
@@ -200,7 +201,7 @@ export default function Topbar({
 
             // Listen for messages
             socket.addEventListener("message", (event) => {
-              let json = null;
+              let json: { [key: string]: any } | null = null;
               try {
                 json = JSON.parse(event.data);
               } catch (e) {
@@ -208,22 +209,26 @@ export default function Topbar({
               }
 
               if (json?.type === "data") {
-                json.data
-                  ?.split(/Content-Length: [0-9]*\r\n\r\n/)
-                  ?.slice(1)
-                  .forEach((msg: string) => {
-                    try {
-                      const line = JSON.parse(msg);
-                      setProgramTrace((programTrace) => {
-                        return programTrace
-                          ? {
-                              language: programTrace.language,
-                              lines: [...programTrace.lines, line],
-                            }
-                          : programTrace;
-                      });
-                    } catch (e) {}
-                  });
+                if (json?.stream === "stdout") {
+                  json.data
+                    ?.split(/Content-Length: [0-9]*\r\n\r\n/)
+                    ?.slice(1)
+                    .forEach((msg: string) => {
+                      try {
+                        const line = JSON.parse(msg);
+                        setProgramTrace((programTrace) => {
+                          return programTrace
+                            ? {
+                                language: programTrace.language,
+                                lines: [...programTrace.lines, line],
+                              }
+                            : programTrace;
+                        });
+                      } catch (e) {}
+                    });
+                } else if (json?.stream === "stderr" && json?.data) {
+                  setError((error: string) => error + json?.data);
+                }
               }
             });
 

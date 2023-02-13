@@ -17,16 +17,19 @@ export default function Terminal<T extends MosaicKey>({
   path,
   inputState,
   outputState,
+  errorState,
   tabState,
 }: {
   path: MosaicPath;
   inputState: State<string>;
   outputState: State<Output[]>;
+  errorState: State<string>;
   tabState: State<"output" | "input">;
 }) {
   const [tab, setTab] = tabState;
   const [input, setInput] = inputState;
-  const [output, setOutput] = outputState;
+  const [output] = outputState;
+  const [error] = errorState;
 
   return (
     <MosaicWindow<T>
@@ -96,6 +99,7 @@ Second Input`}
           />
         ) : (
           <div className="font-mono resize-none text-sm bg-inherit w-full h-full whitespace-pre-wrap overflow-y-auto break-all">
+            <div className="px-2 text-red-500 bg-red-500/10">{error}</div>
             {output.map((line, i) => {
               return (
                 <ul key={i}>
