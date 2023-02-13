@@ -62,6 +62,8 @@ export function runtimeName(runtime: Runtime | null): string {
       return `JavaScript (Node ${runtime?.version})`;
     case "python (via debugpy)":
       return `Python (${runtime?.version})`;
+    case "c++ (via codelldb)":
+      return `C++ (GCC ${runtime?.version})`;
     default:
       return "?";
   }
