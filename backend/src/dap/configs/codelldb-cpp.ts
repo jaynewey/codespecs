@@ -23,7 +23,7 @@ const config: Config = {
   adapterCommand: "$PKG_DIR/codelldb/extension/adapter/codelldb --port=5678",
   codePath: CODE_PATH,
   programPath: PROGRAM_PATH,
-  language: "C++ (GCC 10.2.0)",
+  language: "C++ (GCC 8.3.0)",
   includer: (variable: Variable) => {
     return (
       !DISALLOWED_NAMES.includes(variable?.name) &&
