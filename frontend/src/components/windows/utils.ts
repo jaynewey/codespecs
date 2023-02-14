@@ -66,6 +66,8 @@ export function runtimeName(runtime: Runtime | null): string {
       return `C++ (GCC ${runtime?.version})`;
     case "c (via codelldb)":
       return `C (GCC ${runtime?.version})`;
+    case "rust (via codelldb)":
+      return `Rust (rustc ${runtime?.version})`;
     default:
       return "?";
   }

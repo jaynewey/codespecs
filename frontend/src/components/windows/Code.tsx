@@ -20,8 +20,11 @@ export const fileMap: { [key: string]: string } = {
   "javascript (via node-debug2)": "main.js",
   "c++ (via codelldb)": "main.cpp",
   "c (via codelldb)": "main.c",
+  "rust (via codelldb)": "main.rs",
 };
 
+// TODO: figure out prism-react-renderer voodoo to get
+//       additional languages e.g rust to work properly
 export const languageMap: { [key: string]: Language } = {
   "python (via debugpy)": "python",
   "javascript (via node-debug2)": "javascript",
