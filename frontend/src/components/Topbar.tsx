@@ -260,6 +260,7 @@ export default function Topbar({
             setWebSocket(undefined);
             // reset windows to default
             setOutput([]);
+            setError("");
             setWindows(defaultWindows);
             setProgramTrace(null);
           }

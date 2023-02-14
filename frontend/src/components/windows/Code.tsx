@@ -19,12 +19,14 @@ export const fileMap: { [key: string]: string } = {
   "python (via debugpy)": "main.py",
   "javascript (via node-debug2)": "main.js",
   "c++ (via codelldb)": "main.cpp",
+  "c (via codelldb)": "main.c",
 };
 
 export const languageMap: { [key: string]: Language } = {
   "python (via debugpy)": "python",
   "javascript (via node-debug2)": "javascript",
   "c++ (via codelldb)": "cpp",
+  "c (via codelldb)": "c",
 };
 
 export default function Code<T extends MosaicKey>({
