@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Variable } from "../components/animation/types";
+import { Id, Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 import { Runtime } from "../components/windows/types";
 
@@ -24,7 +24,7 @@ export type WindowStates = {
     tab: State<"output" | "input">;
   };
   variables: {
-    selectedVariables: State<string[]>;
+    selectedVariables: State<Id[]>;
     variablesList: State<Variable[]>;
   };
 };

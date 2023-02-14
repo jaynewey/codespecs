@@ -1,7 +1,8 @@
 import { objectOrNone } from "../../utils";
 import DapClient from "../generated/dapClient";
 import { Variable as DapVariable } from "../generated/debugAdapterProtocol";
-import { Variable, VariableIncluder } from "./types";
+import { generateIncrementalIdStrategy } from "./incrementalIdStrategy";
+import { IdStrategy, Variable, VariableIncluder } from "./types";
 
 export function guessType(
   variable: DapVariable,
@@ -48,13 +49,16 @@ export async function getAttributesAndIndexes(
   );
 }
 
+const incrementalIdStrategy = generateIncrementalIdStrategy();
+
 /**
  * Gets variables and all child variables from a variable reference
  */
 export function getVariables(
   client: DapClient,
   variablesReference: number,
-  includer?: VariableIncluder
+  includer?: VariableIncluder,
+  idStrategy: IdStrategy = incrementalIdStrategy
 ): Promise<Variable[]> {
   return new Promise((resolve) => {
     if (typeof variablesReference !== "number" || variablesReference === 0) {
@@ -75,6 +79,7 @@ export function getVariables(
                 return getAttributesAndIndexes(client, variable, includer).then(
                   ({ attributes, indexes }) => {
                     return {
+                      id: idStrategy(variable),
                       name: variable?.name ?? "",
                       value: variable?.value ?? "",
                       nativeType: variable?.type ?? "",

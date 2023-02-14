@@ -1,7 +1,11 @@
 import { Language } from "../../languages";
 import { Variable as DapVariable } from "../generated/debugAdapterProtocol";
 
+export type Id = string | number;
+export type IdStrategy = (variable: DapVariable) => Id;
+
 export type Variable = {
+  id: Id;
   name: string;
   value: string;
   nativeType: string;

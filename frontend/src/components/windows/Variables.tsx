@@ -13,7 +13,7 @@ import {
 import ThemeContext from "../../contexts/ThemeContext";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
-import { Variable } from "../animation/types";
+import { Id, Variable } from "../animation/types";
 import { languageMap } from "./Code";
 import ToolbarButton from "./ToolbarButton";
 import { MosaicKey, Runtime, State } from "./types";
@@ -22,15 +22,15 @@ export function children(variable: Variable): Variable[] {
   return [...(variable?.attributes ?? []), ...(variable?.indexes ?? [])];
 }
 
-export function getVariableByName(
-  name: string,
+export function getVariableById(
+  id: Id,
   variables: Variable[]
 ): Variable | null {
   for (const variable of variables) {
-    if (variable.name === name) {
+    if (variable.id === id) {
       return variable;
     }
-    const nested = getVariableByName(name, children(variable));
+    const nested = getVariableById(id, children(variable));
     if (nested) {
       return nested;
     }
@@ -45,7 +45,7 @@ function VariableRow({
   depth = 0,
 }: {
   variable: Variable;
-  selectedVariablesState: State<string[]>;
+  selectedVariablesState: State<Id[]>;
   runtimeState: State<Runtime | null>;
   depth?: number;
 }) {
@@ -59,21 +59,21 @@ function VariableRow({
     <li className={`${depth > 0 ? "ml-4 border-l border-zinc-500" : ""}`}>
       <div
         className={`flex items-center pl-1 hover:bg-zinc-500/10 duration-300 cursor-pointer
-        ${selectedVariables.includes(variable.name) ? "bg-zinc-500/20" : ""}
+        ${selectedVariables.includes(variable.id) ? "bg-zinc-500/20" : ""}
 	`}
         onClick={() =>
           setSelectedVariables(
-            selectedVariables.includes(variable.name)
+            selectedVariables.includes(variable.id)
               ? [
                   ...selectedVariables.slice(
                     0,
-                    selectedVariables.indexOf(variable.name)
+                    selectedVariables.indexOf(variable.id)
                   ),
                   ...selectedVariables.slice(
-                    selectedVariables.indexOf(variable.name) + 1
+                    selectedVariables.indexOf(variable.id) + 1
                   ),
                 ]
-              : [...selectedVariables, variable.name]
+              : [...selectedVariables, variable.id]
           )
         }
       >
@@ -140,7 +140,7 @@ export default function Variables<T extends MosaicKey>({
 }: {
   path: MosaicPath;
   variablesListState: State<Variable[]>;
-  selectedVariablesState: State<string[]>;
+  selectedVariablesState: State<Id[]>;
   runtimeState: State<Runtime | null>;
 }) {
   const [variablesList, _] = variablesListState;
