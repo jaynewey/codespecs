@@ -77,9 +77,11 @@ export default function ArrayLike({
       className="flex flex-row w-auto border border-zinc-500 divide-x divide-zinc-500 rounded"
       ref={parent}
     >
-      {(value.indexes ?? []).map((v, i) => (
+      {(value.indexes ?? []).map((v, i, indexes) => (
         <div
-          key={v.value}
+          key={`${v.value}-${
+            indexes.slice(0, i).filter((v_) => v_.value == v.value).length
+          }`}
           className="p-3 px-4 flex shrink content-center bg-zinc-500/10"
         >
           {animationFactory(v)}
