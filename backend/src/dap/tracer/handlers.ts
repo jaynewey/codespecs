@@ -7,7 +7,7 @@ import { Scope } from "../generated/debugAdapterProtocol";
 import { Line, ProgramTrace, VariableIncluder } from "./types";
 import { getVariables } from "./variables";
 
-function flushLines(
+export function flushLines(
   lineBuffer: Line[],
   programTrace: ProgramTrace,
   eventEmitter?: EventEmitter
