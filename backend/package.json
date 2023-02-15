@@ -35,9 +35,5 @@
     "dap-types:fetch": "curl -o ./src/dap/generated/debugAdapterProtocol.json https://microsoft.github.io/debug-adapter-protocol/debugAdapterProtocol.json",
     "dap-types:generate": "json2ts ./src/dap/generated/debugAdapterProtocol.json ./src/dap/generated/debugAdapterProtocol.d.ts --unreachableDefinitions",
     "dap-client": "rm -rf ./src/dap/generated/ && yarn dap-types && ts-node ./src/dap/generateClient.ts"
-  },
-  "dependencies": {
-    "@fastify/cors": "^8.2.0",
-    "fastify": "^4.9.2"
   }
 }
