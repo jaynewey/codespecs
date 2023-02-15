@@ -25,8 +25,9 @@ import Tooltip from "../Tooltip";
 import ArrayLike from "../animation/ArrayLike";
 import ObjectLike from "../animation/ObjectLike";
 import { Variable } from "../animation/types";
+import { Id } from "../animation/types";
 import ToolbarButton from "./ToolbarButton";
-import { children, getVariableByName } from "./Variables";
+import { children, getVariableById } from "./Variables";
 import { MosaicKey, State, Window } from "./types";
 
 const MIN_ZOOM = 0.5;
@@ -61,7 +62,7 @@ export default function Animation<T extends MosaicKey>({
   variablesListState,
 }: {
   path: MosaicPath;
-  selectedVariablesState: State<string[]>;
+  selectedVariablesState: State<Id[]>;
   variablesListState: State<Variable[]>;
 }) {
   const [zoom, setZoom] = useState<number>(1);
@@ -150,17 +151,17 @@ export default function Animation<T extends MosaicKey>({
             maxZoom={MAX_ZOOM}
             className="w-full h-full bg-zinc-100 dark:bg-zinc-900 cursor-grab active:cursor-grabbing duration-100 transition-transform select-none"
           >
-            {selectedVariables.map((variableName) => {
-              const variable = getVariableByName(variableName, variablesList);
+            {selectedVariables.map((variableId) => {
+              const variable = getVariableById(variableId, variablesList);
               return variable ? (
                 <Draggable
-                  key={variable.name}
+                  key={String(variable.id)}
                   className="cursor-move"
                   onDrag={updateXarrow}
                 >
                   <div
                     className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md"
-                    id={variable.name}
+                    id={String(variable.id)}
                   >
                     <div className="flex flew-row pb-2">
                       <span className="font-mono text-xs pr-2 my-auto">
@@ -175,10 +176,10 @@ export default function Animation<T extends MosaicKey>({
                           setSelectedVariables([
                             ...selectedVariables.slice(
                               0,
-                              selectedVariables.indexOf(variable.name)
+                              selectedVariables.indexOf(variable.id)
                             ),
                             ...selectedVariables.slice(
-                              selectedVariables.indexOf(variable.name) + 1
+                              selectedVariables.indexOf(variable.id) + 1
                             ),
                           ])
                         }
@@ -197,18 +198,18 @@ export default function Animation<T extends MosaicKey>({
             })}
           </Pannable>
           <Xwrapper>
-            {selectedVariables.map((variableName) => {
-              const variable = getVariableByName(variableName, variablesList);
+            {selectedVariables.map((variableId) => {
+              const variable = getVariableById(variableId, variablesList);
               return variable ? (
-                <div key={variable.name} className="text-zinc-500">
+                <div key={variable.id} className="text-zinc-500">
                   {children(variable)
-                    .filter((a) => selectedVariables.includes(a.name))
+                    .filter((a) => selectedVariables.includes(a.id))
                     .map((a, i) => (
                       <Xarrow
                         color={"currentColor"}
                         strokeWidth={zoom}
-                        start={variable.name}
-                        end={a.name}
+                        start={String(variable.id)}
+                        end={String(a.id)}
                         key={i}
                       />
                     ))}

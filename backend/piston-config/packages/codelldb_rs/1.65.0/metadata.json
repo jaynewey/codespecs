@@ -1,0 +1,5 @@
+{
+  "language": "rust (via codelldb)",
+  "version": "1.65.0",
+  "aliases": ["rs"]
+}

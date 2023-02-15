@@ -1,0 +1,5 @@
+export PKG_DIR="$(dirname "$(realpath $0)")"
+
+export PATH=$PWD/tracer/dap:$PWD/rust-1.65.0-x86_64-unknown-linux-gnu/rustc/bin/:$PWD/node/bin:$PWD/bin:$PATH
+
+export RUST_INSTALL_LOC=$PWD/rust-1.65.0-x86_64-unknown-linux-gnu

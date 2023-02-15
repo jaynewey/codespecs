@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Variable } from "../components/animation/types";
+import { Id, Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 import { Runtime } from "../components/windows/types";
 
@@ -20,10 +20,11 @@ export type WindowStates = {
   terminal: {
     input: State<string>;
     output: State<Output[]>;
+    error: State<string>;
     tab: State<"output" | "input">;
   };
   variables: {
-    selectedVariables: State<string[]>;
+    selectedVariables: State<Id[]>;
     variablesList: State<Variable[]>;
   };
 };
@@ -40,6 +41,7 @@ export default function useWindows(): WindowStates {
     terminal: {
       input: useState<string>(""),
       output: useState<Output[]>([]),
+      error: useState<string>(""),
       tab: useState("input"),
     },
     variables: {

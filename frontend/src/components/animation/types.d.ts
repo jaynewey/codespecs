@@ -1,6 +1,9 @@
 import { ReactElement } from "react";
 
+export type Id = string | number;
+
 export type Variable = {
+  id: Id;
   name: string;
   value: string;
   nativeType: string;

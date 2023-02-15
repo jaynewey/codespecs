@@ -9,7 +9,7 @@ const DISALLOWED_NAMES = [
   "Advanced Vector Extensions",
 ];
 
-const CODE_PATH = `${process.env.PWD}/main.cpp`;
+const CODE_PATH = `${process.env.PWD}/main.c`;
 const PROGRAM_PATH = `${process.env.PWD}/main`;
 
 // find line of main func using `nm`
@@ -23,14 +23,9 @@ const config: Config = {
   adapterCommand: "$PKG_DIR/codelldb/extension/adapter/codelldb --port=5678",
   codePath: CODE_PATH,
   programPath: PROGRAM_PATH,
-  language: "C++ (GCC 8.3.0)",
+  language: "C (GCC 8.3.0)",
   includer: (variable: Variable) => {
-    return (
-      !DISALLOWED_NAMES.includes(variable?.name) &&
-      !variable?.evaluateName?.startsWith("/nat") &&
-      !variable?.evaluateName?.startsWith("std::") &&
-      !variable?.evaluateName?.startsWith("__gnu")
-    );
+    return !DISALLOWED_NAMES.includes(variable?.name);
   },
   entrypoint: !isNaN(entrypoint) ? entrypoint : 1,
 };

@@ -21,5 +21,7 @@ export COMPOSE_DOCKER_CLI_BUILD=0
 ./piston start
 ./piston build-pkg nodedebug2 16.3.0
 ./piston build-pkg debugpy 3.10.0
+./piston build-pkg codelldb_c 8.3.0
 ./piston build-pkg codelldb_cpp 8.3.0
+./piston build-pkg codelldb_rs 1.65.0
 	
