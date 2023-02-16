@@ -18,6 +18,7 @@ import { runtimeName } from "./utils";
 export const fileMap: { [key: string]: string } = {
   "python (via debugpy)": "main.py",
   "javascript (via node-debug2)": "main.js",
+  "typescript (via node-debug2)": "main.ts",
   "c++ (via codelldb)": "main.cpp",
   "c (via codelldb)": "main.c",
   "rust (via codelldb)": "main.rs",
@@ -28,6 +29,7 @@ export const fileMap: { [key: string]: string } = {
 export const languageMap: { [key: string]: Language } = {
   "python (via debugpy)": "python",
   "javascript (via node-debug2)": "javascript",
+  "typescript (via node-debug2)": "typescript",
   "c++ (via codelldb)": "cpp",
   "c (via codelldb)": "c",
 };
