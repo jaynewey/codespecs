@@ -1,0 +1,5 @@
+{
+  "language": "typescript (via node-debug2)",
+  "version": "16.3.0",
+  "aliases": ["ts"]
+}

@@ -258,6 +258,7 @@ export default function Topbar({
               JSON.stringify({ type: "signal", signal: "SIGKILL" })
             );
             setWebSocket(undefined);
+            setCurrentIndex(0);
             // reset windows to default
             setOutput([]);
             setError("");
@@ -333,6 +334,7 @@ export default function Topbar({
             <IconButton
               icon={ArrowDown}
               onClick={() => {
+                console.log(programTrace);
                 if (programTrace !== null) {
                   setCurrentIndex(
                     Math.min(programTrace.lines.length - 1, currentIndex + 1)

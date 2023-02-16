@@ -26,6 +26,7 @@ export default class Connection {
     this.socket = new Socket();
 
     this.socket.on("data", (data: string | Buffer) => {
+      //console.log(String(data));
       const parts = (this.buffer + String(data))
         ?.split(/Content-Length: [0-9]*\r\n\r\n/)
         ?.slice(1);

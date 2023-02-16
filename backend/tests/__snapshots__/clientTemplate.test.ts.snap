@@ -1,0 +1,621 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generates valid client 1`] = `
+"import Connection from "../connection";
+import { Response, Event, CancelArguments,
+RunInTerminalRequestArguments,
+StartDebuggingRequestArguments,
+InitializeRequestArguments,
+ConfigurationDoneArguments,
+LaunchRequestArguments,
+AttachRequestArguments,
+RestartArguments,
+DisconnectArguments,
+TerminateArguments,
+BreakpointLocationsArguments,
+SetBreakpointsArguments,
+SetFunctionBreakpointsArguments,
+SetExceptionBreakpointsArguments,
+DataBreakpointInfoArguments,
+SetDataBreakpointsArguments,
+SetInstructionBreakpointsArguments,
+ContinueArguments,
+NextArguments,
+StepInArguments,
+StepOutArguments,
+StepBackArguments,
+ReverseContinueArguments,
+RestartFrameArguments,
+GotoArguments,
+PauseArguments,
+StackTraceArguments,
+ScopesArguments,
+VariablesArguments,
+SetVariableArguments,
+SourceArguments,
+TerminateThreadsArguments,
+ModulesArguments,
+LoadedSourcesArguments,
+EvaluateArguments,
+SetExpressionArguments,
+StepInTargetsArguments,
+GotoTargetsArguments,
+CompletionsArguments,
+ExceptionInfoArguments,
+ReadMemoryArguments,
+WriteMemoryArguments,
+DisassembleArguments } from "./debugAdapterProtocol";
+
+export default class DapClient {
+  private connection: Connection;
+
+  constructor() {
+    this.connection = new Connection();
+  }
+
+  public connect(): Promise<void> {
+    return this.connection.connect();
+  }
+
+  public close() {
+    this.connection.close();
+  }
+
+  
+  public cancel (
+    arguments_?: CancelArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "cancel",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public runInTerminal (
+    arguments_: RunInTerminalRequestArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "runInTerminal",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public startDebugging (
+    arguments_: StartDebuggingRequestArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "startDebugging",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public initialize (
+    arguments_: InitializeRequestArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "initialize",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public configurationDone (
+    arguments_?: ConfigurationDoneArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "configurationDone",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public launch (
+    arguments_: LaunchRequestArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "launch",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public attach (
+    arguments_: AttachRequestArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "attach",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public restart (
+    arguments_?: RestartArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "restart",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public disconnect (
+    arguments_?: DisconnectArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "disconnect",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public terminate (
+    arguments_?: TerminateArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "terminate",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public breakpointLocations (
+    arguments_?: BreakpointLocationsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "breakpointLocations",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setBreakpoints (
+    arguments_: SetBreakpointsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setBreakpoints",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setFunctionBreakpoints (
+    arguments_: SetFunctionBreakpointsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setFunctionBreakpoints",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setExceptionBreakpoints (
+    arguments_: SetExceptionBreakpointsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setExceptionBreakpoints",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public dataBreakpointInfo (
+    arguments_: DataBreakpointInfoArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "dataBreakpointInfo",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setDataBreakpoints (
+    arguments_: SetDataBreakpointsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setDataBreakpoints",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setInstructionBreakpoints (
+    arguments_: SetInstructionBreakpointsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setInstructionBreakpoints",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public continue (
+    arguments_: ContinueArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "continue",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public next (
+    arguments_: NextArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "next",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public stepIn (
+    arguments_: StepInArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "stepIn",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public stepOut (
+    arguments_: StepOutArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "stepOut",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public stepBack (
+    arguments_: StepBackArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "stepBack",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public reverseContinue (
+    arguments_: ReverseContinueArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "reverseContinue",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public restartFrame (
+    arguments_: RestartFrameArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "restartFrame",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public goto (
+    arguments_: GotoArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "goto",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public pause (
+    arguments_: PauseArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "pause",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public stackTrace (
+    arguments_: StackTraceArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "stackTrace",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public scopes (
+    arguments_: ScopesArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "scopes",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public variables (
+    arguments_: VariablesArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "variables",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setVariable (
+    arguments_: SetVariableArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setVariable",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public source (
+    arguments_: SourceArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "source",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public threads (
+    
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "threads",
+	
+      }
+    );
+  }
+  
+  public terminateThreads (
+    arguments_: TerminateThreadsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "terminateThreads",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public modules (
+    arguments_: ModulesArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "modules",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public loadedSources (
+    arguments_?: LoadedSourcesArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "loadedSources",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public evaluate (
+    arguments_: EvaluateArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "evaluate",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public setExpression (
+    arguments_: SetExpressionArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "setExpression",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public stepInTargets (
+    arguments_: StepInTargetsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "stepInTargets",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public gotoTargets (
+    arguments_: GotoTargetsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "gotoTargets",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public completions (
+    arguments_: CompletionsArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "completions",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public exceptionInfo (
+    arguments_: ExceptionInfoArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "exceptionInfo",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public readMemory (
+    arguments_: ReadMemoryArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "readMemory",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public writeMemory (
+    arguments_: WriteMemoryArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "writeMemory",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+  public disassemble (
+    arguments_: DisassembleArguments
+  ): Promise<Response> {
+    return this.connection.request(
+      {
+	"command": "disassemble",
+	"arguments": arguments_,
+      }
+    );
+  }
+  
+
+  
+  public onInitializedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("initialized", handler);
+  }
+    
+  public onStoppedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("stopped", handler);
+  }
+    
+  public onContinuedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("continued", handler);
+  }
+    
+  public onExitedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("exited", handler);
+  }
+    
+  public onTerminatedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("terminated", handler);
+  }
+    
+  public onThreadEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("thread", handler);
+  }
+    
+  public onOutputEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("output", handler);
+  }
+    
+  public onBreakpointEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("breakpoint", handler);
+  }
+    
+  public onModuleEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("module", handler);
+  }
+    
+  public onLoadedSourceEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("loadedSource", handler);
+  }
+    
+  public onProcessEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("process", handler);
+  }
+    
+  public onCapabilitiesEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("capabilities", handler);
+  }
+    
+  public onProgressStartEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("progressStart", handler);
+  }
+    
+  public onProgressUpdateEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("progressUpdate", handler);
+  }
+    
+  public onProgressEndEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("progressEnd", handler);
+  }
+    
+  public onInvalidatedEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("invalidated", handler);
+  }
+    
+  public onMemoryEvent (handler: (event: Event) => void) {
+    this.connection.onEvent("memory", handler);
+  }
+    
+}
+"
+`;
