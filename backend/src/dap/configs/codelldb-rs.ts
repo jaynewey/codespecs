@@ -7,6 +7,7 @@ const DISALLOWED_NAMES = [
   "General Purpose Registers",
   "Floating Point Registers",
   "Advanced Vector Extensions",
+  "[raw]",
 ];
 
 const CODE_PATH = `${process.env.PWD}/main.rs`;
