@@ -86,6 +86,7 @@ export function addHandlers(
       const threadId = body?.threadId;
 
       if (typeof threadId !== "number") {
+        flushLines(lineBuffer, programTrace, eventEmitter);
         client.close();
         resolve(programTrace);
       }
