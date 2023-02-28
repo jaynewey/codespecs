@@ -25,13 +25,17 @@ export function guessType(
   return "numeric";
 }
 
+const MAX_DEPTH = 5;
+const incrementalIdStrategy = generateIncrementalIdStrategy();
+
 /**
  * Given a variable find its indexed and named children.
  */
 export async function getAttributesAndIndexes(
   client: DapClient,
   variable: DapVariable,
-  includer?: VariableIncluder
+  includer?: VariableIncluder,
+  depth: number = 0
 ): Promise<{ attributes: Variable[]; indexes: Variable[] }> {
   // guess it's an index by the name being an integer only made of digits
   // TODO: prefer using indexed/named filter over this method however fallback to this
@@ -39,17 +43,19 @@ export async function getAttributesAndIndexes(
   const isIndex = (name: string): boolean =>
     /^[0-9]+$/.test(name) || /^\[[0-9]\]$/.test(name);
 
-  return getVariables(client, variable?.variablesReference, includer).then(
-    (children) => {
-      return {
-        attributes: children.filter((child) => !isIndex(child.name)),
-        indexes: children.filter((child) => isIndex(child.name)),
-      };
-    }
-  );
+  return getVariables(
+    client,
+    variable?.variablesReference,
+    includer,
+    incrementalIdStrategy,
+    depth
+  ).then((children) => {
+    return {
+      attributes: children.filter((child) => !isIndex(child.name)),
+      indexes: children.filter((child) => isIndex(child.name)),
+    };
+  });
 }
-
-const incrementalIdStrategy = generateIncrementalIdStrategy();
 
 /**
  * Gets variables and all child variables from a variable reference
@@ -58,10 +64,15 @@ export function getVariables(
   client: DapClient,
   variablesReference: number,
   includer?: VariableIncluder,
-  idStrategy: IdStrategy = incrementalIdStrategy
+  idStrategy: IdStrategy = incrementalIdStrategy,
+  depth: number = 0
 ): Promise<Variable[]> {
   return new Promise((resolve) => {
-    if (typeof variablesReference !== "number" || variablesReference === 0) {
+    if (
+      typeof variablesReference !== "number" ||
+      variablesReference === 0 ||
+      depth > MAX_DEPTH
+    ) {
       resolve([]);
     } else {
       client
@@ -76,19 +87,22 @@ export function getVariables(
                   variable?.presentationHint?.visibility !== "internal"
               )
               .map(async (variable: DapVariable) => {
-                return getAttributesAndIndexes(client, variable, includer).then(
-                  ({ attributes, indexes }) => {
-                    return {
-                      id: idStrategy(variable),
-                      name: variable?.name ?? "",
-                      value: variable?.value ?? "",
-                      nativeType: variable?.type ?? "",
-                      likeType: guessType(variable, attributes, indexes),
-                      ...(attributes.length && { attributes }),
-                      ...(indexes.length && { indexes }),
-                    };
-                  }
-                );
+                return getAttributesAndIndexes(
+                  client,
+                  variable,
+                  includer,
+                  depth + 1
+                ).then(({ attributes, indexes }) => {
+                  return {
+                    id: idStrategy(variable),
+                    name: variable?.name ?? "",
+                    value: variable?.value ?? "",
+                    nativeType: variable?.type ?? "",
+                    likeType: guessType(variable, attributes, indexes),
+                    ...(attributes.length && { attributes }),
+                    ...(indexes.length && { indexes }),
+                  };
+                });
               })
           ).then(resolve);
         });
