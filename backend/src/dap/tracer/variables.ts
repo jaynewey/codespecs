@@ -35,7 +35,7 @@ export async function getAttributesAndIndexes(
   client: DapClient,
   variable: DapVariable,
   includer?: VariableIncluder,
-  depth: number = 0
+  depth = 0
 ): Promise<{ attributes: Variable[]; indexes: Variable[] }> {
   // guess it's an index by the name being an integer only made of digits
   // TODO: prefer using indexed/named filter over this method however fallback to this
@@ -65,7 +65,7 @@ export function getVariables(
   variablesReference: number,
   includer?: VariableIncluder,
   idStrategy: IdStrategy = incrementalIdStrategy,
-  depth: number = 0
+  depth = 0
 ): Promise<Variable[]> {
   return new Promise((resolve) => {
     if (
