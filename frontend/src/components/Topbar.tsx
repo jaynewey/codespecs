@@ -253,10 +253,12 @@ export default function Topbar({
               splitPercentage: 70,
             });
           } else {
-            // tell piston to kill process
-            webSocket?.send(
-              JSON.stringify({ type: "signal", signal: "SIGKILL" })
-            );
+            // tell piston to kill process, only if socket is open
+            if (webSocket?.readyState === WebSocket.OPEN) {
+              webSocket?.send(
+                JSON.stringify({ type: "signal", signal: "SIGKILL" })
+              );
+            }
             setWebSocket(undefined);
             setCurrentIndex(0);
             // reset windows to default
