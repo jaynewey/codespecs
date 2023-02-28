@@ -66,6 +66,16 @@ export function addHandlers(
         line.stdout = (line.stdout ?? "") + body.output;
       } else if (body?.category === "stderr") {
         if (configurationDone) {
+          // NOTE: node-debug2 does not terminate and instead waits for debugger to
+          //       disconnect. Debugger has no way of knowing other than via this stderr
+          //       See: https://github.com/microsoft/vscode-node-debug2/issues/11
+          if (body.output === "Waiting for the debugger to disconnect...\n") {
+            client.disconnect({ terminateDebuggee: true });
+            flushLines(lineBuffer, programTrace, eventEmitter);
+            client.close();
+            resolve(programTrace);
+          }
+
           line.stderr = (line.stderr ?? "") + body.output;
         }
       }
