@@ -14,10 +14,12 @@ export default function Windows<T extends MosaicKey>({
   windows,
   setWindows,
   windowFactory,
+  resize,
 }: {
   windows: MosaicNode<T>;
   setWindows: (windows: MosaicNode<T>) => void;
   windowFactory: WindowFactory;
+  resize: boolean;
 }) {
   return (
     <div className="h-full">
@@ -28,9 +30,13 @@ export default function Windows<T extends MosaicKey>({
         onChange={(currentNode) => {
           if (currentNode) setWindows(currentNode);
         }}
-        resize={{
-          minimumPaneSizePercentage: 10,
-        }}
+        resize={
+          resize
+            ? {
+                minimumPaneSizePercentage: 10,
+              }
+            : "DISABLED"
+        }
       />
     </div>
   );

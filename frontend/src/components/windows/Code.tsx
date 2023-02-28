@@ -76,7 +76,7 @@ export default function Code<T extends MosaicKey>({
         </div>
       )}
       path={path}
-      draggable={true}
+      draggable={isRunning}
     >
       <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 py-2 overflow-auto">
         <Editor

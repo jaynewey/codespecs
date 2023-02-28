@@ -95,6 +95,7 @@ function App() {
           windows={windows}
           setWindows={setWindows}
           windowFactory={windowFactoryFactory(windowStates)}
+          resize={windowStates.code.isRunning[0]}
         />
       </div>
     </ThemeProvider>
