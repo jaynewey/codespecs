@@ -38,10 +38,8 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         return (
           <Terminal
             path={path}
-            inputState={windowStates.terminal.input}
             outputState={windowStates.terminal.output}
             errorState={windowStates.terminal.error}
-            tabState={windowStates.terminal.tab}
           />
         );
       case "variables":
@@ -73,7 +71,7 @@ export const defaultWindows: MosaicNode<string> = {
     second: "variables",
     splitPercentage: 100,
   },
-  splitPercentage: 70,
+  splitPercentage: 100,
 };
 
 function App() {
