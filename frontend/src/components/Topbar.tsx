@@ -145,6 +145,7 @@ export default function Topbar({
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [runtimes, setRuntimes] = useState<Runtime[]>([]);
   const [isRunning, setIsRunning] = windowStates.code.isRunning;
+  const [, setRunState] = windowStates.animation.runState;
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>();
 
   const togglePause = () =>
@@ -208,7 +209,18 @@ export default function Topbar({
                 return;
               }
 
-              if (json?.type === "data") {
+              if (json?.type === "stage") {
+                if (json?.stage === "compile") {
+                  setRunState("compiling");
+                } else if (json?.stage === "run") {
+                  setRunState("tracing");
+                  setCurrentIndex(0);
+                }
+              } else if (json?.type === "exit") {
+                if (json?.stage === "run") {
+                  setRunState("traced");
+                }
+              } else if (json?.type === "data") {
                 if (json?.stream === "stdout") {
                   json.data
                     ?.split(/Content-Length: [0-9]*\r\n\r\n/)
@@ -266,6 +278,7 @@ export default function Topbar({
             setError("");
             setWindows(defaultWindows);
             setProgramTrace(null);
+            setRunState("coding");
           }
 
           setInProgress(!isRunning);

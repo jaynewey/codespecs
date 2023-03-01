@@ -20,6 +20,7 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
         return (
           <Animation
             path={path}
+            runStateState={windowStates.animation.runState}
             selectedVariablesState={windowStates.variables.selectedVariables}
             variablesListState={windowStates.variables.variablesList}
           />

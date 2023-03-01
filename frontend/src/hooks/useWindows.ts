@@ -10,7 +10,9 @@ export type Output = {
 };
 
 export type WindowStates = {
-  animation: {};
+  animation: {
+    runState: State<"coding" | "compiling" | "playing" | "tracing" | "traced">;
+  };
   code: {
     sourceCode: State<string>;
     runtime: State<Runtime | null>;
@@ -31,7 +33,9 @@ export type WindowStates = {
 
 export default function useWindows(): WindowStates {
   return {
-    animation: {},
+    animation: {
+      runState: useState("coding"),
+    },
     code: {
       sourceCode: useState<string>(""),
       runtime: useState(null),

@@ -39,13 +39,18 @@ export default function useAnimationPlayer(
   const [animInterval, setAnimInterval] = useState<number>(DEFAULT_INTERVAL);
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
 
+  const [runState, setRunState] = windowStates.animation.runState;
+
   useEffect(() => {
     if (inProgress) {
       const step = () => {
         setCurrentIndex((i) => i + 1);
       };
 
-      if (animInterval > PAUSED_INTERVAL) {
+      if (
+        animInterval > PAUSED_INTERVAL &&
+        !["coding", "compiling", "tracing"].includes(runState)
+      ) {
         const interval = setInterval(step, animInterval);
 
         return () => clearInterval(interval);
@@ -58,7 +63,7 @@ export default function useAnimationPlayer(
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList([]);
     }
-  }, [inProgress, animInterval]);
+  }, [inProgress, animInterval, runState]);
 
   useEffect(() => {
     if (programTrace && (programTrace?.lines ?? []).length) {
@@ -83,11 +88,21 @@ export default function useAnimationPlayer(
       );
 
       // if we are at last animation frame, pause
-      if (currentIndex === programTrace.lines.length - 1) {
-        setAnimInterval(PAUSED_INTERVAL);
+      if (currentIndex >= programTrace.lines.length - 1) {
+        if (runState !== "traced") {
+          if (runState === "playing") {
+            setRunState("tracing");
+          }
+        } else {
+          setAnimInterval(PAUSED_INTERVAL);
+        }
+      } else {
+        if (runState === "tracing") {
+          setRunState("playing");
+        }
       }
     }
-  }, [currentIndex]);
+  }, [currentIndex, programTrace]);
 
   return {
     programTrace,
