@@ -349,7 +349,6 @@ export default function Topbar({
             <IconButton
               icon={ArrowDown}
               onClick={() => {
-                console.log(programTrace);
                 if (programTrace !== null) {
                   setCurrentIndex(
                     Math.min(programTrace.lines.length - 1, currentIndex + 1)
