@@ -444,11 +444,13 @@ export default function Topbar({
         <button
           type="button"
           className={`flex px-2 py-0.5 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
-            selectedRuntime
+            selectedRuntime && !isRunning
               ? ""
-              : "animate-pulse bg-zinc-500/20 cursor-not-allowed"
+              : `${
+                  !selectedRuntime ? "animate-pulse" : ""
+                } bg-zinc-500/20 cursor-not-allowed`
           }`}
-          disabled={!selectedRuntime}
+          disabled={!selectedRuntime || isRunning}
         >
           <span className="pt-0.5">
             {runtimeName(selectedRuntime) ?? "Loading..."}
