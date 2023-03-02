@@ -21,6 +21,8 @@ function windowFactoryFactory(windowStates: WindowStates): WindowFactory {
           <Animation
             path={path}
             runStateState={windowStates.animation.runState}
+            programTraceState={windowStates.animation.programTrace}
+            currentIndexState={windowStates.animation.currentIndex}
             selectedVariablesState={windowStates.variables.selectedVariables}
             variablesListState={windowStates.variables.variablesList}
           />

@@ -133,19 +133,13 @@ export default function Topbar({
   animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const {
-    programTrace,
-    setProgramTrace,
-    setAnimInterval,
-    currentIndex,
-    setCurrentIndex,
-    isPaused,
-    setInProgress,
-  } = animationPlayer;
+  const { setAnimInterval, isPaused, setInProgress } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [runtimes, setRuntimes] = useState<Runtime[]>([]);
   const [isRunning, setIsRunning] = windowStates.code.isRunning;
   const [, setRunState] = windowStates.animation.runState;
+  const [programTrace, setProgramTrace] = windowStates.animation.programTrace;
+  const [currentIndex, setCurrentIndex] = windowStates.animation.currentIndex;
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>();
 
   const togglePause = () =>
@@ -228,7 +222,7 @@ export default function Topbar({
                     .forEach((msg: string) => {
                       try {
                         const line = JSON.parse(msg);
-                        setProgramTrace((programTrace) => {
+                        setProgramTrace((programTrace: ProgramTrace) => {
                           return programTrace
                             ? {
                                 language: programTrace.language,

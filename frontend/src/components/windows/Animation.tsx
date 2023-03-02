@@ -17,6 +17,7 @@ import {
 } from "react-mosaic-component";
 import Xarrow, { Xwrapper, useXarrow } from "react-xarrows";
 
+import { ProgramTrace } from "../../hooks/useAnimationPlayer";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import Draggable, { DragArea } from "../Draggable";
@@ -60,6 +61,8 @@ function animationFactory(variable: Variable): ReactElement {
 export default function Animation<T extends MosaicKey>({
   path,
   runStateState,
+  programTraceState,
+  currentIndexState,
   selectedVariablesState,
   variablesListState,
 }: {
@@ -67,10 +70,14 @@ export default function Animation<T extends MosaicKey>({
   runStateState: State<
     "coding" | "compiling" | "playing" | "tracing" | "traced"
   >;
+  programTraceState: State<ProgramTrace | null>;
+  currentIndexState: State<number>;
   selectedVariablesState: State<Id[]>;
   variablesListState: State<Variable[]>;
 }) {
   const [runState] = runStateState;
+  const [programTrace] = programTraceState;
+  const [currentIndex] = currentIndexState;
   const [zoom, setZoom] = useState<number>(1);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [selectedVariables, setSelectedVariables] = selectedVariablesState;
@@ -85,7 +92,14 @@ export default function Animation<T extends MosaicKey>({
       renderToolbar={() => (
         <div className="flex items-center p-2 w-full h-full text-sm bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-800">
           <CharmIcon icon={Glasses} />
-          <span className="pl-2">Animation</span>
+          <span className="px-2">Animation</span>
+          {programTrace?.lines && currentIndex > -1 ? (
+            <span className="text-xs text-zinc-500">
+              {currentIndex + 1} of {programTrace?.lines.length}
+            </span>
+          ) : (
+            <></>
+          )}
           <div className="flex ml-auto gap-1 px-2 align-middle">
             <Tooltip text="Zoom out">
               <ToolbarButton
@@ -153,7 +167,7 @@ export default function Animation<T extends MosaicKey>({
           case "playing":
           case "tracing":
           case "traced":
-            return selectedVariables.length ? (
+            return selectedVariables.length || !variablesList.length ? (
               <>
                 <DragArea zoom={zoom} className="w-full h-full">
                   <Pannable

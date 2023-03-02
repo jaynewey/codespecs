@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 import { Variable } from "../components/animation/types";
-import { State } from "../components/windows/types";
 import { WindowStates } from "./useWindows";
 
 export type Line = {
@@ -21,11 +20,7 @@ export const DEFAULT_INTERVAL = 1500;
 export const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
-  programTrace: ProgramTrace | null;
-  setProgramTrace: Dispatch<SetStateAction<ProgramTrace | null>>;
   setAnimInterval: (animInterval: number) => void;
-  currentIndex: number;
-  setCurrentIndex: (currentIndex: number) => void;
   isPaused: boolean;
   inProgress: boolean;
   setInProgress: Dispatch<SetStateAction<boolean>>;
@@ -35,16 +30,16 @@ export default function useAnimationPlayer(
   windowStates: WindowStates
 ): AnimationPlayer {
   const [inProgress, setInProgress] = useState<boolean>(false);
-  const [programTrace, setProgramTrace] = useState<ProgramTrace | null>(null);
   const [animInterval, setAnimInterval] = useState<number>(DEFAULT_INTERVAL);
-  const [currentIndex, setCurrentIndex] = useState<number>(-1);
 
   const [runState, setRunState] = windowStates.animation.runState;
+  const [programTrace] = windowStates.animation.programTrace;
+  const [currentIndex, setCurrentIndex] = windowStates.animation.currentIndex;
 
   useEffect(() => {
     if (inProgress) {
       const step = () => {
-        setCurrentIndex((i) => i + 1);
+        setCurrentIndex((i: number) => i + 1);
       };
 
       if (
@@ -105,11 +100,7 @@ export default function useAnimationPlayer(
   }, [currentIndex, programTrace]);
 
   return {
-    programTrace,
-    setProgramTrace,
     setAnimInterval,
-    currentIndex,
-    setCurrentIndex,
     isPaused: animInterval === PAUSED_INTERVAL,
     inProgress,
     setInProgress,
