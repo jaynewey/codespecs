@@ -22,6 +22,7 @@ export const fileMap: { [key: string]: string } = {
   "c++ (via codelldb)": "main.cpp",
   "c (via codelldb)": "main.c",
   "rust (via codelldb)": "main.rs",
+  "c# (via netcoredbg)": "Program.cs",
 };
 
 // TODO: figure out prism-react-renderer voodoo to get
@@ -76,7 +77,7 @@ export default function Code<T extends MosaicKey>({
         </div>
       )}
       path={path}
-      draggable={true}
+      draggable={isRunning}
     >
       <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 py-2 overflow-auto">
         <Editor

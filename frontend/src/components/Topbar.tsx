@@ -133,18 +133,13 @@ export default function Topbar({
   animationPlayer: AnimationPlayer;
 }) {
   const { theme, setTheme } = useContext(ThemeContext);
-  const {
-    programTrace,
-    setProgramTrace,
-    setAnimInterval,
-    currentIndex,
-    setCurrentIndex,
-    isPaused,
-    setInProgress,
-  } = animationPlayer;
+  const { setAnimInterval, isPaused, setInProgress } = animationPlayer;
   const [playSpeed, setPlaySpeed] = useState<number>(1);
   const [runtimes, setRuntimes] = useState<Runtime[]>([]);
   const [isRunning, setIsRunning] = windowStates.code.isRunning;
+  const [, setRunState] = windowStates.animation.runState;
+  const [programTrace, setProgramTrace] = windowStates.animation.programTrace;
+  const [currentIndex, setCurrentIndex] = windowStates.animation.currentIndex;
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>();
 
   const togglePause = () =>
@@ -208,7 +203,18 @@ export default function Topbar({
                 return;
               }
 
-              if (json?.type === "data") {
+              if (json?.type === "stage") {
+                if (json?.stage === "compile") {
+                  setRunState("compiling");
+                } else if (json?.stage === "run") {
+                  setRunState("tracing");
+                  setCurrentIndex(0);
+                }
+              } else if (json?.type === "exit") {
+                if (json?.stage === "run") {
+                  setRunState("traced");
+                }
+              } else if (json?.type === "data") {
                 if (json?.stream === "stdout") {
                   json.data
                     ?.split(/Content-Length: [0-9]*\r\n\r\n/)
@@ -216,7 +222,7 @@ export default function Topbar({
                     .forEach((msg: string) => {
                       try {
                         const line = JSON.parse(msg);
-                        setProgramTrace((programTrace) => {
+                        setProgramTrace((programTrace: ProgramTrace) => {
                           return programTrace
                             ? {
                                 language: programTrace.language,
@@ -253,10 +259,12 @@ export default function Topbar({
               splitPercentage: 70,
             });
           } else {
-            // tell piston to kill process
-            webSocket?.send(
-              JSON.stringify({ type: "signal", signal: "SIGKILL" })
-            );
+            // tell piston to kill process, only if socket is open
+            if (webSocket?.readyState === WebSocket.OPEN) {
+              webSocket?.send(
+                JSON.stringify({ type: "signal", signal: "SIGKILL" })
+              );
+            }
             setWebSocket(undefined);
             setCurrentIndex(0);
             // reset windows to default
@@ -264,6 +272,7 @@ export default function Topbar({
             setError("");
             setWindows(defaultWindows);
             setProgramTrace(null);
+            setRunState("coding");
           }
 
           setInProgress(!isRunning);
@@ -334,7 +343,6 @@ export default function Topbar({
             <IconButton
               icon={ArrowDown}
               onClick={() => {
-                console.log(programTrace);
                 if (programTrace !== null) {
                   setCurrentIndex(
                     Math.min(programTrace.lines.length - 1, currentIndex + 1)
@@ -430,11 +438,13 @@ export default function Topbar({
         <button
           type="button"
           className={`flex px-2 py-0.5 content-center border border-zinc-500 rounded hover:bg-zinc-500/20 focus:ring-zinc-500 focus:ring-2 duration-300 ${
-            selectedRuntime
+            selectedRuntime && !isRunning
               ? ""
-              : "animate-pulse bg-zinc-500/20 cursor-not-allowed"
+              : `${
+                  !selectedRuntime ? "animate-pulse" : ""
+                } bg-zinc-500/20 cursor-not-allowed`
           }`}
-          disabled={!selectedRuntime}
+          disabled={!selectedRuntime || isRunning}
         >
           <span className="pt-0.5">
             {runtimeName(selectedRuntime) ?? "Loading..."}

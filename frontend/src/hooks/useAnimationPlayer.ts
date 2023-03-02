@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 import { Variable } from "../components/animation/types";
-import { State } from "../components/windows/types";
 import { WindowStates } from "./useWindows";
 
 export type Line = {
@@ -21,11 +20,7 @@ export const DEFAULT_INTERVAL = 1500;
 export const PAUSED_INTERVAL = 0;
 
 export type AnimationPlayer = {
-  programTrace: ProgramTrace | null;
-  setProgramTrace: Dispatch<SetStateAction<ProgramTrace | null>>;
   setAnimInterval: (animInterval: number) => void;
-  currentIndex: number;
-  setCurrentIndex: (currentIndex: number) => void;
   isPaused: boolean;
   inProgress: boolean;
   setInProgress: Dispatch<SetStateAction<boolean>>;
@@ -35,17 +30,22 @@ export default function useAnimationPlayer(
   windowStates: WindowStates
 ): AnimationPlayer {
   const [inProgress, setInProgress] = useState<boolean>(false);
-  const [programTrace, setProgramTrace] = useState<ProgramTrace | null>(null);
   const [animInterval, setAnimInterval] = useState<number>(DEFAULT_INTERVAL);
-  const [currentIndex, setCurrentIndex] = useState<number>(-1);
+
+  const [runState, setRunState] = windowStates.animation.runState;
+  const [programTrace] = windowStates.animation.programTrace;
+  const [currentIndex, setCurrentIndex] = windowStates.animation.currentIndex;
 
   useEffect(() => {
     if (inProgress) {
       const step = () => {
-        setCurrentIndex((i) => i + 1);
+        setCurrentIndex((i: number) => i + 1);
       };
 
-      if (animInterval > PAUSED_INTERVAL) {
+      if (
+        animInterval > PAUSED_INTERVAL &&
+        !["coding", "compiling", "tracing"].includes(runState)
+      ) {
         const interval = setInterval(step, animInterval);
 
         return () => clearInterval(interval);
@@ -58,7 +58,7 @@ export default function useAnimationPlayer(
       const [, setVariablesList] = windowStates.variables.variablesList;
       setVariablesList([]);
     }
-  }, [inProgress, animInterval]);
+  }, [inProgress, animInterval, runState]);
 
   useEffect(() => {
     if (programTrace && (programTrace?.lines ?? []).length) {
@@ -83,18 +83,24 @@ export default function useAnimationPlayer(
       );
 
       // if we are at last animation frame, pause
-      if (currentIndex === programTrace.lines.length - 1) {
-        setAnimInterval(PAUSED_INTERVAL);
+      if (currentIndex >= programTrace.lines.length - 1) {
+        if (runState !== "traced") {
+          if (runState === "playing") {
+            setRunState("tracing");
+          }
+        } else {
+          setAnimInterval(PAUSED_INTERVAL);
+        }
+      } else {
+        if (runState === "tracing") {
+          setRunState("playing");
+        }
       }
     }
-  }, [currentIndex]);
+  }, [currentIndex, programTrace]);
 
   return {
-    programTrace,
-    setProgramTrace,
     setAnimInterval,
-    currentIndex,
-    setCurrentIndex,
     isPaused: animInterval === PAUSED_INTERVAL,
     inProgress,
     setInProgress,

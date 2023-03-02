@@ -1,0 +1,5 @@
+export PKG_DIR="$(dirname "$(realpath $0)")"
+
+export DOTNET_ROOT=$PWD
+
+export PATH=$PWD/tracer/dap:$PWD/node/bin:$DOTNET_ROOT:$PATH

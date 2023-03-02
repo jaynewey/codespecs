@@ -7,6 +7,7 @@ const DISALLOWED_NAMES = [
   "General Purpose Registers",
   "Floating Point Registers",
   "Advanced Vector Extensions",
+  "[raw]",
 ];
 
 const CODE_PATH = `${process.env.PWD}/main.rs`;
@@ -20,7 +21,8 @@ const parts =
 const entrypoint = Number(parts?.[parts.length - 1]);
 
 const config: Config = {
-  adapterCommand: "$PKG_DIR/codelldb/extension/adapter/codelldb --port=5678",
+  adapterCommand:
+    '$PKG_DIR/codelldb/extension/adapter/codelldb --port=5678 --params "{\\"sourceLanguages\\": [\\"rust\\"]}"',
   codePath: CODE_PATH,
   programPath: PROGRAM_PATH,
   language: "Rust (rustc 1.65.0)",

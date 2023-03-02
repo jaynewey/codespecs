@@ -13,7 +13,7 @@ export type WindowFactory = <T extends MosaicKey>(
   path: MosaicPath
 ) => ReactElement;
 
-export type State<S> = [S, (S) => void];
+export type State<S> = [S, Dispatch<SetStateAction<ProgramTrace | null>>];
 
 export type Runtime = {
   language: string;

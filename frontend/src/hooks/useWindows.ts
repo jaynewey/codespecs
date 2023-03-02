@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Id, Variable } from "../components/animation/types";
 import { State } from "../components/windows/types";
 import { Runtime } from "../components/windows/types";
+import { ProgramTrace } from "./useAnimationPlayer";
 
 export type Output = {
   stdout: string;
@@ -10,7 +11,11 @@ export type Output = {
 };
 
 export type WindowStates = {
-  animation: {};
+  animation: {
+    runState: State<"coding" | "compiling" | "playing" | "tracing" | "traced">;
+    programTrace: State<ProgramTrace | null>;
+    currentIndex: State<number>;
+  };
   code: {
     sourceCode: State<string>;
     runtime: State<Runtime | null>;
@@ -31,7 +36,11 @@ export type WindowStates = {
 
 export default function useWindows(): WindowStates {
   return {
-    animation: {},
+    animation: {
+      runState: useState("coding"),
+      programTrace: useState(null),
+      currentIndex: useState(-1),
+    },
     code: {
       sourceCode: useState<string>(""),
       runtime: useState(null),

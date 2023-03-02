@@ -34,13 +34,17 @@ if (!args?.[0] || ["-h", "--help"].includes(args?.[0])) {
       });
 
       // run tracer
-      tracer.traceProgram(
-        path.resolve(configDir, config.codePath),
-        path.resolve(configDir, config?.programPath ?? config.codePath),
-        config.language,
-        config.includer,
-        config?.entrypoint
-      );
+      tracer
+        .traceProgram(
+          path.resolve(configDir, config.codePath),
+          path.resolve(configDir, config?.programPath ?? config.codePath),
+          config.language,
+          config.includer,
+          config?.entrypoint
+        )
+        .then(() => {
+          adapter.kill();
+        });
     });
   });
 }

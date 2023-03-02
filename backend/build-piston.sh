@@ -25,4 +25,5 @@ export COMPOSE_DOCKER_CLI_BUILD=0
 ./piston build-pkg codelldb_c 8.3.0
 ./piston build-pkg codelldb_cpp 8.3.0
 ./piston build-pkg codelldb_rs 1.65.0
+./piston build-pkg netcoredbg_cs 5.0.201
 	
