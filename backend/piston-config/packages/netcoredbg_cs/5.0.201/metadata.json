@@ -1,0 +1,6 @@
+{
+  "language": "c# (via netcoredbg)",
+  "version": "5.0.201",
+  "aliases": ["cs"],
+  "limit_overrides": { "max_process_count": 128 }
+}

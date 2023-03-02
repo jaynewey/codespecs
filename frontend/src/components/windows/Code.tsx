@@ -22,6 +22,7 @@ export const fileMap: { [key: string]: string } = {
   "c++ (via codelldb)": "main.cpp",
   "c (via codelldb)": "main.c",
   "rust (via codelldb)": "main.rs",
+  "c# (via netcoredbg)": "Program.cs",
 };
 
 // TODO: figure out prism-react-renderer voodoo to get

@@ -70,6 +70,8 @@ export function runtimeName(runtime: Runtime | null): string {
       return `C (GCC ${runtime?.version})`;
     case "rust (via codelldb)":
       return `Rust (rustc ${runtime?.version})`;
+    case "c# (via netcoredbg)":
+      return `C# (.NET ${runtime?.version})`;
     default:
       return "?";
   }

@@ -1,0 +1,14 @@
+export DOTNET_CLI_HOME=$PWD
+export HOME=$PWD
+
+# rename file, the template would overwrite it
+mv Program.cs __Program.cs
+
+# generate template
+dotnet new console -o . --no-restore --force --name program
+
+# overwrite the template
+mv __Program.cs Program.cs
+
+dotnet restore --source $DOTNET_ROOT/.nuget/packages
+dotnet build --no-restore
