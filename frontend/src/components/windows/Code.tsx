@@ -1,6 +1,6 @@
 import { Code as CodeCharm } from "charm-icons";
 import Highlight, { Language, defaultProps } from "prism-react-renderer";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import {
   MosaicNode,
   MosaicPath,
@@ -10,6 +10,7 @@ import {
 import Editor from "react-simple-code-editor";
 
 import ThemeContext from "../../contexts/ThemeContext";
+import { codeMap } from "../../defaultPrograms";
 import "../../index.css";
 import CharmIcon from "../CharmIcon";
 import { MosaicKey, Runtime, State, Window } from "./types";
@@ -54,6 +55,10 @@ export default function Code<T extends MosaicKey>({
   const [isRunning] = isRunningState;
 
   const { theme } = useContext(ThemeContext);
+
+  useEffect(() => {
+    setSourceCode(codeMap?.[runtime?.language ?? ""] ?? "");
+  }, [runtime]);
 
   return (
     <MosaicWindow<T>
