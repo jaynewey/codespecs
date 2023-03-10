@@ -96,7 +96,12 @@ export function addHandlers(
           const body = objectOrNone(response?.body) ?? {};
           // NOTE: assumes that if the main file is not first in stackframe list
           // then we're in an internal function and should step out
-          const stackFrame = (arrayOrNone(body?.stackFrames) ?? [])?.[0];
+          // XXX: UNLESS we're in rust. Should extract this to config option instead
+          const stackFrame = (arrayOrNone(body?.stackFrames) ?? [])?.filter(
+            (frame) =>
+              language !== "Rust (rustc 1.65.0)" ||
+              frame?.source?.path === codePath
+          )?.[0];
           // need stack frame id
           const frameId = stackFrame?.id;
           // get line number
