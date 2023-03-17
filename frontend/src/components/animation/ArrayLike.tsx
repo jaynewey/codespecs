@@ -82,7 +82,7 @@ export default function ArrayLike({
           key={`${v.value}-${
             indexes.slice(0, i).filter((v_) => v_.value == v.value).length
           }`}
-          className="p-3 px-4 flex shrink content-center bg-zinc-500/10"
+          className="p-2 px-3 flex shrink content-center bg-zinc-500/10"
         >
           {animationFactory(v)}
         </div>

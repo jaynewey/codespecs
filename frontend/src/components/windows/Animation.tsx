@@ -25,7 +25,7 @@ import Pannable from "../Pannable";
 import Slider from "../Slider";
 import Tooltip from "../Tooltip";
 import ArrayLike from "../animation/ArrayLike";
-import ObjectLike from "../animation/ObjectLike";
+import Generic from "../animation/Generic";
 import { Variable } from "../animation/types";
 import { Id } from "../animation/types";
 import ToolbarButton from "./ToolbarButton";
@@ -41,18 +41,24 @@ function animationFactory(variable: Variable): ReactElement {
   switch (variable.likeType) {
     case "string":
       return (
-        <span className="m-auto font-mono token string">{variable.value}</span>
+        <Generic
+          className="token string"
+          animationFactory={animationFactory}
+          value={variable}
+        />
       );
     case "numeric":
       return (
-        <span className="m-auto font-mono token number">{variable.value}</span>
+        <Generic
+          className="token number"
+          animationFactory={animationFactory}
+          value={variable}
+        />
       );
     case "array":
       return <ArrayLike animationFactory={animationFactory} value={variable} />;
     case "object":
-      return (
-        <ObjectLike animationFactory={animationFactory} value={variable} />
-      );
+      return <Generic animationFactory={animationFactory} value={variable} />;
     default:
       return <></>;
   }
@@ -192,7 +198,7 @@ export default function Animation<T extends MosaicKey>({
                             className="absolute m-2 bg-zinc-500/10 hover:bg-zinc-500/20 rounded-lg p-3 ring-zinc-500 hover:ring-1 active:ring-2 duration-300 backdrop-blur-md"
                             id={String(variable.id)}
                           >
-                            <div className="flex flew-row pb-2">
+                            <div className="flex flew-row pb-1">
                               <span className="font-mono text-xs pr-2 my-auto">
                                 {variable.name}
                                 <span className="text-zinc-500">
